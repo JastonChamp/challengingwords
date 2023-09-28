@@ -13,7 +13,17 @@ challengingWords.forEach((word, index) => {
   const slot = document.createElement('div');
   slot.className = 'slot';
   
-  slot.textContent = word;
+  // Change color of vowel letters
+  let coloredWord = '';
+  for (let letter of word) {
+    if ('aeiou'.includes(letter)) {
+      coloredWord += `<span class="vowel">${letter}</span>`;
+    } else {
+      coloredWord += letter;
+    }
+  }
+  
+  slot.innerHTML = coloredWord;
   slot.style.display = 'none';
   wheel.appendChild(slot);
 });
