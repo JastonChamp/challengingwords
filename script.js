@@ -3,10 +3,10 @@ const challengingWords = [
    'scratch', 'scram', 'strap', 'crash', 'landed', 'ended',
    'present', 'seven', 'friends', 'select', 'nibbled', 'vanished',
    'drinks', 'strings', 'missing', 'incredible', 'flashing', 'blinking', 'fantastic',
-   'drinking', 'inspect', 'insects', 'chomping', 'tossing', 'dropping'
-'picnic', 'carrots', 'forest', 'antenna', 'umbrella', 'tugging'
-'difficult', 'huddling', 'sunset', 'standing', 'frolic', 'finishes'
-'swimming', 'tumbled', 'commented', 'woollen', 'astonished', 'looking'
+   'drinking', 'inspect', 'insects', 'chomping', 'tossing', 'dropping',
+   'picnic', 'carrots', 'forest', 'antenna', 'umbrella', 'tugging',
+   'difficult', 'huddling', 'sunset', 'standing', 'frolic', 'finishes',
+   'swimming', 'tumbled', 'commented', 'woollen', 'astonished', 'looking'
 ];
 
 challengingWords.forEach((word, index) => {
