@@ -27,16 +27,14 @@ header {
 }
 
 h1 {
-  font-size: 3em;
-  font-weight: 600;
+  font-size: 2.5em;
   color: #ff6f61;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .instructions {
-  font-size: 1.3em;
-  font-weight: 500;
-  color: #2c3e50;
+  font-size: 1.1em;
+  color: #7f8c8d;
   margin-top: 10px;
 }
 
@@ -44,7 +42,7 @@ h1 {
 .story-bar {
   text-align: center;
   margin-bottom: 20px;
-  background-color: #e67e22;
+  background-color: #f1c40f;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -59,7 +57,7 @@ h1 {
 #menu-btn,
 #fullscreen-btn {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   font-size: 2em;
   background: #ff6f61;
   border: none;
@@ -82,6 +80,11 @@ h1 {
 #fullscreen-btn:hover {
   transform: scale(1.1);
   background-color: #e65b50;
+}
+
+body.fullscreen #menu-btn,
+body.fullscreen #fullscreen-btn {
+  bottom: 10px;
 }
 
 /* Controls and Dropdown */
@@ -145,7 +148,7 @@ label {
 .word {
   background: #ff6f61;
   color: white;
-  padding: 25px 35px;
+  padding: 15px 25px;
   border-radius: 10px;
   cursor: move;
   user-select: none;
@@ -171,6 +174,7 @@ label {
 }
 
 .word.selected {
+  background-color: #ff6f61;
   outline: 2px solid #fff;
 }
 
@@ -179,9 +183,11 @@ label {
   background-color: #3498db;
 }
 
+/* Blank (Drop Target) */
 .blank {
   display: inline-block;
-  width: 120px;
+  width: 80px;
+  min-height: 2em; /* Ensure blank has a visible area */
   text-align: center;
   border-bottom: 3px dashed #4ecdc4;
   margin: 0 5px;
@@ -189,7 +195,6 @@ label {
   cursor: pointer;
   font-size: 1.1em;
   color: #2c3e50;
-  /* No underscores in the blank markup */
 }
 
 .blank.drag-over {
@@ -218,6 +223,7 @@ label {
   outline: 2px solid #3498db;
 }
 
+/* Hint Button inside Blank */
 .hint-for-blank {
   position: absolute;
   top: -25px;
@@ -226,8 +232,8 @@ label {
   background: #f1c40f;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   color: white;
   display: flex;
@@ -285,13 +291,13 @@ label {
 /* Menu Styles */
 .menu {
   position: fixed;
-  top: 70px;
+  bottom: 80px;
   right: 20px;
   background: #fff;
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border: 2px solid #ff6f61;
+  border: 2px solid #4ecdc4;
 }
 
 .menu.hidden {
@@ -303,7 +309,7 @@ label {
   width: 100%;
   padding: 15px;
   margin: 8px 0;
-  background: #ff6f61;
+  background: #4ecdc4;
   color: white;
   border: none;
   border-radius: 10px;
@@ -315,7 +321,7 @@ label {
 
 .menu button:hover {
   transform: scale(1.05);
-  background-color: #e65b50;
+  background-color: #3baead;
 }
 
 .menu button:focus {
@@ -399,56 +405,6 @@ label {
   display: none;
 }
 
-/* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  width: 80%;
-  max-width: 500px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.close-button {
-  float: right;
-  cursor: pointer;
-  font-size: 1.5em;
-}
-
-/* Animations */
-.slide-in {
-  animation: slideIn 0.3s ease-in-out;
-}
-@keyframes slideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-.bounce-in {
-  animation: bounceIn 0.5s;
-}
-@keyframes bounceIn {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
 /* Responsive Design */
 @media (min-width: 768px) {
   .game-container {
@@ -461,12 +417,19 @@ label {
   }
 }
 
-@media (max-width: 767px) {
-  .game-container {
-    flex-direction: column;
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
   }
-  #passage-text, #word-box {
-    width: 100%;
-    min-width: unset;
+  h1 {
+    font-size: 1.8em;
+  }
+  .menu {
+    bottom: 70px;
+    right: 10px;
+  }
+  .status-bar {
+    flex-direction: column;
+    text-align: center;
   }
 }
