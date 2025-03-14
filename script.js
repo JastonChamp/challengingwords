@@ -640,7 +640,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The boat ___(1)___ on the water. The waves ___(2)___ high. Each sailor ___(3)___ a job. The fish ___(4)___ below. The wind ___(5)___ the sails.",
+      text: "The boat floated ___(1)___ on the water. The waves ___(2)___ high. Each sailor ___(3)___ a job. The fish ___(4)___ below. The wind ___(5)___ the sails.",
       wordBox: ["float", "floats", "rise", "rises", "have", "has", "swim", "swims", "push", "pushes"],
       answers: ["floats", "rise", "has", "swim", "pushes"],
       clueWords: [["boat"], ["waves"], ["sailor"], ["fish"], ["wind"]],
@@ -980,7 +980,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___. It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
+      text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___ . It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
       wordBox: ["colorful", "colorfully", "high", "highly", "tight", "tightly", "quick", "quickly", "happy", "happily"],
       answers: ["colorful", "high", "tightly", "high", "happily"],
       clueWords: [["kite"], ["flew"], ["string"], ["rose"], ["smiled"]],
@@ -1008,7 +1008,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ rain fell ___(2)___ on the roof. The girl watched ___(3)___ as it dripped ___(4)___. The sound was ___(5)___ and calming.",
+      text: "The ___(1)___ rain fell ___(2)___ on the roof. The girl watched ___(3)___ as it dripped ___(4)___ . The sound was ___(5)___ and calming.",
       wordBox: ["heavy", "heavily", "soft", "softly", "careful", "carefully", "slow", "slowly", "gentle", "gently"],
       answers: ["heavy", "heavily", "carefully", "slowly", "gentle"],
       clueWords: [["rain"], ["fell"], ["watched"], ["dripped"], ["sound"]],
@@ -1036,7 +1036,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ cake smelled ___(2)___ in the oven. The baker mixed the batter ___(3)___. It baked ___(4)___ and turned ___(5)___ brown.",
+      text: "The ___(1)___ cake smelled ___(2)___ in the oven. The baker mixed the batter ___(3)___ . It baked ___(4)___ and turned ___(5)___ brown.",
       wordBox: ["sweet", "sweetly", "nice", "nicely", "careful", "carefully", "slow", "slowly", "golden", "goldenly"],
       answers: ["sweet", "nicely", "carefully", "slowly", "golden"],
       clueWords: [["cake"], ["smelled"], ["batter"], ["baked"], ["turned"]],
@@ -1078,7 +1078,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ MRT moved ___(2)___ through the tunnel. The driver worked ___(3)___. Passengers stood ___(4)___ and waited ___(5)___ for their stations.",
+      text: "The ___(1)___ MRT moved ___(2)___ through the tunnel. The driver worked ___(3)___ . Passengers stood ___(4)___ and waited ___(5)___ for their stations.",
       wordBox: ["fast", "fastly", "smooth", "smoothly", "careful", "carefully", "quiet", "quietly", "calm", "calmly"],
       answers: ["fast", "smoothly", "carefully", "quietly", "calmly"],
       clueWords: [["MRT"], ["moved"], ["driver"], ["passengers"], ["stations"]],
@@ -1092,7 +1092,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ hawker cooked ___(2)___ for the crowd. The food smelled ___(3)___ and tasted ___(4)___. Customers ate ___(5)___ at the tables.",
+      text: "The ___(1)___ hawker cooked ___(2)___ for the crowd. The food smelled ___(3)___ and tasted ___(4)___ . Customers ate ___(5)___ at the tables.",
       wordBox: ["busy", "busily", "quick", "quickly", "good", "well", "nice", "nicely", "happy", "happily"],
       answers: ["busy", "quickly", "nice", "well", "happily"],
       clueWords: [["hawker"], ["cooked"], ["smelled"], ["tasted"], ["tables"]],
@@ -1440,7 +1440,7 @@ class GameEngine {
     this.fullscreenBtn = document.getElementById("fullscreen-btn");
     this.speakPassageBtn = document.getElementById("speak-passage-btn");
     this.highlightCluesButton = document.getElementById("highlight-clues-btn");
-    this.voiceCommandBtn = document.getElementById("voice-command-btn");
+    // Removed voice command button.
     this.badgeDisplay = document.getElementById("badge-display");
     this.storyProgress = document.getElementById("story-progress");
     this.grammarWizard = document.getElementById("grammar-wizard");
@@ -1457,7 +1457,6 @@ class GameEngine {
     this.attachEventListeners();
     this.displayPassage();
     this.updateStatus();
-    this.initVoiceRecognition();
     this.showWelcomeMessage();
   }
 
@@ -1572,49 +1571,6 @@ class GameEngine {
     });
   }
 
-  initVoiceRecognition() {
-    if (!("SpeechRecognition" in window) && !("webkitSpeechRecognition" in window)) {
-      this.voiceCommandBtn.style.display = "none";
-      console.warn("Speech recognition not supported.");
-      return;
-    }
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    this.recognition = new SpeechRecognition();
-    this.recognition.continuous = false;
-    this.recognition.lang = "en-US";
-    this.recognition.interimResults = false;
-    this.recognition.maxAlternatives = 1;
-    this.recognition.onresult = (event) => {
-      const command = event.results[0][0].transcript.toLowerCase();
-      console.log("Voice command:", command);
-      const words = this.wordBox.querySelectorAll(".word");
-      words.forEach((word) => {
-        if (command.includes(word.textContent.toLowerCase())) {
-          this.selectWord(word);
-          this.speechManager.speak(`Selected word: ${word.textContent}`);
-        }
-      });
-      if (command.includes("place") || command.includes("put")) {
-        const blank = this.passageText.querySelector(".blank:not(.filled)");
-        if (this.selectedWord && blank) {
-          this.placeWord(blank, this.selectedWord.textContent);
-          this.selectedWord.remove();
-          this.selectedWord = null;
-          this.updateStatus();
-        }
-      }
-    };
-    this.recognition.onerror = (event) => {
-      console.error("Voice recognition error:", event.error);
-      this.feedbackDisplay.textContent = "Voice command error. Please try again.";
-    };
-    this.voiceCommandBtn.addEventListener("click", () => {
-      this.recognition.start();
-      this.feedbackDisplay.textContent = "Listening for voice command...";
-      this.menu.classList.add("hidden");
-    });
-  }
-
   getCurrentPassage() {
     return this.passages[this.currentGrammarType][this.currentPassageIndex];
   }
@@ -1653,9 +1609,10 @@ class GameEngine {
         });
       });
     }
+    // Remove underscores from blank markup.
     passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
       return `<span class="blank" data-blank="${num}" tabindex="0" role="button">
-                _<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
+                <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
               </span>`;
     });
     this.passageText.innerHTML = passageHTML;
@@ -1683,12 +1640,13 @@ class GameEngine {
       this.timerBar.style.width = "0%";
     }
     const chapters = [
-      "The Grammar Wizard needs your help!",
-      "You're making progress!",
-      "The Kingdom is almost saved!"
+      { text: "The Kingdom is in danger!", bg: "castle-bg.png" },
+      { text: "The Wizard’s magic grows!", bg: "forest-bg.png" },
+      { text: "Victory is near!", bg: "victory-bg.png" }
     ];
-    const chapterIndex = Math.min(Math.floor(this.stars / 5), chapters.length - 1);
-    this.storyProgress.textContent = `Story: ${chapters[chapterIndex]}`;
+    const chapter = chapters[Math.min(Math.floor(this.stars / 5), chapters.length - 1)];
+    this.storyProgress.textContent = `Story: ${chapter.text}`;
+    document.body.style.backgroundImage = `url(${chapter.bg})`;
   }
 
   updateTimer(timeLeft) {
@@ -1716,7 +1674,7 @@ class GameEngine {
 
   placeWord(blank, word) {
     blank.textContent = word;
-    blank.classList.add("filled");
+    blank.classList.add("filled", "slide-in");
     this.checkAnswer(blank);
   }
 
@@ -1731,8 +1689,8 @@ class GameEngine {
       this.feedbackDisplay.textContent = "Correct! Great job!";
       this.feedbackDisplay.style.color = "green";
       this.speechManager.speak("Correct! Great job!");
+      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
       this.correctSound.play();
-      this.showConfetti();
       this.grammarWizard.classList.remove("hidden");
       this.wizardMessage.textContent = "Well done! You're saving the Kingdom!";
       setTimeout(() => this.grammarWizard.classList.add("hidden"), 3000);
@@ -1776,9 +1734,14 @@ class GameEngine {
           this.speechManager.speak("Plus 10 extra points for quick completion.");
         }
       }
-      this.badgesEarned++;
-      this.badgeDisplay.classList.remove("hidden");
-      setTimeout(() => this.badgeDisplay.classList.add("hidden"), 3000);
+      if (this.stars % 5 === 0) {
+        this.badgeDisplay.innerHTML = `
+          <p>You’ve earned a Mastery Badge!</p>
+          <img src="badge-mastery.png" alt="Mastery Badge" class="bounce-in">
+        `;
+        this.badgeDisplay.classList.remove("hidden");
+        setTimeout(() => this.badgeDisplay.classList.add("hidden"), 3000);
+      }
     }
     this.resetTimer();
     this.currentPassageIndex++;
@@ -1795,7 +1758,7 @@ class GameEngine {
 
   showConfetti() {
     if (typeof confetti === "function") {
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
     }
   }
 
@@ -1805,12 +1768,23 @@ class GameEngine {
 
   showWelcomeMessage() {
     if (!localStorage.getItem("hasSeenTutorial")) {
-      const welcomeMessage = "Welcome to Grammar Cloze Adventure! Help the Grammar Wizard save the Kingdom by filling in the blanks. Drag, tap, or use voice commands to select a word!";
-      this.feedbackDisplay.textContent = welcomeMessage;
+      const onboardingContent = `
+        <div class="onboarding">
+          <svg class="wizard" width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="#ff6f61" />
+            <circle cx="40" cy="40" r="5" fill="white" />
+            <circle cx="60" cy="40" r="5" fill="white" />
+            <path d="M40 60 Q50 70 60 60" fill="none" stroke="white" stroke-width="3" />
+            <rect x="45" y="20" width="10" height="20" fill="#f1c40f" />
+          </svg>
+          <p>Welcome! I’m the Grammar Wizard. Drag a word into the blank to start!</p>
+          <div class="demo-blank"></div>
+        </div>
+      `;
+      this.modalManager.show(onboardingContent);
+      this.speechManager.speak("Welcome! I’m the Grammar Wizard. Drag a word into the blank to start!");
+      setTimeout(() => this.modalManager.hide(), 5000);
       localStorage.setItem("hasSeenTutorial", "true");
-      this.speechManager.speak(welcomeMessage);
-      this.grammarWizard.classList.remove("hidden");
-      this.wizardMessage.textContent = "Let's get started!";
     }
   }
 }
