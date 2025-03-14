@@ -145,7 +145,7 @@ label {
 .word {
   background: #ff6f61;
   color: white;
-  padding: 20px 30px;
+  padding: 25px 35px;
   border-radius: 10px;
   cursor: move;
   user-select: none;
@@ -181,7 +181,7 @@ label {
 
 .blank {
   display: inline-block;
-  width: 100px;
+  width: 120px;
   text-align: center;
   border-bottom: 3px dashed #4ecdc4;
   margin: 0 5px;
@@ -189,6 +189,7 @@ label {
   cursor: pointer;
   font-size: 1.1em;
   color: #2c3e50;
+  /* No underscores in the blank markup */
 }
 
 .blank.drag-over {
