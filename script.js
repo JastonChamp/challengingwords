@@ -484,216 +484,6 @@ window.passages = {
         "Which verb form agrees with 'the dog'?"
       ],
       hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The kite ___(1)___ high in the sky. The children ___(2)___ the kite. Each boy ___(3)___ a turn. The clouds ___(4)___ across the sky. The wind ___(5)___ strongly.",
-      wordBox: ["fly", "flies", "hold", "holds", "take", "takes", "move", "moves", "blow", "blows"],
-      answers: ["flies", "hold", "takes", "move", "blows"],
-      clueWords: [["kite"], ["children"], ["boy"], ["clouds"], ["wind"]],
-      hints: [
-        "Which verb form shows the kite’s motion?",
-        "What do the children do with the kite?",
-        "What does each boy do?",
-        "How do the clouds move?",
-        "What verb best describes the wind?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The teacher ___(1)___ the class every day. The students ___(2)___ quietly. Each desk ___(3)___ a book. The pencils ___(4)___ on the table. The bell ___(5)___ at noon.",
-      wordBox: ["teach", "teaches", "sit", "sits", "have", "has", "are", "is", "ring", "rings"],
-      answers: ["teaches", "sit", "has", "are", "rings"],
-      clueWords: [["teacher"], ["students"], ["desk"], ["pencils"], ["bell"]],
-      hints: [
-        "Which verb fits the singular 'teacher'?",
-        "What do the students do?",
-        "How is each desk treated?",
-        "What is the state of the pencils?",
-        "What happens with the bell?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The fish ___(1)___ in the tank. The children ___(2)___ the fish. Each fish ___(3)___ a bright color. The bubbles ___(4)___ to the top. The cat ___(5)___ the tank closely.",
-      wordBox: ["swim", "swims", "watch", "watches", "have", "has", "rise", "rises", "look", "looks"],
-      answers: ["swims", "watch", "has", "rise", "looks"],
-      clueWords: [["fish"], ["children"], ["fish"], ["bubbles"], ["cat"]],
-      hints: [
-        "Which verb form is needed for the fish?",
-        "What do the children do?",
-        "How does 'each fish' behave?",
-        "What happens with the bubbles?",
-        "How is the cat positioned?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The sun ___(1)___ in the morning. The birds ___(2)___ in the trees. Each cloud ___(3)___ a shape. The leaves ___(4)___ in the wind. The dog ___(5)___ in the yard.",
-      wordBox: ["rise", "rises", "sing", "sings", "have", "has", "move", "moves", "play", "plays"],
-      answers: ["rises", "sing", "has", "move", "plays"],
-      clueWords: [["sun"], ["birds"], ["cloud"], ["leaves"], ["dog"]],
-      hints: [
-        "Which verb form fits 'the sun'?",
-        "What do the birds do?",
-        "What shape does each cloud form?",
-        "How do the leaves behave in the wind?",
-        "What does the dog do in the yard?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The clock ___(1)___ every hour. The hands ___(2)___ around the face. Each minute ___(3)___ slowly. The children ___(4)___ for recess. The teacher ___(5)___ the time.",
-      wordBox: ["tick", "ticks", "move", "moves", "pass", "passes", "wait", "waits", "check", "checks"],
-      answers: ["ticks", "move", "passes", "wait", "checks"],
-      clueWords: [["clock"], ["hands"], ["minute"], ["children"], ["teacher"]],
-      hints: [
-        "Which verb describes the clock’s sound?",
-        "How do the hands move?",
-        "What happens each minute?",
-        "What do the children do?",
-        "What does the teacher do with the time?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The bus ___(1)___ at the stop. The passengers ___(2)___ quietly. Each driver ___(3)___ a route. The wheels ___(4)___ on the road. The horn ___(5)___ loudly.",
-      wordBox: ["stop", "stops", "wait", "waits", "have", "has", "roll", "rolls", "sound", "sounds"],
-      answers: ["stops", "wait", "has", "roll", "sounds"],
-      clueWords: [["bus"], ["passengers"], ["driver"], ["wheels"], ["horn"]],
-      hints: [
-        "Which word shows where the bus stops?",
-        "How do the passengers behave?",
-        "What does each driver do?",
-        "What happens with the wheels?",
-        "How does the horn sound?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The cake ___(1)___ delicious. The children ___(2)___ the cake. Each slice ___(3)___ a cherry. The plates ___(4)___ on the table. The party ___(5)___ at six.",
-      wordBox: ["taste", "tastes", "eat", "eats", "have", "has", "are", "is", "start", "starts"],
-      answers: ["tastes", "eat", "has", "are", "starts"],
-      clueWords: [["cake"], ["children"], ["slice"], ["plates"], ["party"]],
-      hints: [
-        "Which verb describes the cake’s taste?",
-        "What do the children do with the cake?",
-        "How is each slice characterized?",
-        "What is the state of the plates?",
-        "When does the party start?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The rain ___(1)___ heavily. The umbrellas ___(2)___ the people dry. Each drop ___(3)___ on the ground. The clouds ___(4)___ dark. The wind ___(5)___ the trees.",
-      wordBox: ["fall", "falls", "keep", "keeps", "land", "lands", "look", "looks", "move", "moves"],
-      answers: ["falls", "keep", "lands", "look", "moves"],
-      clueWords: [["rain"], ["umbrellas"], ["drop"], ["clouds"], ["wind"]],
-      hints: [
-        "Which verb shows the rain's action?",
-        "What do the umbrellas do?",
-        "What happens to each drop?",
-        "How are the clouds described?",
-        "How does the wind interact with the trees?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The monkey ___(1)___ in the tree. The bananas ___(2)___ on the branch. Each leaf ___(3)___ green. The birds ___(4)___ nearby. The zookeeper ___(5)___ the animals.",
-      wordBox: ["climb", "climbs", "hang", "hangs", "is", "are", "fly", "flies", "feed", "feeds"],
-      answers: ["climbs", "hang", "is", "fly", "feeds"],
-      clueWords: [["monkey"], ["bananas"], ["leaf"], ["birds"], ["zookeeper"]],
-      hints: [
-        "Which word describes the monkey’s action?",
-        "What happens to the bananas on the branch?",
-        "How does each leaf behave?",
-        "What do the birds do?",
-        "What does the zookeeper do?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The phone ___(1)___ loudly. The children ___(2)___ the sound. Each button ___(3)___ a light. The messages ___(4)___ on the screen. The teacher ___(5)___ the phone off.",
-      wordBox: ["ring", "rings", "hear", "hears", "have", "has", "appear", "appears", "turn", "turns"],
-      answers: ["rings", "hear", "has", "appear", "turns"],
-      clueWords: [["phone"], ["children"], ["button"], ["messages"], ["teacher"]],
-      hints: [
-        "Which word shows how the phone sounds?",
-        "What do the children do?",
-        "What happens with each button?",
-        "How do the messages appear?",
-        "What does the teacher do?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The star ___(1)___ in the sky. The planets ___(2)___ around the sun. Each moon ___(3)___ a shadow. The clouds ___(4)___ away. The night ___(5)___ quiet.",
-      wordBox: ["shine", "shines", "move", "moves", "cast", "casts", "float", "floats", "is", "are"],
-      answers: ["shines", "move", "casts", "float", "is"],
-      clueWords: [["star"], ["planets"], ["moon"], ["clouds"], ["night"]],
-      hints: [
-        "Which verb form is needed for 'the star'?",
-        "How do the planets move?",
-        "What does each moon do?",
-        "How do the clouds behave?",
-        "How is the night described?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The boat floated ___(1)___ on the water. The waves ___(2)___ high. Each sailor ___(3)___ a job. The fish ___(4)___ below. The wind ___(5)___ the sails.",
-      wordBox: ["float", "floats", "rise", "rises", "have", "has", "swim", "swims", "push", "pushes"],
-      answers: ["floats", "rise", "has", "swim", "pushes"],
-      clueWords: [["boat"], ["waves"], ["sailor"], ["fish"], ["wind"]],
-      hints: [
-        "Which word describes the boat’s position on the water?",
-        "How high do the waves get?",
-        "What does each sailor do?",
-        "How do the fish behave?",
-        "What is the wind doing to the sails?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The lion ___(1)___ in the cage. The visitors ___(2)___ the lion. Each child ___(3)___ a camera. The monkeys ___(4)___ in the trees. The zookeeper ___(5)___ the gate.",
-      wordBox: ["roar", "roars", "watch", "watches", "hold", "holds", "climb", "climbs", "open", "opens"],
-      answers: ["roars", "watch", "holds", "climb", "opens"],
-      clueWords: [["lion"], ["visitors"], ["child"], ["monkeys"], ["zookeeper"]],
-      hints: [
-        "Which verb shows how the lion makes its sound?",
-        "What do the visitors do?",
-        "What is expected from each child?",
-        "How do the monkeys behave?",
-        "What does the zookeeper do with the gate?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The MRT ___(1)___ fast. The doors ___(2)___ at each stop. Each passenger ___(3)___ a ticket. The seats ___(4)___ full. The driver ___(5)___ the train.",
-      wordBox: ["move", "moves", "open", "opens", "have", "has", "are", "is", "control", "controls"],
-      answers: ["moves", "open", "has", "are", "controls"],
-      clueWords: [["MRT"], ["doors"], ["passenger"], ["seats"], ["driver"]],
-      hints: [
-        "Which verb form fits the singular 'MRT'?",
-        "What happens to the doors?",
-        "What does each passenger do?",
-        "How are the seats described?",
-        "What does the driver do?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The hawker ___(1)___ the food. The customers ___(2)___ at the tables. Each plate ___(3)___ rice. The fans ___(4)___ above. The queue ___(5)___ long.",
-      wordBox: ["cook", "cooks", "sit", "sits", "have", "has", "spin", "spins", "grow", "grows"],
-      answers: ["cooks", "sit", "has", "spin", "grows"],
-      clueWords: [["hawker"], ["customers"], ["plate"], ["fans"], ["queue"]],
-      hints: [
-        "Which verb shows what the hawker does?",
-        "What do the customers do?",
-        "How is each plate described?",
-        "What do the fans do?",
-        "How long is the queue?"
-      ],
-      hint: "Remember to use the objects around you as clues."
     }
   ],
   pronouns: [
@@ -1440,7 +1230,7 @@ class GameEngine {
     this.fullscreenBtn = document.getElementById("fullscreen-btn");
     this.speakPassageBtn = document.getElementById("speak-passage-btn");
     this.highlightCluesButton = document.getElementById("highlight-clues-btn");
-    // Removed voice command button.
+    // Voice command button removed.
     this.badgeDisplay = document.getElementById("badge-display");
     this.storyProgress = document.getElementById("story-progress");
     this.grammarWizard = document.getElementById("grammar-wizard");
@@ -1483,6 +1273,8 @@ class GameEngine {
         }
       }
     });
+    // Drag-and-drop event listeners (added after displaying words and blanks)
+    // (These listeners are reattached in displayPassage below.)
     // Grammar Type Change
     this.grammarSelect.addEventListener("change", (e) => {
       this.currentGrammarType = e.target.value;
@@ -1520,11 +1312,12 @@ class GameEngine {
       }
       this.menu.classList.add("hidden");
     });
-    // Speak Passage Button
+    // Speak Passage Button – modified to remove underscores from the reading
     this.speakPassageBtn.addEventListener("click", () => {
       const passage = this.getCurrentPassage();
       if (passage && passage.text) {
-        const textToSpeak = passage.text.replace(/\d+/g, "blank");
+        // Replace the entire blank pattern "___(digit)___" with "blank"
+        const textToSpeak = passage.text.replace(/___\(\d+\)___/g, "blank");
         this.speechManager.speak(textToSpeak);
       }
       this.menu.classList.add("hidden");
@@ -1571,6 +1364,36 @@ class GameEngine {
     });
   }
 
+  // Drag-and-Drop Handlers
+  handleDragStart(e) {
+    this.selectedWord = e.target;
+    e.dataTransfer.setData("text/plain", e.target.textContent);
+    e.target.classList.add("dragging");
+  }
+  handleDragEnd(e) {
+    e.target.classList.remove("dragging");
+  }
+  handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add("drag-over");
+  }
+  handleDragLeave(e) {
+    e.currentTarget.classList.remove("drag-over");
+  }
+  handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove("drag-over");
+    const word = e.dataTransfer.getData("text/plain");
+    if (!e.currentTarget.classList.contains("filled")) {
+      this.placeWord(e.currentTarget, word);
+      if (this.selectedWord) {
+        this.selectedWord.remove();
+        this.selectedWord = null;
+      }
+      this.updateStatus();
+    }
+  }
+
   getCurrentPassage() {
     return this.passages[this.currentGrammarType][this.currentPassageIndex];
   }
@@ -1609,8 +1432,8 @@ class GameEngine {
         });
       });
     }
-    // Remove underscores from blank markup.
-    passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
+    // Remove underscores from blank markup by replacing the pattern "___(number)___" with an empty blank element.
+    passageHTML = passageHTML.replace(/___\(\d+\)___/g, (_, num) => {
       return `<span class="blank" data-blank="${num}" tabindex="0" role="button">
                 <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
               </span>`;
@@ -1622,6 +1445,16 @@ class GameEngine {
           `<div class="word" draggable="true" tabindex="0" role="button">${word}</div>`
       )
       .join("");
+    // Attach drag and drop event listeners to words and blanks.
+    document.querySelectorAll(".word").forEach((word) => {
+      word.addEventListener("dragstart", this.handleDragStart.bind(this));
+      word.addEventListener("dragend", this.handleDragEnd.bind(this));
+    });
+    document.querySelectorAll(".blank").forEach((blank) => {
+      blank.addEventListener("dragover", this.handleDragOver.bind(this));
+      blank.addEventListener("dragleave", this.handleDragLeave.bind(this));
+      blank.addEventListener("drop", this.handleDrop.bind(this));
+    });
     if (this.challengeMode) this.timer.start();
     this.updateStatus();
   }
