@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grammar Cloze Adventure</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Include Confetti.js for celebratory effects -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- External Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <!-- Include ResponsiveVoice.JS with your API key -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
 </head>
 <body>
   <header>
     <h1>Grammar Cloze Adventure</h1>
-    <p class="instructions">Help the Grammar Wizard save the Kingdom by filling in the blanks! Drag or tap a word to fill in the blanks. Use the menu for hints and controls!</p>
+    <p class="instructions">
+      Help the Grammar Wizard save the Kingdom by filling in the blanks! Drag, tap, or use voice commands to fill the gaps. Use the menu for hints and controls!
+    </p>
   </header>
 
   <div class="story-bar">
-    <p id="story-progress">Story: The Grammar Wizard needs your help to save the Kingdom! Earn stars to unlock the next chapter.</p>
+    <p id="story-progress">Story: The Grammar Wizard needs your help to save the Kingdom!</p>
   </div>
 
   <div class="controls">
@@ -41,7 +42,7 @@
   <div id="feedback"></div>
   <div id="badge-display" class="hidden">
     <p>Congratulations! You've earned a badge!</p>
-    <img src="https://via.placeholder.com/100?text=Badge" alt="Badge">
+    <img src="https://via.placeholder.com/100?text=Badge" alt="Badge" />
   </div>
 
   <div class="status-bar">
@@ -68,11 +69,11 @@
   <!-- Grammar Wizard Mascot -->
   <div id="grammar-wizard" class="hidden">
     <svg width="100" height="100" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40" fill="#ff6f61"/>
-      <circle cx="40" cy="40" r="5" fill="white"/>
-      <circle cx="60" cy="40" r="5" fill="white"/>
-      <path d="M40 60 Q50 70 60 60" fill="none" stroke="white" stroke-width="3"/>
-      <rect x="45" y="20" width="10" height="20" fill="#f1c40f"/>
+      <circle cx="50" cy="50" r="40" fill="#ff6f61" />
+      <circle cx="40" cy="40" r="5" fill="white" />
+      <circle cx="60" cy="40" r="5" fill="white" />
+      <path d="M40 60 Q50 70 60 60" fill="none" stroke="white" stroke-width="3" />
+      <rect x="45" y="20" width="10" height="20" fill="#f1c40f" />
     </svg>
     <p id="wizard-message">Great job! Keep going!</p>
   </div>
@@ -81,6 +82,15 @@
   <audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
   <audio id="incorrect-sound" src="https://www.soundjay.com/buttons/sounds/button-2.mp3"></audio>
 
-  <script src="script.js"></script>
+  <!-- Modal for Review -->
+  <div class="modal hidden">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <span class="close-button" tabindex="0" aria-label="Close review">&times;</span>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript Module -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
