@@ -853,6 +853,11 @@ const timerBar = document.getElementById("timer-bar");
 const levelDisplay = document.getElementById("level");
 const toggleThemeButton = document.getElementById("toggle-theme");
 const timerSettingSelect = document.getElementById("timer-setting");
+// Dyslexia-friendly font toggle
+const toggleDyslexiaButton = document.getElementById("toggle-dyslexia");
+toggleDyslexiaButton.addEventListener("click", () => {
+  document.body.classList.toggle("dyslexia");
+});
 
 // ----------------------
 // Speech Synthesis Setup – UK Female Fallback
