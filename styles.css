@@ -131,6 +131,7 @@ label {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
   border: 2px solid #4ecdc4;
+  min-height: 100px; /* Ensure visible area for passages */
 }
 
 #word-box {
@@ -187,7 +188,7 @@ label {
 .blank {
   display: inline-block;
   width: 80px;
-  min-height: 2em; /* Ensure blank has a visible area */
+  min-height: 2em;
   text-align: center;
   border-bottom: 3px dashed #4ecdc4;
   margin: 0 5px;
@@ -223,7 +224,7 @@ label {
   outline: 2px solid #3498db;
 }
 
-/* Hint Button inside Blank */
+/* Hint Button */
 .hint-for-blank {
   position: absolute;
   top: -25px;
@@ -309,7 +310,7 @@ label {
   width: 100%;
   padding: 15px;
   margin: 8px 0;
-  background: #4ecdc4;
+  background: #ff6f61;
   color: white;
   border: none;
   border-radius: 10px;
@@ -321,7 +322,7 @@ label {
 
 .menu button:hover {
   transform: scale(1.05);
-  background-color: #3baead;
+  background-color: #e65b50;
 }
 
 .menu button:focus {
@@ -373,7 +374,6 @@ label {
   background: #27ae60;
 }
 
-/* Feedback */
 #feedback {
   text-align: center;
   font-size: 1.2em;
