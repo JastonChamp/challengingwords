@@ -18,11 +18,9 @@
       Help the Grammar Wizard save the Kingdom by filling in the blanks! Drag or tap a word to fill in the blanks. Use the menu for hints and controls!
     </p>
   </header>
-
   <div class="story-bar">
     <p id="story-progress">Story: The Grammar Wizard needs your help to save the Kingdom! Earn stars to unlock the next chapter.</p>
   </div>
-
   <div class="controls">
     <label for="grammar-type">Choose Grammar Type:</label>
     <select id="grammar-type">
@@ -34,18 +32,15 @@
       <option value="tenses">Tenses</option>
     </select>
   </div>
-
   <div class="game-container">
     <div id="passage-text"></div>
     <div id="word-box"></div>
   </div>
-
   <div id="feedback"></div>
   <div id="badge-display" class="hidden">
     <p>Congratulations! You've earned a badge!</p>
     <img src="https://via.placeholder.com/100?text=Badge" alt="Badge">
   </div>
-
   <div class="status-bar">
     <span id="progress">📖 Progress: 1 / 15</span>
     <span id="score">⭐ Score: 0</span>
@@ -55,8 +50,7 @@
     <button id="prev-btn">⬅️</button>
     <button id="next-btn">➡️</button>
   </div>
-
-  <!-- Menu repositioned to top-right -->
+  <button id="menu-btn">☰</button>
   <div id="menu" class="menu hidden" aria-hidden="true">
     <button id="speak-passage-btn">🔊 Speak Passage</button>
     <button id="hint-btn">💡 Hint</button>
@@ -66,7 +60,6 @@
     <button id="voice-command-btn">🎙️ Voice Command</button>
   </div>
   <button id="fullscreen-btn">⤢</button>
-
   <!-- Grammar Wizard Mascot -->
   <div id="grammar-wizard" class="hidden">
     <svg width="100" height="100" viewBox="0 0 100 100">
@@ -78,19 +71,14 @@
     </svg>
     <p id="wizard-message">Great job! Keep going!</p>
   </div>
-
+  <!-- Modal Container for Reviews and Onboarding -->
+  <div class="modal hidden">
+    <div class="modal-body"></div>
+    <button class="close-button">Close</button>
+  </div>
   <!-- Audio for Feedback -->
   <audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
   <audio id="incorrect-sound" src="https://www.soundjay.com/buttons/sounds/button-2.mp3"></audio>
-
-  <!-- Modal for Onboarding -->
-  <div class="modal hidden" aria-hidden="true">
-    <div class="modal-content">
-      <button class="close-button" aria-label="Close">&times;</button>
-      <div class="modal-body"></div>
-    </div>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>
