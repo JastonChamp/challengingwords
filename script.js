@@ -852,20 +852,35 @@ const shareButton = document.getElementById("share-btn");
 const toggleChallengeButton = document.getElementById("toggle-challenge");
 const progressStepper = document.getElementById("progress-stepper");
 const wizardAdviceDisplay = document.getElementById("wizard-advice");
+const readPassageButton = document.getElementById("read-passage-btn");
 
 // ----------------------------------------------------------------
-// Speech Synthesis Setup
+// Speech Synthesis Setup with UK Female Voice Preference
 // ----------------------------------------------------------------
 const synth = window.speechSynthesis;
 let voices = [];
 let ukFemaleVoice = null;
 function loadVoices() {
   voices = synth.getVoices();
+  // First, try to get a UK female voice from en-GB voices.
   ukFemaleVoice = voices.find(voice =>
     voice.lang === "en-GB" &&
-    (voice.name.includes("Female") || voice.name.includes("Google UK English Female") ||
+    (voice.name.toLowerCase().includes("female") ||
      voice.name === "Samantha" || voice.name === "Kate")
-  ) || voices.find(voice => voice.lang === "en-GB");
+  );
+  if (!ukFemaleVoice) {
+    // Fallback: search all English voices for one with a preferred female name.
+    const preferredFemaleNames = ["samantha", "kate", "alice", "emily", "olivia", "julia", "sue", "susan"];
+    ukFemaleVoice = voices.find(voice =>
+       voice.lang.startsWith("en") &&
+       preferredFemaleNames.includes(voice.name.toLowerCase())
+    );
+  }
+  if (!ukFemaleVoice) {
+    // Final fallback: pick any en-GB voice (even if male).
+    ukFemaleVoice = voices.find(voice => voice.lang === "en-GB");
+  }
+  console.log("Selected voice:", ukFemaleVoice);
   console.log("Voices loaded:", voices.length);
 }
 loadVoices();
@@ -884,12 +899,22 @@ function speak(text) {
     return;
   }
   const utterance = new SpeechSynthesisUtterance(text);
+  // Use the UK female voice if available.
   utterance.lang = "en-GB";
-  if (ukFemaleVoice) utterance.voice = ukFemaleVoice;
+  if (ukFemaleVoice) {
+    utterance.voice = ukFemaleVoice;
+  }
   utterance.rate = 0.9;
   utterance.pitch = 1.1;
   synth.speak(utterance);
   console.log("Speaking text:", text);
+}
+
+// New: Function to read the passage aloud
+function readPassage() {
+  // Extract plain text from the passage area (ignore buttons)
+  const textToRead = passageText.textContent.replace(/\d+/g, "blank");
+  speak(textToRead);
 }
 
 // ----------------------------------------------------------------
@@ -928,7 +953,6 @@ function updateWizardAdvice(message) {
 }
 
 function updateProgressStepper() {
-  // Create a series of dots equal to total passages.
   const total = passages[currentGrammarType].length;
   let dotsHtml = "";
   for (let i = 0; i < total; i++) {
@@ -992,7 +1016,6 @@ function displayPassage() {
     feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
   }
 
-  // Generate passage HTML with highlighted clues
   let passageHTML = passage.text;
   if (passage.clueWords) {
     passage.clueWords.forEach((clues, index) => {
@@ -1013,7 +1036,6 @@ function displayPassage() {
     .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
     .join("");
 
-  // Attach event listeners for blanks
   document.querySelectorAll(".blank").forEach(blank => {
     blank.addEventListener("dragover", handleDragOver);
     blank.addEventListener("dragleave", handleDragLeave);
@@ -1036,7 +1058,6 @@ function displayPassage() {
     });
   });
 
-  // Attach event listeners for words
   document.querySelectorAll(".word").forEach(word => {
     word.addEventListener("dragstart", handleDragStart);
     word.addEventListener("dragend", handleDragEnd);
@@ -1054,7 +1075,6 @@ function displayPassage() {
     });
   });
 
-  // Attach event listeners for hint buttons on blanks
   document.querySelectorAll(".hint-for-blank").forEach(button => {
     button.addEventListener("click", function () {
       const blankNum = this.parentElement.getAttribute("data-blank");
@@ -1129,9 +1149,8 @@ function checkAnswer(blank) {
     feedbackDisplay.textContent = "Correct! Great job!";
     feedbackDisplay.style.color = "green";
     speak("Correct! Great job!");
-    // Trigger a confetti effect at every 50-point milestone (placeholder)
     if (score % 50 === 0) {
-      console.log("Confetti!"); // Replace with a proper confetti animation if desired.
+      console.log("Confetti!"); // Placeholder for confetti animation.
       updateWizardAdvice("Fantastic work! Keep it up!");
     }
   } else {
@@ -1215,6 +1234,11 @@ hintButton.addEventListener("click", () => {
     feedbackDisplay.style.color = "blue";
     speak(passage.hint);
   }
+});
+
+// New: Read Passage Button functionality
+readPassageButton.addEventListener("click", () => {
+  readPassage();
 });
 
 // Share Score using Web Share API (if supported)
