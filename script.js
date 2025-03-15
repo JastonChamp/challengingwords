@@ -816,575 +816,421 @@ window.passages = {
   ]
 };
 
-// =======================
-// Helper Classes & Functions
-// =======================
-class Timer {
-  constructor(duration, updateCallback, endCallback) {
-    this.duration = duration;
-    this.timeLeft = duration;
-    this.interval = null;
-    this.updateCallback = updateCallback;
-    this.endCallback = endCallback;
-  }
-  start() {
-    this.clear();
-    this.timeLeft = this.duration;
-    this.interval = setInterval(() => {
-      this.timeLeft--;
-      if (this.updateCallback) this.updateCallback(this.timeLeft);
-      if (this.timeLeft <= 0) {
-        this.clear();
-        if (this.endCallback) this.endCallback();
-      }
-    }, 1000);
-  }
-  clear() {
-    if (this.interval) clearInterval(this.interval);
-  }
-}
+  // Global game state
+  let currentGrammarType = "prepositions";
+  let currentPassageIndex = 0;
+  let score = 0;
+  let stars = 0;
+  let hintUsage = {};
+  let selectedWord = null;
+  let timeLeft = 60;
+  let timerInterval = null;
+  let challengeMode = true;
 
-class SpeechManager {
-  constructor() {
-    this.synth = window.speechSynthesis;
-    this.voices = [];
-    this.ukFemaleVoice = null;
-    this.loadVoices();
-    if (this.synth.onvoiceschanged !== undefined) {
-      this.synth.onvoiceschanged = () => this.loadVoices();
+  // DOM Elements
+  let grammarSelect = document.getElementById("grammar-type");
+  let passageText = document.getElementById("passage-text");
+  let wordBox = document.getElementById("word-box");
+  const feedbackDisplay = document.getElementById("feedback");
+  const nextPassageButton = document.getElementById("next-btn");
+  const prevPassageButton = document.getElementById("prev-btn");
+  const hintButton = document.getElementById("hint-btn");
+  const clearButton = document.getElementById("clear-btn");
+  const progressDisplay = document.getElementById("progress");
+  const scoreDisplay = document.getElementById("score");
+  const starsDisplay = document.getElementById("lives"); // Repurposed as stars
+  const progressBar = document.getElementById("progress-bar");
+  const highlightCluesButton = document.getElementById("highlight-clues-btn");
+  const menuBtn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+  const fullscreenBtn = document.getElementById("fullscreen-btn");
+  const speakPassageBtn = document.getElementById("speak-passage-btn");
+  const timerContainer = document.getElementById("timer-container");
+  const timerBar = document.getElementById("timer-bar");
+
+  // Speech Synthesis Setup
+  const synth = window.speechSynthesis;
+  let voices = [];
+  let ukFemaleVoice = null;
+  function loadVoices() {
+    voices = synth.getVoices();
+    ukFemaleVoice = voices.find(voice =>
+      voice.lang === "en-GB" &&
+      (voice.name.includes("Female") || voice.name.includes("Google UK English Female") || voice.name === "Samantha" || voice.name === "Kate")
+    ) || voices.find(voice => voice.lang === "en-GB");
+    console.log("Voices loaded:", voices.length);
+  }
+  loadVoices();
+  synth.onvoiceschanged = loadVoices;
+  function speak(text) {
+    if (!window.speechSynthesis) {
+      feedbackDisplay.textContent = "Speech synthesis not supported in this browser.";
+      console.error("SpeechSynthesis not supported");
+      return;
     }
-  }
-  loadVoices() {
-    this.voices = this.synth.getVoices();
-    this.ukFemaleVoice =
-      this.voices.find(voice =>
-        voice.lang === "en-GB" &&
-        (voice.name.includes("Female") ||
-         voice.name.includes("Google UK English Female"))
-      ) ||
-      this.voices.find(voice => voice.lang === "en-GB");
-  }
-  speak(text) {
-    if (!this.synth) return;
-    if (this.synth.speaking) this.synth.cancel();
-    if (!this.voices.length) {
-      console.warn("No voices available.");
+    if (synth.speaking) synth.cancel();
+    loadVoices(); // Ensure voices are loaded
+    if (!voices.length) {
+      feedbackDisplay.textContent = "Speech unavailable. Voices not loaded.";
+      console.log("No voices available");
       return;
     }
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-GB";
-    if (this.ukFemaleVoice) utterance.voice = this.ukFemaleVoice;
+    if (ukFemaleVoice) utterance.voice = ukFemaleVoice;
     utterance.rate = 0.9;
     utterance.pitch = 1.1;
-    this.synth.speak(utterance);
-  }
-}
-
-class ModalManager {
-  constructor() {
-    this.modal = document.querySelector(".modal");
-    this.closeButton = this.modal.querySelector(".close-button");
-    this.modalBody = this.modal.querySelector(".modal-body");
-    this.closeButton.addEventListener("click", () => this.hide());
-    this.closeButton.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") this.hide();
-    });
-  }
-  show(content) {
-    this.modalBody.innerHTML = content;
-    this.modal.classList.remove("hidden");
-  }
-  hide() {
-    this.modal.classList.add("hidden");
-  }
-}
-
-// =======================
-// Main Game Engine
-// =======================
-class GameEngine {
-  constructor() {
-    // Game State
-    this.passages = window.passages;
-    this.currentGrammarType = "prepositions";
-    this.currentPassageIndex = 0;
-    this.score = 0;
-    this.stars = 0;
-    this.hintUsage = {};
-    this.badgesEarned = 0;
-    this.challengeMode = true;
-    this.selectedWord = null;
-    this.timeLeft = 60;
-
-    // DOM Elements
-    this.grammarSelect = document.getElementById("grammar-type");
-    this.passageText = document.getElementById("passage-text");
-    this.wordBox = document.getElementById("word-box");
-    this.feedbackDisplay = document.getElementById("feedback");
-    this.nextPassageButton = document.getElementById("next-btn");
-    this.prevPassageButton = document.getElementById("prev-btn");
-    this.hintButton = document.getElementById("hint-btn");
-    this.clearButton = document.getElementById("clear-btn");
-    this.progressDisplay = document.getElementById("progress");
-    this.scoreDisplay = document.getElementById("score");
-    this.starsDisplay = document.getElementById("lives");
-    this.progressBar = document.getElementById("progress-bar");
-    this.timerBar = document.getElementById("timer-bar");
-    this.timerContainer = document.getElementById("timer-container");
-    this.menu = document.getElementById("menu");
-    this.menuBtn = document.getElementById("menu-btn");
-    this.fullscreenBtn = document.getElementById("fullscreen-btn");
-    this.speakPassageBtn = document.getElementById("speak-passage-btn");
-    this.highlightCluesButton = document.getElementById("highlight-clues-btn");
-    // Voice command button is still included
-    this.voiceCommandBtn = document.getElementById("voice-command-btn");
-    this.badgeDisplay = document.getElementById("badge-display");
-    this.storyProgress = document.getElementById("story-progress");
-    this.grammarWizard = document.getElementById("grammar-wizard");
-    this.wizardMessage = document.getElementById("wizard-message");
-    this.correctSound = document.getElementById("correct-sound");
-    this.incorrectSound = document.getElementById("incorrect-sound");
-
-    // Support Classes
-    this.timer = new Timer(60, (t) => this.updateTimer(t), () => this.handleTimeUp());
-    this.speechManager = new SpeechManager();
-    this.modalManager = new ModalManager();
-
-    // Initialize
-    this.attachEventListeners();
-    this.displayPassage();
-    this.updateStatus();
-    this.showWelcomeMessage();
+    synth.speak(utterance);
+    console.log("Speaking text:", text);
   }
 
-  attachEventListeners() {
-    // WordBox events (delegation)
-    this.wordBox.addEventListener("click", (e) => {
-      if (e.target.classList.contains("word")) {
-        this.selectWord(e.target);
-      }
-    });
-    this.wordBox.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && e.target.classList.contains("word")) {
-        this.selectWord(e.target);
-      }
-    });
-    // Passage Text events (delegation for blanks)
-    this.passageText.addEventListener("click", (e) => {
-      if (e.target.classList.contains("blank") && !e.target.classList.contains("filled")) {
-        if (this.selectedWord) {
-          this.placeWord(e.target, this.selectedWord.textContent);
-          this.selectedWord.remove();
-          this.selectedWord = null;
-          this.updateStatus();
-        }
-      }
-    });
-    // Grammar Type Change
-    this.grammarSelect.addEventListener("change", (e) => {
-      this.currentGrammarType = e.target.value;
-      this.currentPassageIndex = 0;
-      this.resetTimer();
-      this.displayPassage();
-      this.updateStatus();
-    });
-    // Navigation Buttons
-    this.nextPassageButton.addEventListener("click", () => this.handleNextPassage());
-    this.prevPassageButton.addEventListener("click", () => {
-      if (this.currentPassageIndex > 0) {
-        this.currentPassageIndex--;
-        this.resetTimer();
-        this.displayPassage();
-        this.updateStatus();
-      }
-      this.menu.classList.add("hidden");
-    });
-    // Clear Button
-    this.clearButton.addEventListener("click", () => {
-      this.hintUsage = {};
-      this.selectedWord = null;
-      this.resetTimer();
-      this.displayPassage();
-      this.menu.classList.add("hidden");
-    });
-    // Hint Button
-    this.hintButton.addEventListener("click", () => {
-      const passage = this.getCurrentPassage();
-      if (passage.hint) {
-        this.feedbackDisplay.textContent = passage.hint;
-        this.feedbackDisplay.style.color = "blue";
-        this.speechManager.speak(passage.hint);
-      }
-      this.menu.classList.add("hidden");
-    });
-    // Speak Passage Button – remove underscores
-    this.speakPassageBtn.addEventListener("click", () => {
-      const passage = this.getCurrentPassage();
-      if (passage && passage.text) {
-        const textToSpeak = passage.text.replace(/___\(\d+\)___/g, "blank");
-        this.speechManager.speak(textToSpeak);
-      }
-      this.menu.classList.add("hidden");
-    });
-    // Highlight Clues Button
-    this.highlightCluesButton.addEventListener("click", () => {
-      const passage = this.getCurrentPassage();
-      if (passage.clueWords) {
-        const keywords = this.passageText.querySelectorAll(".keyword");
-        keywords.forEach((el) => el.classList.add("highlighted"));
-        this.speechManager.speak("Highlighting clue words!");
-        setTimeout(() => keywords.forEach((el) => el.classList.remove("highlighted")), 5000);
-      }
-      this.menu.classList.add("hidden");
-    });
-    // Voice Command Button
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      let recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.lang = "en-US";
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
-      recognition.onresult = (event) => {
-        const command = event.results[0][0].transcript.toLowerCase();
-        const words = document.querySelectorAll(".word");
-        words.forEach(word => {
-          if (command.includes(word.textContent.toLowerCase())) {
-            this.selectedWord = word;
-            document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
-            word.classList.add("selected");
-            this.speechManager.speak(`Selected word: ${word.textContent}`);
-          }
-        });
-        if (command.includes("place") || command.includes("put")) {
-          const blanks = document.querySelectorAll(".blank:not(.filled)");
-          if (this.selectedWord && blanks.length > 0) {
-            this.placeWord(blanks[0], this.selectedWord.textContent);
-            this.selectedWord.remove();
-            this.selectedWord = null;
-            this.updateStatus();
-          }
-        }
-      };
-      recognition.onerror = (event) => {
-        console.error("Speech recognition error:", event.error);
-        this.feedbackDisplay.textContent = "Voice command error. Please try again.";
-      };
-      this.voiceCommandBtn.addEventListener("click", () => {
-        recognition.start();
-        this.feedbackDisplay.textContent = "Listening for voice command...";
-        this.menu.classList.add("hidden");
-      });
+  // Onboarding
+  if (!localStorage.getItem("hasSeenTutorial")) {
+    alert("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank. Use the menu for hints and controls!");
+    localStorage.setItem("hasSeenTutorial", "true");
+    speak("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank.");
+  }
+
+  // Utility Functions
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  function updateStatus() {
+    scoreDisplay.textContent = `Score: ${score}`;
+    starsDisplay.textContent = `Stars: ${stars}`;
+    progressDisplay.textContent = `Progress: ${currentPassageIndex + 1} / ${passages[currentGrammarType].length}`;
+    progressBar.style.width = `${((currentPassageIndex + 1) / passages[currentGrammarType].length) * 100}%`;
+    if (challengeMode && timerContainer) {
+      timerBar.style.width = `${(timeLeft / 60) * 100}%`;
+      timerBar.style.backgroundColor = timeLeft > 30 ? "green" : timeLeft > 10 ? "orange" : "red";
     } else {
-      this.voiceCommandBtn.style.display = "none";
-      console.log("Speech Recognition not supported in this browser.");
-    }
-    // Menu Button
-    this.menuBtn.addEventListener("click", () => this.menu.classList.toggle("hidden"));
-    // Fullscreen Button
-    this.fullscreenBtn.addEventListener("click", () => {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((err) => console.error(err));
-        document.body.classList.add("fullscreen");
-        this.fullscreenBtn.textContent = "";
-      } else {
-        document.exitFullscreen();
-        document.body.classList.remove("fullscreen");
-        this.fullscreenBtn.textContent = "⤢";
-      }
-    });
-    // Toggle Challenge Mode
-    document.getElementById("toggle-challenge").addEventListener("click", () => {
-      this.challengeMode = !this.challengeMode;
-      if (this.challengeMode) {
-        this.resetTimer();
-        this.feedbackDisplay.textContent = "Challenge Mode ON";
-        this.timer.start();
-      } else {
-        clearInterval(this.timer.interval);
-        this.timerBar.style.width = "0%";
-        this.feedbackDisplay.textContent = "Challenge Mode OFF";
-      }
-      this.speechManager.speak(`Challenge Mode ${this.challengeMode ? "ON" : "OFF"}`);
-      this.menu.classList.add("hidden");
-    });
-  }
-
-  // Drag-and-Drop Handlers
-  handleDragStart(e) {
-    this.selectedWord = e.target;
-    e.dataTransfer.setData("text/plain", e.target.textContent);
-    e.target.classList.add("dragging");
-  }
-  handleDragEnd(e) {
-    e.target.classList.remove("dragging");
-  }
-  handleDragOver(e) {
-    e.preventDefault();
-    e.currentTarget.classList.add("drag-over");
-  }
-  handleDragLeave(e) {
-    e.currentTarget.classList.remove("drag-over");
-  }
-  handleDrop(e) {
-    e.preventDefault();
-    e.currentTarget.classList.remove("drag-over");
-    const word = e.dataTransfer.getData("text/plain");
-    if (!e.currentTarget.classList.contains("filled")) {
-      this.placeWord(e.currentTarget, word);
-      if (this.selectedWord) {
-        this.selectedWord.remove();
-        this.selectedWord = null;
-      }
-      this.updateStatus();
+      timerBar.style.width = "0%";
     }
   }
 
-  getCurrentPassage() {
-    return this.passages[this.currentGrammarType][this.currentPassageIndex];
+  function startTimer() {
+    if (!challengeMode) return;
+    clearInterval(timerInterval);
+    timeLeft = 60;
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      updateStatus();
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        feedbackDisplay.textContent = "Time's up! Moving to next passage.";
+        speak("Time's up! Moving to next passage.");
+        setTimeout(() => nextPassageButton.click(), 1000);
+      }
+    }, 1000);
   }
 
-  displayPassage() {
-    clearInterval(this.timer.interval);
-    this.hintUsage = {};
-    this.selectedWord = null;
-    const passage = this.getCurrentPassage();
+  function displayPassage() {
+    clearInterval(timerInterval);
+    hintUsage = {};
+    selectedWord = null;
+    const passage = passages[currentGrammarType]?.[currentPassageIndex];
     if (!passage) {
-      this.passageText.innerHTML = "<p>Error: Passage not found.</p>";
-      this.feedbackDisplay.textContent = "Error: Passage not found.";
+      passageText.innerHTML = "<p>Error: Passage not found.</p>";
+      feedbackDisplay.textContent = "Error: Passage not found.";
       return;
     }
-    if (
-      !passage.text ||
-      !Array.isArray(passage.wordBox) ||
-      !Array.isArray(passage.answers) ||
-      !Array.isArray(passage.clueWords) ||
-      !Array.isArray(passage.hints)
-    ) {
-      this.passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
-      this.feedbackDisplay.textContent = "Error: Missing required passage data.";
+    if (!passage.text || !Array.isArray(passage.wordBox) || !Array.isArray(passage.answers) || !Array.isArray(passage.clueWords) || !Array.isArray(passage.hints)) {
+      passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
+      feedbackDisplay.textContent = "Error: Missing required passage data.";
       return;
     }
+    const blanks = passage.text.match(/\d+/g) || [];
+    if (passage.answers.length !== blanks.length || passage.clueWords.length !== blanks.length || passage.hints.length !== blanks.length) {
+      feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
+    }
+
+    // Generate passage HTML
     let passageHTML = passage.text;
     if (passage.clueWords) {
       passage.clueWords.forEach((clues, index) => {
         const blankNum = index + 1;
-        clues.forEach((clue) => {
+        clues.forEach(clue => {
           const regex = new RegExp(`\\b${clue}\\b`, "gi");
-          passageHTML = passageHTML.replace(
-            regex,
-            `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`
-          );
+          passageHTML = passageHTML.replace(regex, `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`);
         });
       });
     }
-    passageHTML = passageHTML.replace(/___\(\d+\)___/g, (_, num) => {
-      return `<span class="blank" data-blank="${num}" tabindex="0" role="button">
-                <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
-              </span>`;
+    passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
+      return `<span class="blank" data-blank="${num}" tabindex="0">_<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
     });
-    this.passageText.innerHTML = passageHTML;
-    this.wordBox.innerHTML = this.shuffle([...passage.wordBox])
-      .map(word => `<div class="word" draggable="true" tabindex="0" role="button">${word}</div>`)
+
+    // Clear existing content and listeners by cloning and replacing
+    const newPassageText = passageText.cloneNode(false);
+    const newWordBox = wordBox.cloneNode(false);
+    passageText.parentNode.replaceChild(newPassageText, passageText);
+    wordBox.parentNode.replaceChild(newWordBox, wordBox);
+    passageText = newPassageText;
+    wordBox = newWordBox;
+
+    // Insert new content
+    passageText.innerHTML = passageHTML;
+    wordBox.innerHTML = shuffle([...passage.wordBox])
+      .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
       .join("");
-    document.querySelectorAll(".word").forEach((word) => {
-      word.addEventListener("dragstart", this.handleDragStart.bind(this));
-      word.addEventListener("dragend", this.handleDragEnd.bind(this));
+
+    // Attach event listeners to new elements
+    document.querySelectorAll(".blank").forEach(blank => {
+      blank.addEventListener("dragover", handleDragOver);
+      blank.addEventListener("dragleave", handleDragLeave);
+      blank.addEventListener("drop", handleDrop);
+      blank.addEventListener("click", () => {
+        if (selectedWord && !blank.classList.contains("filled")) {
+          placeWord(blank, selectedWord.textContent);
+          // Do not remove the word—just deselect it
+          selectedWord.classList.remove("selected");
+          selectedWord = null;
+          updateStatus();
+        }
+      });
+      blank.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && selectedWord && !blank.classList.contains("filled")) {
+          placeWord(blank, selectedWord.textContent);
+          selectedWord.classList.remove("selected");
+          selectedWord = null;
+          updateStatus();
+        }
+      });
+    });
+
+    document.querySelectorAll(".word").forEach(word => {
+      word.addEventListener("dragstart", handleDragStart);
+      word.addEventListener("dragend", handleDragEnd);
       word.addEventListener("click", () => {
-        this.selectedWord = word;
+        selectedWord = word;
         document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
         word.classList.add("selected");
       });
       word.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-          this.selectedWord = word;
+          selectedWord = word;
           document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
           word.classList.add("selected");
         }
       });
     });
-    document.querySelectorAll(".blank").forEach((blank) => {
-      blank.addEventListener("dragover", this.handleDragOver.bind(this));
-      blank.addEventListener("dragleave", this.handleDragLeave.bind(this));
-      blank.addEventListener("drop", this.handleDrop.bind(this));
-      blank.addEventListener("click", () => {
-        if (this.selectedWord && !blank.classList.contains("filled")) {
-          this.placeWord(blank, this.selectedWord.textContent);
-          this.selectedWord.remove();
-          this.selectedWord = null;
-          this.updateStatus();
+
+    document.querySelectorAll(".hint-for-blank").forEach(button => {
+      button.addEventListener("click", function () {
+        const blankNum = this.parentElement.getAttribute("data-blank");
+        const hintIndex = parseInt(blankNum) - 1;
+        if (passage.hints && passage.hints[hintIndex]) {
+          feedbackDisplay.textContent = passage.hints[hintIndex];
+          feedbackDisplay.style.color = "blue";
+          speak(passage.hints[hintIndex]);
+          if (!hintUsage[blankNum] && challengeMode) {
+            hintUsage[blankNum] = true;
+            score = Math.max(0, score - 5);
+            feedbackDisplay.textContent += " (-5 points for hint)";
+            updateStatus();
+          }
         }
-      });
-      blank.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && this.selectedWord && !blank.classList.contains("filled")) {
-          this.placeWord(blank, this.selectedWord.textContent);
-          this.selectedWord.remove();
-          this.selectedWord = null;
-          this.updateStatus();
-        }
+        document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
+        document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.add("highlighted"));
+        setTimeout(() => {
+          document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
+        }, 3000);
       });
     });
-    if (this.challengeMode) this.timer.start();
-    this.updateStatus();
+
+    if (challengeMode) startTimer();
+    updateStatus();
   }
 
-  updateStatus() {
-    this.scoreDisplay.textContent = `Score: ${this.score}`;
-    this.starsDisplay.textContent = `Stars: ${this.stars}`;
-    const total = this.passages[this.currentGrammarType].length;
-    this.progressDisplay.textContent = `Progress: ${this.currentPassageIndex + 1} / ${total}`;
-    this.progressBar.style.width = `${((this.currentPassageIndex + 1) / total) * 100}%`;
-    if (this.challengeMode) {
-      this.timerBar.style.width = `${(this.timeLeft / 60) * 100}%`;
-      this.timerBar.style.backgroundColor =
-        this.timeLeft > 30 ? "green" : this.timeLeft > 10 ? "orange" : "red";
-    } else {
-      this.timerBar.style.width = "0%";
+  // Drag-and-Drop Handlers
+  let draggedItem = null;
+  function handleDragStart(e) {
+    draggedItem = e.target;
+    e.dataTransfer.setData("text/plain", e.target.textContent);
+    e.target.classList.add("dragging");
+  }
+  function handleDragEnd(e) {
+    e.target.classList.remove("dragging");
+    draggedItem = null;
+  }
+  function handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add("drag-over");
+  }
+  function handleDragLeave(e) {
+    e.currentTarget.classList.remove("drag-over");
+  }
+  function handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove("drag-over");
+    const droppedWord = e.dataTransfer.getData("text/plain");
+    if (e.currentTarget.classList.contains("blank") && !e.currentTarget.classList.contains("filled")) {
+      placeWord(e.currentTarget, droppedWord);
+      // Do not remove the dragged word so it can be reused.
+      updateStatus();
     }
-    const chapters = [
-      { text: "The Kingdom is in danger!", bg: "castle-bg.png" },
-      { text: "The Wizard’s magic grows!", bg: "forest-bg.png" },
-      { text: "Victory is near!", bg: "victory-bg.png" }
-    ];
-    const chapter = chapters[Math.min(Math.floor(this.stars / 5), chapters.length - 1)];
-    this.storyProgress.textContent = `Story: ${chapter.text}`;
-    document.body.style.backgroundImage = `url(${chapter.bg})`;
   }
 
-  updateTimer(timeLeft) {
-    this.timeLeft = timeLeft;
-    this.updateStatus();
-  }
-
-  handleTimeUp() {
-    this.feedbackDisplay.textContent = "Time's up! Moving to next passage.";
-    this.speechManager.speak("Time's up! Moving to next passage.");
-    setTimeout(() => this.handleNextPassage(), 1000);
-  }
-
-  resetTimer() {
-    this.timer.clear();
-    this.timeLeft = 60;
-    if (this.challengeMode) this.timer.start();
-  }
-
-  selectWord(wordElement) {
-    this.selectedWord = wordElement;
-    this.wordBox.querySelectorAll(".word").forEach((w) => w.classList.remove("selected"));
-    wordElement.classList.add("selected");
-  }
-
-  placeWord(blank, word) {
+  function placeWord(blank, word) {
+    // Simply set the text of the blank with the word provided.
     blank.textContent = word;
-    blank.classList.add("filled", "slide-in");
-    this.checkAnswer(blank);
+    blank.classList.add("filled");
+    checkAnswer(blank);
   }
 
-  checkAnswer(blank) {
+  function checkAnswer(blank) {
     const blankId = parseInt(blank.getAttribute("data-blank"));
     const userAnswer = blank.textContent.trim().toLowerCase();
-    const correctAnswer = this.getCurrentPassage().answers[blankId - 1].toLowerCase();
+    const correctAnswer = passages[currentGrammarType][currentPassageIndex].answers[blankId - 1].toLowerCase();
     if (userAnswer === correctAnswer) {
       blank.classList.add("correct");
-      this.score += 10;
-      this.stars += 1;
-      this.feedbackDisplay.textContent = "Correct! Great job!";
-      this.feedbackDisplay.style.color = "green";
-      this.speechManager.speak("Correct! Great job!");
-      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
-      this.correctSound.play();
-      this.grammarWizard.classList.remove("hidden");
-      this.wizardMessage.textContent = "Well done! You're saving the Kingdom!";
-      setTimeout(() => this.grammarWizard.classList.add("hidden"), 3000);
+      score += 10;
+      stars += 1;
+      feedbackDisplay.textContent = "Correct! Great job!";
+      feedbackDisplay.style.color = "green";
+      speak("Correct! Great job!");
     } else {
       blank.classList.add("incorrect");
-      this.feedbackDisplay.textContent = "Incorrect! Try again.";
-      this.feedbackDisplay.style.color = "red";
-      this.speechManager.speak("Incorrect! Try again.");
-      this.incorrectSound.play();
-      this.grammarWizard.classList.remove("hidden");
-      this.wizardMessage.textContent = "Oops! Let's try again!";
-      setTimeout(() => this.grammarWizard.classList.add("hidden"), 3000);
+      feedbackDisplay.textContent = "Incorrect! Try again.";
+      feedbackDisplay.style.color = "red";
+      speak("Incorrect! Try again.");
     }
-    this.updateStatus();
+    updateStatus();
   }
 
-  handleNextPassage() {
-    const blanks = this.passageText.querySelectorAll(".blank");
+  // Menu and Fullscreen Controls
+  menuBtn.addEventListener("click", () => {
+    const isHidden = menu.classList.toggle("hidden");
+    menu.setAttribute("aria-hidden", isHidden);
+  });
+  fullscreenBtn.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => console.error(err));
+      document.body.classList.add("fullscreen");
+      fullscreenBtn.textContent = "";
+    } else {
+      document.exitFullscreen();
+      document.body.classList.remove("fullscreen");
+      fullscreenBtn.textContent = "⤢";
+    }
+  });
+  // Add Challenge Mode Toggle to Menu
+  document.getElementById("toggle-challenge").addEventListener("click", () => {
+    challengeMode = !challengeMode;
+    if (challengeMode) {
+      startTimer();
+      feedbackDisplay.textContent = "Challenge Mode ON";
+    } else {
+      clearInterval(timerInterval);
+      timerBar.style.width = "0%";
+      feedbackDisplay.textContent = "Challenge Mode OFF";
+    }
+    speak(`Challenge Mode ${challengeMode ? "ON" : "OFF"}`);
+    menu.classList.add("hidden");
+  });
+  // Highlight Clues Button
+  highlightCluesButton.addEventListener("click", () => {
+    const passage = passages[currentGrammarType][currentPassageIndex];
+    if (passage.clueWords) {
+      document.querySelectorAll(".keyword").forEach(el => el.classList.add("highlighted"));
+      speak("Highlighting clue words!");
+      setTimeout(() => {
+        document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
+      }, 5000); // Highlight for 5 seconds
+    }
+    menu.classList.add("hidden");
+  });
+  // Game Controls
+  grammarSelect.addEventListener("change", () => {
+    currentGrammarType = grammarSelect.value;
+    currentPassageIndex = 0;
+    timeLeft = 60; // Reset timer
+    displayPassage();
+    updateStatus();
+  });
+  nextPassageButton.addEventListener("click", () => {
+    const blanks = document.querySelectorAll(".blank");
     let allFilled = true;
-    blanks.forEach((blank) => {
+    blanks.forEach(blank => {
       if (!blank.classList.contains("filled")) allFilled = false;
     });
     if (allFilled) {
-      const passage = this.getCurrentPassage();
-      let reviewText = "<h2>Review</h2><ul>";
+      const passage = passages[currentGrammarType][currentPassageIndex];
+      let reviewText = "Review:\n";
       passage.answers.forEach((ans, i) => {
-        reviewText += `<li>Blank ${i + 1}: "${ans}" – ${passage.hints[i]}</li>`;
+        reviewText += `Blank ${i + 1}: "${ans}" - ${passage.hints[i]}\n`;
       });
-      reviewText += "</ul>";
-      this.modalManager.show(reviewText);
-      this.speechManager.speak("Here’s your review!");
-      if (this.challengeMode) {
-        if (Object.keys(this.hintUsage).length === 0) {
-          this.score += 20;
-          this.feedbackDisplay.innerHTML = 'Correct! Bonus: <span class="bonus">+20!</span>';
-          this.speechManager.speak("Bonus! 20 extra points for no hints.");
+      alert(reviewText);
+      speak("Here’s your review!");
+      if (challengeMode) {
+        if (Object.keys(hintUsage).length === 0) {
+          score += 20;
+          feedbackDisplay.innerHTML = 'Correct! Bonus: <span class="bonus">+20!</span>';
+          speak("Bonus! 20 extra points for no hints.");
         }
-        if (this.timeLeft > 30) {
-          this.score += 10;
-          this.feedbackDisplay.innerHTML += ' <span class="bonus">+10!</span>';
-          this.speechManager.speak("Plus 10 extra points for quick completion.");
+        if (timeLeft > 30) {
+          score += 10;
+          feedbackDisplay.innerHTML += ' <span class="bonus">+10!</span>';
+          speak("Plus 10 extra points for quick completion.");
         }
-      }
-      if (this.stars % 5 === 0) {
-        this.badgeDisplay.innerHTML = `
-          <p>You’ve earned a Mastery Badge!</p>
-          <img src="badge-mastery.png" alt="Mastery Badge" class="bounce-in">
-        `;
-        this.badgeDisplay.classList.remove("hidden");
-        setTimeout(() => this.badgeDisplay.classList.add("hidden"), 3000);
       }
     }
-    this.resetTimer();
-    this.currentPassageIndex++;
-    if (this.currentPassageIndex >= this.passages[this.currentGrammarType].length) {
-      this.feedbackDisplay.textContent = `Game Over! Final Score: ${this.score} | Badges Earned: ${this.badgesEarned}`;
-      this.speechManager.speak(`Game Over! Your final score is ${this.score} and you earned ${this.badgesEarned} badges!`);
+    clearInterval(timerInterval);
+    currentPassageIndex++;
+    if (currentPassageIndex >= passages[currentGrammarType].length) {
+      feedbackDisplay.textContent = "Game Over! Final Score: " + score;
+      speak("Game Over! Your final score is " + score);
       return;
     }
-    this.resetTimer();
-    this.displayPassage();
-    this.updateStatus();
-    this.menu.classList.add("hidden");
-  }
-
-  shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
-  }
-
-  showWelcomeMessage() {
-    if (!localStorage.getItem("hasSeenTutorial")) {
-      const onboardingContent = `
-        <div class="onboarding">
-          <svg class="wizard" width="100" height="100" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="40" fill="#ff6f61" />
-            <circle cx="40" cy="40" r="5" fill="white" />
-            <circle cx="60" cy="40" r="5" fill="white" />
-            <path d="M40 60 Q50 70 60 60" fill="none" stroke="white" stroke-width="3" />
-            <rect x="45" y="20" width="10" height="20" fill="#f1c40f" />
-          </svg>
-          <p>Welcome! I’m the Grammar Wizard. Drag a word into the blank to start!</p>
-          <div class="demo-blank"></div>
-        </div>
-      `;
-      this.modalManager.show(onboardingContent);
-      this.speechManager.speak("Welcome! I’m the Grammar Wizard. Drag a word into the blank to start!");
-      setTimeout(() => this.modalManager.hide(), 5000);
-      localStorage.setItem("hasSeenTutorial", "true");
+    timeLeft = 60; // Reset timer
+    displayPassage();
+    updateStatus();
+    menu.classList.add("hidden");
+  });
+  prevPassageButton.addEventListener("click", () => {
+    if (currentPassageIndex > 0) {
+      currentPassageIndex--;
+      timeLeft = 60; // Reset timer
+      clearInterval(timerInterval);
+      displayPassage();
+      updateStatus();
     }
+    menu.classList.add("hidden");
+  });
+  clearButton.addEventListener("click", () => {
+    hintUsage = {};
+    selectedWord = null;
+    timeLeft = 60; // Reset timer
+    clearInterval(timerInterval);
+    displayPassage();
+    menu.classList.add("hidden");
+  });
+  hintButton.addEventListener("click", () => {
+    const passage = passages[currentGrammarType][currentPassageIndex];
+    if (passage.hint) {
+      feedbackDisplay.textContent = passage.hint;
+      feedbackDisplay.style.color = "blue";
+      speak(passage.hint);
+    }
+    menu.classList.add("hidden");
+  });
+  if (!speakPassageBtn) {
+    console.error("Speak button not found in DOM!");
+  } else {
+    speakPassageBtn.addEventListener("click", () => {
+      console.log("Speak button clicked!");
+      const passage = passages[currentGrammarType][currentPassageIndex];
+      if (!passage || !passage.text) {
+        console.error("No passage or text found:", passage);
+        feedbackDisplay.textContent = "Error: No passage to read.";
+        return;
+      }
+      const textToSpeak = passage.text.replace(/\d+/g, "blank");
+      speak(textToSpeak);
+      menu.classList.add("hidden");
+    });
   }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  new GameEngine();
+  // Initialize Game
+  displayPassage();
+  updateStatus();
 });
