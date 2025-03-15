@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grammar Cloze Adventure</title>
-  <!-- Load fonts: Poppins for body and Playfair Display for title -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Load fonts: Poppins for body and Lora for title -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <!-- ResponsiveVoice (replace YOUR_API_KEY with your actual key) -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
@@ -29,7 +29,6 @@
       <ul>
         <li>
           <label for="grammar-type">Grammar Type:</label>
-          <!-- Using a dropdown here for simplicity; can be replaced by tabs/cards -->
           <select id="grammar-type" aria-label="Select grammar type">
             <option value="prepositions">Prepositions</option>
             <option value="conjunctions">Conjunctions</option>
@@ -67,7 +66,7 @@
       <span id="timer">Time: 60s</span>
       <div id="progress-bar-container"><div id="progress-bar"></div></div>
       <div id="timer-container"><div id="timer-bar"></div></div>
-      <!-- Progress Stepper as checkpoints -->
+      <!-- Progress Stepper -->
       <div id="progress-stepper" class="progress-stepper" aria-label="Progress stepper"></div>
       <div class="navigation-buttons">
         <button id="prev-btn" aria-label="Previous passage">⬅️ Prev</button>
