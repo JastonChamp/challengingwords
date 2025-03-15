@@ -249,19 +249,31 @@ main {
   outline: 2px solid #2980b9;
 }
 
-/* Hint Button (now with a wand icon and pulse effect) */
+/* Hint Button (with hover reveal) */
 .hint-for-blank {
   position: absolute;
-  top: -35px;  /* Move further above the blank */
+  top: -35px;  /* Adjusted further above */
   right: -15px;
-  width: 20px; /* Reduce size */
+  width: 20px;  /* Smaller size */
   height: 20px;
-  font-size: 0.8em; /* Smaller icon */
+  font-size: 0.8em;
+  background: #fbc02d;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, background-color 0.2s;
+  opacity: 0;  /* Hidden by default */
+  transition: opacity 0.3s ease, transform 0.2s, background-color 0.2s;
   z-index: 10;
+}
+
+/* Reveal the hint button when hovering over the blank container or when blank is focused */
+.blank-container:hover .hint-for-blank,
+.blank:focus + .hint-for-blank {
+  opacity: 1;
 }
 
 .hint-for-blank:hover {
@@ -269,6 +281,7 @@ main {
   background-color: #fdd835;
   animation: pulse 1s infinite;
 }
+
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(251, 192, 45, 0.6); }
   70% { box-shadow: 0 0 0 10px rgba(251, 192, 45, 0); }
