@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grammar Cloze Adventure</title>
-  <!-- Primary font and secondary font for wizard messages -->
+  <!-- Primary and secondary fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Comic+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <!-- Include ResponsiveVoice.JS with your API key -->
+  <!-- ResponsiveVoice (replace YOUR_API_KEY with your actual key) -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
   <header>
@@ -16,13 +18,18 @@
     <p class="instructions">Drag or tap a word to fill in the blanks. Use the sidebar for hints and controls!</p>
   </header>
 
-  <!-- Sidebar for controls, levels, and social sharing -->
+  <!-- Wizard Advice Area -->
+  <div id="wizard-advice" class="wizard-advice" aria-live="polite">
+    Greetings, young wizard! Ready to save the kingdom of grammar?
+  </div>
+
+  <!-- Sidebar for Controls -->
   <aside class="sidebar">
     <nav>
       <ul>
         <li>
           <label for="grammar-type">Grammar Type:</label>
-          <select id="grammar-type">
+          <select id="grammar-type" aria-label="Select grammar type">
             <option value="prepositions">Prepositions</option>
             <option value="conjunctions">Conjunctions</option>
             <option value="subjectVerbAgreement">Subject-Verb Agreement</option>
@@ -31,10 +38,10 @@
             <option value="tenses">Tenses</option>
           </select>
         </li>
-        <li><button id="toggle-challenge" class="sidebar-btn">Toggle Challenge Mode</button></li>
-        <li><button id="share-btn" class="sidebar-btn">Share Score</button></li>
-        <li><button id="clear-btn" class="sidebar-btn">Reset Passage</button></li>
-        <li><button id="hint-btn" class="sidebar-btn">Hint</button></li>
+        <li><button id="toggle-challenge" class="sidebar-btn" aria-label="Toggle challenge mode">⏱️ Challenge</button></li>
+        <li><button id="hint-btn" class="sidebar-btn" aria-label="Get a hint">💡 Hint</button></li>
+        <li><button id="clear-btn" class="sidebar-btn" aria-label="Reset passage">🔄 Reset</button></li>
+        <li><button id="share-btn" class="sidebar-btn" aria-label="Share score">📤 Share</button></li>
       </ul>
     </nav>
     <div class="level-info">
@@ -42,14 +49,15 @@
     </div>
   </aside>
 
-  <!-- Main game content -->
+  <!-- Main Content -->
   <main>
     <div class="game-container">
-      <div id="passage-text"></div>
-      <div id="word-box"></div>
+      <div id="passage-text" aria-label="Grammar passage"></div>
+      <div id="word-box" aria-label="Available words"></div>
     </div>
-    <!-- Feedback area with ARIA live region for accessibility -->
+    <!-- Feedback -->
     <div id="feedback" aria-live="assertive"></div>
+    <!-- Status Bar -->
     <div class="status-bar">
       <span id="progress">Progress: 1 / 15</span>
       <span id="score">Score: 0</span>
@@ -57,9 +65,11 @@
       <span id="timer">Time: 60s</span>
       <div id="progress-bar-container"><div id="progress-bar"></div></div>
       <div id="timer-container"><div id="timer-bar"></div></div>
+      <!-- Progress Stepper -->
+      <div id="progress-stepper" class="progress-stepper" aria-label="Progress stepper"></div>
       <div class="navigation-buttons">
-        <button id="prev-btn">⬅️ Prev</button>
-        <button id="next-btn">Next ➡️</button>
+        <button id="prev-btn" aria-label="Previous passage">⬅️ Prev</button>
+        <button id="next-btn" aria-label="Next passage">Next ➡️</button>
       </div>
     </div>
   </main>
