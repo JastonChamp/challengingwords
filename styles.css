@@ -53,11 +53,11 @@ h1 {
   color: #2c3e50;
 }
 
-/* Menu and Fullscreen Buttons */
+/* Menu and Fullscreen Buttons (Top-Right) */
 #menu-btn,
 #fullscreen-btn {
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   font-size: 2em;
   background: #ff6f61;
   border: none;
@@ -67,24 +67,50 @@ h1 {
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
 }
-
 #menu-btn {
-  right: 80px;
+  right: 120px;
 }
-
 #fullscreen-btn {
   right: 20px;
 }
-
 #menu-btn:hover,
 #fullscreen-btn:hover {
   transform: scale(1.1);
   background-color: #e65b50;
 }
 
-body.fullscreen #menu-btn,
-body.fullscreen #fullscreen-btn {
-  bottom: 10px;
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 /* Controls and Dropdown */
@@ -92,13 +118,11 @@ body.fullscreen #fullscreen-btn {
   margin-bottom: 20px;
   text-align: center;
 }
-
 label {
   font-size: 1.2em;
   margin-right: 10px;
   color: #2c3e50;
 }
-
 #grammar-type {
   padding: 10px;
   font-size: 1em;
@@ -109,7 +133,6 @@ label {
   cursor: pointer;
   transition: border-color 0.2s;
 }
-
 #grammar-type:hover {
   border-color: #e65b50;
 }
@@ -122,18 +145,16 @@ label {
   justify-content: center;
   margin-bottom: 20px;
 }
-
 #passage-text {
   width: 100%;
   background: #fff;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 150px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   font-size: 1.2em;
   border: 2px solid #4ecdc4;
-  min-height: 100px; /* Ensure visible area for passages */
 }
-
 #word-box {
   width: 100%;
   background: #fff;
@@ -146,6 +167,7 @@ label {
   border: 2px solid #4ecdc4;
 }
 
+/* Words */
 .word {
   background: #ff6f61;
   color: white;
@@ -155,30 +177,25 @@ label {
   user-select: none;
   transition: transform 0.2s, background-color 0.2s;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   font-size: 1.2em;
 }
-
 .word:hover {
   transform: scale(1.1);
   background-color: #e65b50;
 }
-
 .word.dragging {
   opacity: 0.6;
   animation: bounce 0.5s infinite;
 }
-
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-
 .word.selected {
   background-color: #ff6f61;
   outline: 2px solid #fff;
 }
-
 .word:focus {
   outline: 2px solid #3498db;
   background-color: #3498db;
@@ -197,29 +214,24 @@ label {
   font-size: 1.1em;
   color: #2c3e50;
 }
-
 .blank.drag-over {
   border-color: #ff6f61;
   background-color: #ffebee;
 }
-
 .blank.filled {
   border-bottom: none;
   font-weight: bold;
 }
-
 .blank.correct {
   color: #27ae60;
   border-bottom: 3px dashed #27ae60;
   background-color: #e8f5e9;
 }
-
 .blank.incorrect {
   color: #c0392b;
   border-bottom: 3px dashed #c0392b;
   background-color: #ffebee;
 }
-
 .blank:focus {
   outline: 2px solid #3498db;
 }
@@ -242,18 +254,17 @@ label {
   justify-content: center;
   transition: transform 0.2s, background-color 0.2s;
 }
-
 .hint-for-blank:hover {
   transform: scale(1.2);
   background-color: #f39c12;
 }
 
+/* Keywords */
 .keyword {
   font-weight: bold;
   color: #8e44ad;
   transition: background-color 0.3s;
 }
-
 .keyword.highlighted {
   background-color: #f1c40f;
   color: #fff;
@@ -269,11 +280,9 @@ label {
   text-align: center;
   animation: fadeIn 0.5s ease-in-out;
 }
-
 #grammar-wizard.hidden {
   display: none;
 }
-
 #wizard-message {
   font-size: 1em;
   color: #2c3e50;
@@ -281,9 +290,8 @@ label {
   padding: 5px 10px;
   border-radius: 10px;
   margin-top: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -292,19 +300,17 @@ label {
 /* Menu Styles */
 .menu {
   position: fixed;
-  bottom: 80px;
+  top: 70px;
   right: 20px;
   background: #fff;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 2px solid #4ecdc4;
 }
-
 .menu.hidden {
   display: none;
 }
-
 .menu button {
   display: block;
   width: 100%;
@@ -317,14 +323,12 @@ label {
   cursor: pointer;
   font-size: 1.2em;
   transition: transform 0.2s, background-color 0.2s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 .menu button:hover {
   transform: scale(1.05);
   background-color: #e65b50;
 }
-
 .menu button:focus {
   outline: 2px solid #fff;
 }
@@ -342,14 +346,12 @@ label {
   border-radius: 15px;
   border: 2px solid #ff6f61;
 }
-
 #progress,
 #score,
 #lives {
   font-size: 1.1em;
   color: #2c3e50;
 }
-
 #progress-bar-container,
 #timer-container {
   flex: 1;
@@ -359,21 +361,19 @@ label {
   border-radius: 10px;
   overflow: hidden;
 }
-
 #progress-bar,
 #timer-bar {
   height: 100%;
   transition: width 0.3s ease, background-color 0.3s ease;
 }
-
 #progress-bar {
   background: #27ae60;
 }
-
 #timer-bar {
   background: #27ae60;
 }
 
+/* Feedback */
 #feedback {
   text-align: center;
   font-size: 1.2em;
@@ -383,7 +383,6 @@ label {
   border: 2px solid #4ecdc4;
   margin-top: 10px;
 }
-
 .bonus {
   color: #f1c40f;
   font-weight: bold;
@@ -396,11 +395,10 @@ label {
   background: #fff;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   border: 2px solid #f1c40f;
   animation: fadeIn 0.5s ease-in-out;
 }
-
 #badge-display.hidden {
   display: none;
 }
@@ -416,7 +414,6 @@ label {
     min-width: 300px;
   }
 }
-
 @media (max-width: 600px) {
   body {
     padding: 10px;
@@ -425,7 +422,7 @@ label {
     font-size: 1.8em;
   }
   .menu {
-    bottom: 70px;
+    top: 70px;
     right: 10px;
   }
   .status-bar {
