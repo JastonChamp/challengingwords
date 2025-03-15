@@ -1010,14 +1010,14 @@ function displayPassage() {
 
   fadeOutIn(passageText, () => {
     passageText.innerHTML = passageHTML;
-
+    
     // Attach drag-and-drop events to blank containers
     document.querySelectorAll(".blank-container").forEach(container => {
       container.addEventListener("dragover", handleContainerDragOver);
       container.addEventListener("dragleave", handleContainerDragLeave);
       container.addEventListener("drop", handleContainerDrop);
     });
-
+    
     // Attach click and keydown events to blanks
     document.querySelectorAll(".blank").forEach(blank => {
       blank.addEventListener("click", () => {
@@ -1035,6 +1035,29 @@ function displayPassage() {
           selectedWord = null;
           updateStatus();
         }
+      });
+    });
+    
+    // **Attach event listeners for hint buttons inside the callback**
+    document.querySelectorAll(".hint-for-blank").forEach(button => {
+      button.addEventListener("click", function () {
+        const blankNum = this.getAttribute("data-blank");
+        const hintIndex = parseInt(blankNum) - 1;
+        if (passage.hints && passage.hints[hintIndex]) {
+          feedbackDisplay.textContent = passage.hints[hintIndex];
+          feedbackDisplay.style.color = "blue";
+          speak(passage.hints[hintIndex]);
+          if (!hintUsage[blankNum] && challengeMode) {
+            hintUsage[blankNum] = true;
+            score = Math.max(0, score - 5);
+            feedbackDisplay.textContent += " (-5 points for hint)";
+            updateStatus();
+          }
+        }
+        document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.add("highlighted"));
+        setTimeout(() => {
+          document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.remove("highlighted"));
+        }, 3000);
       });
     });
   });
@@ -1059,29 +1082,6 @@ function displayPassage() {
         document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
         word.classList.add("selected");
       }
-    });
-  });
-
-  // Attach event listeners for hint buttons
-  document.querySelectorAll(".hint-for-blank").forEach(button => {
-    button.addEventListener("click", function () {
-      const blankNum = this.getAttribute("data-blank");
-      const hintIndex = parseInt(blankNum) - 1;
-      if (passage.hints && passage.hints[hintIndex]) {
-        feedbackDisplay.textContent = passage.hints[hintIndex];
-        feedbackDisplay.style.color = "blue";
-        speak(passage.hints[hintIndex]);
-        if (!hintUsage[blankNum] && challengeMode) {
-          hintUsage[blankNum] = true;
-          score = Math.max(0, score - 5);
-          feedbackDisplay.textContent += " (-5 points for hint)";
-          updateStatus();
-        }
-      }
-      document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.add("highlighted"));
-      setTimeout(() => {
-        document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.remove("highlighted"));
-      }, 3000);
     });
   });
 
