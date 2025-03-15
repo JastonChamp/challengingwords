@@ -5,9 +5,10 @@
   box-sizing: border-box;
 }
 body {
+  /* Softer parchment background with dark text for readability */
+  background-color: #f5e1a4;
+  color: #2c3e50;
   font-family: "Poppins", sans-serif;
-  background-color: #2c3e50; /* Dark blue */
-  color: #ecf0f1;
   line-height: 1.6;
   padding: 20px;
   max-width: 1200px;
@@ -15,17 +16,17 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Light Mode Styles */
-body.light-mode {
-  background-color: #f9f9f9;
-  color: #2c3e50;
+/* Dyslexia-friendly font toggle */
+body.dyslexia {
+  font-family: "OpenDyslexic", sans-serif;
 }
 
 /* Header Styles */
 header {
   text-align: center;
   margin-bottom: 20px;
-  background-color: #2c3e50;
+  /* Subtle gradient for magical effect */
+  background: linear-gradient(135deg, #fbc02d, #f1c40f);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -33,12 +34,12 @@ header {
 }
 h1 {
   font-size: 2.8em;
-  color: #f1c40f; /* Gold */
   font-family: "Lora", serif;
+  color: #2c3e50;
 }
 .instructions {
   font-size: 1.2em;
-  color: #bdc3c7;
+  color: #2c3e50;
   margin-top: 10px;
 }
 
@@ -48,7 +49,7 @@ h1 {
   top: 10px;
   right: 10px;
   padding: 5px 10px;
-  background-color: #f1c40f;
+  background-color: #fbc02d;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -56,27 +57,26 @@ h1 {
   transition: background-color 0.2s;
 }
 .theme-toggle:hover {
-  background-color: #e0b90f;
+  background-color: #fdd835;
 }
 
 /* Wizard Advice Styles */
 #wizard-advice {
-  background-color: #27ae60;
-  color: #fff;
+  background-color: #fff3e0;
+  color: #2c3e50;
   padding: 15px;
   border-radius: 5px;
   text-align: center;
   font-size: 1.2em;
   margin-bottom: 20px;
+  position: relative;
+  /* Faint magical glow */
+  box-shadow: 0 0 10px rgba(251, 192, 45, 0.6);
 }
-.wizard-animate {
-  animation: fadeInOut 2s ease;
-}
-@keyframes fadeInOut {
-  0% { opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; }
+.wizard-mascot {
+  width: 30px;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 /* Sidebar Styles */
@@ -86,10 +86,11 @@ h1 {
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: #27ae60; /* Emerald */
-  color: #fff;
+  background-color: #dcedc8;
+  color: #2c3e50;
   padding: 20px;
   overflow-y: auto;
+  transition: transform 0.3s ease;
 }
 .sidebar nav ul {
   list-style: none;
@@ -111,7 +112,7 @@ h1 {
 .sidebar .sidebar-btn {
   width: 100%;
   padding: 10px;
-  background-color: #f1c40f;
+  background-color: #fbc02d;
   border: none;
   border-radius: 5px;
   font-size: 1em;
@@ -120,7 +121,7 @@ h1 {
   transition: background-color 0.2s;
 }
 .sidebar .sidebar-btn:hover {
-  background-color: #e0b90f;
+  background-color: #fdd835;
 }
 .sidebar .level-info {
   margin-top: 20px;
@@ -128,11 +129,23 @@ h1 {
   text-align: center;
 }
 
+/* Collapsible sidebar on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  main {
+    margin-left: 0;
+  }
+}
+
 /* Main Content Styles */
 main {
   margin-left: 270px;
   padding: 20px;
-  background: linear-gradient(135deg, #34495e, #2c3e50);
+  background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
   border-radius: 10px;
   transition: background 0.3s;
 }
@@ -151,13 +164,17 @@ main {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  border: 2px solid #27ae60;
+  border: 2px solid #2ecc71;
   min-width: 300px;
   color: #2c3e50;
+  /* Give a scroll-like feel */
+  background-image: url('scroll-texture.png');
+  background-size: cover;
 }
 #passage-text {
   flex: 2;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  line-height: 1.8;
 }
 #word-box {
   flex: 1;
@@ -175,7 +192,7 @@ main {
 
 /* Word Styles */
 .word {
-  background: #e74c3c; /* Red */
+  background: #e57373;
   color: #fff;
   padding: 10px 15px;
   border-radius: 5px;
@@ -187,7 +204,7 @@ main {
 }
 .word:hover {
   transform: scale(1.1);
-  background-color: #c0392b;
+  background-color: #ef5350;
 }
 .word.dragging {
   opacity: 0.6;
@@ -205,7 +222,7 @@ main {
   display: inline-block;
   width: 80px;
   text-align: center;
-  border-bottom: 3px dashed #27ae60;
+  border-bottom: 3px dashed #2ecc71;
   margin: 0 5px;
   position: relative;
   cursor: pointer;
@@ -213,32 +230,32 @@ main {
   color: #2c3e50;
 }
 .blank.drag-over {
-  border-color: #e74c3c;
-  background-color: #f9e79f;
+  border-color: #ef5350;
+  background-color: #fff9c4;
 }
 .blank.filled {
   border-bottom: none;
   font-weight: bold;
 }
 .blank.correct {
-  color: #27ae60;
+  color: #2ecc71;
   background-color: #e8f5e9;
 }
 .blank.incorrect {
   color: #c0392b;
-  background-color: #f9e79f;
+  background-color: #ffe0b2;
 }
 .blank:focus {
   outline: 2px solid #2980b9;
 }
 
-/* Hint Button (Light Bulb Icon) */
+/* Hint Button (now with a wand icon and pulse effect) */
 .hint-for-blank {
   position: absolute;
   top: -25px;
   right: -15px;
   font-size: 1em;
-  background: #f1c40f;
+  background: #fbc02d;
   border: none;
   border-radius: 50%;
   width: 25px;
@@ -253,7 +270,13 @@ main {
 }
 .hint-for-blank:hover {
   transform: scale(1.2);
-  background-color: #e0b90f;
+  background-color: #fdd835;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(251, 192, 45, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(251, 192, 45, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(251, 192, 45, 0); }
 }
 
 /* Keyword Highlight */
@@ -263,7 +286,7 @@ main {
   transition: background-color 0.3s;
 }
 .keyword.highlighted {
-  background-color: #f1c40f;
+  background-color: #fbc02d;
   color: #fff;
   padding: 2px 6px;
   border-radius: 5px;
@@ -275,7 +298,7 @@ main {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  border: 2px solid #e74c3c;
+  border: 2px solid #ef5350;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -302,10 +325,10 @@ main {
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 #progress-bar {
-  background: #27ae60;
+  background: #2ecc71;
 }
 #timer-bar {
-  background: #27ae60;
+  background: #2ecc71;
 }
 
 /* Progress Stepper */
@@ -321,7 +344,7 @@ main {
   background-color: #bdc3c7;
 }
 .step-dot.active {
-  background-color: #f1c40f;
+  background-color: #fbc02d;
 }
 
 /* Navigation Buttons */
@@ -350,7 +373,7 @@ main {
   padding: 10px;
   border-radius: 5px;
   background: #fff;
-  border: 2px solid #27ae60;
+  border: 2px solid #2ecc71;
   margin-top: 10px;
   color: #2c3e50;
 }
@@ -375,12 +398,22 @@ main {
   animation: incorrectAnimation 0.5s ease;
 }
 
-/* Responsive Design */
+/* Reduce motion for users who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Responsive Design Adjustments */
 @media (max-width: 768px) {
   .sidebar {
-    position: relative;
+    /* Collapse sidebar into a top menu */
+    transform: translateY(0);
     width: 100%;
     height: auto;
+    position: relative;
   }
   main {
     margin-left: 0;
