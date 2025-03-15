@@ -862,7 +862,7 @@ let voices = [];
 let ukFemaleVoice = null;
 function loadVoices() {
   voices = synth.getVoices();
-  // Try to find an en-GB voice with "female" in its name or common UK female names.
+  // First, try to find an en-GB voice with "female" in its name or common UK female names.
   ukFemaleVoice = voices.find(voice =>
     voice.lang === "en-GB" &&
     (voice.name.toLowerCase().includes("female") ||
@@ -870,7 +870,7 @@ function loadVoices() {
      voice.name.toLowerCase() === "kate")
   );
   if (!ukFemaleVoice) {
-    // Fallback: search among all English voices for preferred female names.
+    // Fallback: search among all en voices for preferred female names.
     const preferredNames = ["samantha", "kate", "alice", "emily", "olivia", "julia", "sue", "susan"];
     ukFemaleVoice = voices.find(voice =>
        voice.lang.startsWith("en") &&
@@ -1025,11 +1025,14 @@ function displayPassage() {
       });
     });
   }
-  // Revised: Place hint icon outside of the blank text.
-  passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
-    return `<span class="blank-container" data-blank="${num}"><span class="blank" tabindex="0">_</span><button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
-  });
+  // Revised: Replace placeholder with a container that includes a blank and a hint button.
+  passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => 
+    `<span class="blank-container" data-blank="${num}"><span class="blank" tabindex="0">_</span><button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`
+  );
 
+  // Debug: log generated HTML to console.
+  console.log("Generated Passage HTML:", passageHTML);
+  
   passageText.innerHTML = passageHTML;
   wordBox.innerHTML = shuffle([...passage.wordBox])
     .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
