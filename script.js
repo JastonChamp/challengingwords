@@ -23,14 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "Tom sat ___(1)___ the sofa and watched TV. His mom was cooking ___(2)___ the kitchen. The dog slept ___(3)___ the rug. Tom’s sister played ___(4)___ the garden. Later, they ate dinner ___(5)___ the table.",
         wordBox: ["on", "in", "under", "around", "at", "by", "through"],
-        // Changed from duplicate "on" and "in" to a unique set.
         answers: ["on", "in", "under", "around", "at"],
         clueWords: [["sofa"], ["kitchen"], ["rug"], ["garden"], ["table"]],
         hints: [
           "Which preposition shows Tom’s position on the sofa?",
           "Where is his mom cooking?",
-          "Where should the dog sleep if not on the rug?",
-          "Which word best shows how his sister moved in the garden?",
+          "Where is the dog sleeping?",
+          "Where does his sister play?",
           "Where do they eat dinner?"
         ],
         hint: "Remember to use the objects around you as clues."
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The ball rolled ___(1)___ the hill and stopped ___(2)___ a tree. A squirrel ran ___(3)___ the tree and hid ___(4)___ the branches. The children played ___(5)___ the park all day.",
         wordBox: ["down", "by", "up", "in", "around", "under", "through"],
-        // Change duplicate "in" by using "in" for blank 4 and "around" for blank 5.
         answers: ["down", "by", "up", "in", "around"],
         clueWords: [["hill"], ["tree"], ["squirrel"], ["branches"], ["park"]],
         hints: [
@@ -53,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The teacher stood ___(1)___ the classroom. She wrote ___(2)___ the whiteboard. The students sat ___(3)___ their desks. A poster hung ___(4)___ the wall. The clock was ___(5)___ the door.",
         wordBox: ["in", "on", "at", "by", "near", "above", "below"],
-        // Change duplicate "on": use "on" for writing and "near" for the poster.
         answers: ["in", "on", "at", "near", "above"],
         clueWords: [["teacher"], ["whiteboard"], ["desks"], ["poster"], ["door"]],
         hints: [
@@ -67,8 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         text: "The fish swam ___(1)___ the pond. A frog jumped ___(2)___ a lily pad. The ducks floated ___(3)___ the water. A boy stood ___(4)___ the bridge and watched. His friend sat ___(5)___ the grass nearby.",
-        wordBox: ["in", "on", "near", "by", "under", "around", "through"],
-        // Assign unique answers that make sense.
+        wordBox: ["in", "on", "under", "by", "around", "near", "through"],
         answers: ["in", "on", "near", "by", "under"],
         clueWords: [["fish"], ["lily pad"], ["ducks"], ["bridge"], ["grass"]],
         hints: [
@@ -83,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The kite flew ___(1)___ the sky. The boy held the string ___(2)___ his hands. The wind blew ___(3)___ the trees. The kite soared ___(4)___ the clouds. His sister cheered ___(5)___ the ground.",
         wordBox: ["in", "by", "through", "above", "on", "under", "around"],
-        // For uniqueness, change blank 2 to "by" instead of a duplicate "in".
         answers: ["in", "by", "through", "above", "on"],
         clueWords: [["kite"], ["string"], ["wind"], ["clouds"], ["ground"]],
         hints: [
@@ -97,8 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         text: "The book is ___(1)___ the shelf. A pen rolled ___(2)___ the desk. The bag is ___(3)___ the chair. The teacher walked ___(4)___ the room. A picture hangs ___(5)___ the wall.",
-        wordBox: ["on", "under", "near", "around", "above", "by", "in"],
-        // Change blank 3 from duplicate "under" to "near".
+        wordBox: ["on", "under", "by", "around", "above", "near", "in"],
         answers: ["on", "under", "near", "around", "above"],
         clueWords: [["book"], ["pen"], ["bag"], ["teacher"], ["picture"]],
         hints: [
@@ -113,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The bus stopped ___(1)___ the bus stop. People waited ___(2)___ the shelter. The driver sat ___(3)___ the wheel. A girl looked ___(4)___ her phone. The bus moved ___(5)___ the road.",
         wordBox: ["at", "in", "by", "on", "along", "under", "near"],
-        // For uniqueness, assign: blank 1 "at", blank 2 "in", blank 3 "by", blank 4 "on", blank 5 "along"
         answers: ["at", "in", "by", "on", "along"],
         clueWords: [["bus"], ["shelter"], ["driver"], ["girl"], ["road"]],
         hints: [
@@ -141,8 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         text: "The plate is ___(1)___ the table. A spoon fell ___(2)___ the floor. The soup is ___(3)___ the bowl. Mother cooked ___(4)___ the stove. We ate ___(5)___ the dining room.",
-        wordBox: ["on", "under", "in", "by", "at", "around"],
-        // Change blank 5 from duplicate "in" to "at"
+        wordBox: ["on", "under", "in", "by", "around", "near"],
         answers: ["on", "under", "in", "by", "at"],
         clueWords: [["plate"], ["spoon"], ["soup"], ["stove"], ["dining room"]],
         hints: [
@@ -171,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The rain fell ___(1)___ the roof. The cat slept ___(2)___ the mat. A puddle formed ___(3)___ the house. The girl stood ___(4)___ an umbrella. The dog ran ___(5)___ the rain.",
         wordBox: ["on", "under", "near", "by", "through", "around"],
-        // Change duplicates: blank 1 "on", blank 2 "under", blank 3 "near", blank 4 "by", blank 5 "through"
         answers: ["on", "under", "near", "by", "through"],
         clueWords: [["rain"], ["cat"], ["puddle"], ["umbrella"], ["dog"]],
         hints: [
@@ -186,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The flag is ___(1)___ the pole. The wind blew ___(2)___ the school. The students stood ___(3)___ the field. A bell rang ___(4)___ the building. They walked ___(5)___ their classrooms.",
         wordBox: ["on", "around", "in", "by", "to", "under"],
-        // Change duplicate: blank 1 "on", blank 2 "around", blank 3 "in", blank 4 "by", blank 5 "to"
         answers: ["on", "around", "in", "by", "to"],
         clueWords: [["flag"], ["wind"], ["students"], ["bell"], ["classrooms"]],
         hints: [
@@ -201,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The boat floated ___(1)___ the river. A fish swam ___(2)___ the water. The man fished ___(3)___ the bank. A bird flew ___(4)___ the boat. The net was ___(5)___ the deck.",
         wordBox: ["on", "in", "by", "above", "under", "around", "near"],
-        // Change duplicate: blank 1 "on", blank 2 "in", blank 3 "by", blank 4 "above", blank 5 "under"
         answers: ["on", "in", "by", "above", "under"],
         clueWords: [["boat"], ["fish"], ["bank"], ["bird"], ["net"]],
         hints: [
@@ -216,7 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The plane flew ___(1)___ the clouds. The pilot sat ___(2)___ the cockpit. Passengers looked ___(3)___ the windows. The luggage was ___(4)___ the seats. The airport was ___(5)___ the city.",
         wordBox: ["through", "in", "by", "under", "near", "on"],
-        // Change duplicate: blank 1 "through", blank 2 "in", blank 3 "by", blank 4 "under", blank 5 "near"
         answers: ["through", "in", "by", "under", "near"],
         clueWords: [["plane"], ["pilot"], ["passengers"], ["luggage"], ["airport"]],
         hints: [
@@ -247,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "I like apples ___(1)___ bananas. My sister likes oranges ___(2)___ grapes. We both like strawberries ___(3)___ they are sweet. Sometimes we eat fruit ___(4)___ breakfast ___(5)___ for a snack.",
         wordBox: ["and", "but", "or", "because", "so", "although", "after"],
-        // Originally duplicates ("and"); now assign unique: use "and", "or", "because", "for", "after"
         answers: ["and", "or", "because", "for", "after"],
         clueWords: [["apples"], ["oranges"], ["strawberries"], ["breakfast"], ["snack"]],
         hints: [
@@ -262,7 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The dog barked loudly ___(1)___ the cat meowed softly. They were hungry ___(2)___ they wanted food. The owner fed them ___(3)___ they stopped making noise. Later, the dog slept ___(4)___ the cat played. They are friends ___(5)___ they sometimes fight.",
         wordBox: ["and", "but", "so", "while", "although"],
-        // To force uniqueness, we change blank 1 to "but"
         answers: ["but", "so", "and", "while", "although"],
         clueWords: [["dog"], ["hungry"], ["fed"], ["cat"], ["fight"]],
         hints: [
@@ -277,9 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "I can go to the park ___(1)___ stay home. If I go to the park, I will play ___(2)___ my friends. If I stay home, I will read ___(3)___ watch TV. I think I will go ___(4)___ it is sunny. My mom said I can go ___(5)___ I finish my homework.",
         wordBox: ["or", "and", "but", "because", "so", "if", "unless"],
-        // To make answers unique, we choose: blank 1: "or", blank 2: "with" (we add "with" from the available options if allowed; if not, we can use "and" but that is duplicate; here we assume "with" is acceptable), blank 3: "but", blank 4: "because", blank 5: "if"
-        // Since "with" isn’t in the original wordBox, instead we change blank 2 to "and" but then duplicate with blank 1? 
-        // Instead, we modify: blank 1: "or", blank 2: "and", blank 3: "but", blank 4: "because", blank 5: "if".
         answers: ["or", "and", "but", "because", "if"],
         clueWords: [["park"], ["play"], ["read"], ["sunny"], ["homework"]],
         hints: [
@@ -326,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clueWords: [["rice"], ["noodles"], ["together"], ["spicy"], ["water"]],
         hints: [
           "Which word shows a choice between rice and noodles?",
-          "Why did your brother choose noodles?",
+          "Why did my brother choose noodles?",
           "How did you eat together?",
           "Which word contrasts spiciness and tastiness?",
           "When did you drink water?"
@@ -355,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hints: [
           "Which conjunction connects the events at the start?",
           "What contrasts the subjects of study?",
-          "Why do you like math?",
+          "Why do I like math?",
           "How is science described as a challenge?",
           "What motivates you to work hard?"
         ],
@@ -367,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
         answers: ["or", "because", "so", "while", "although"],
         clueWords: [["book"], ["stories"], ["quiet"], ["brother"], ["fun"]],
         hints: [
-          "Which word indicates a choice between activities?",
+          "Which word indicates a choice between two activities?",
           "What is the reason for choosing a book?",
           "What is the effect of a quiet environment?",
           "What did your brother do while you read?",
@@ -452,8 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "Mary lost ___(1)___ book yesterday. She asked John if ___(2)___ had seen it. He said that ___(3)___ didn’t know where it was. ___(4)___ both looked for it. Later, ___(5)___ found it under the desk.",
         wordBox: ["she", "her", "he", "him", "they", "them", "it"],
-        // Natural repetition is common here; to force uniqueness we’d need to rewrite the passage.
-        // For now we leave this exercise as is.
         answers: ["her", "he", "he", "they", "she"],
         clueWords: [["Mary"], ["John"], ["book"], ["both"], ["desk"]],
         hints: [
@@ -468,7 +449,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         text: "The cat chased ___(1)___ tail. ___(2)___ was very playful. The dog watched ___(3)___ and barked. ___(4)___ both ran around the yard. Later, ___(5)___ rested under the tree.",
         wordBox: ["it", "its", "he", "him", "they", "them", "she"],
-        // Again, natural pronoun repetition is typical.
         answers: ["its", "it", "it", "they", "them"],
         clueWords: [["cat"], ["tail"], ["dog"], ["both"], ["tree"]],
         hints: [
@@ -484,7 +464,6 @@ document.addEventListener("DOMContentLoaded", () => {
         text: "Tom and Jerry are friends. ___(1)___ play together every day. ___(2)___ share their toys. Sometimes, ___(3)___ argue, but ___(4)___ always make up. ___(5)___ are best friends.",
         wordBox: ["They", "He", "She", "It", "We", "You", "Them"],
         answers: ["They", "They", "They", "They", "They"],
-        // This passage naturally uses the same pronoun for all blanks.
         clueWords: [["Tom"], ["Jerry"], ["toys"], ["argue"], ["friends"]],
         hints: [
           "Which pronoun refers to Tom and Jerry?",
@@ -624,7 +603,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hint: "Remember to use the objects around you as clues."
       },
       {
-        text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___. It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
+        text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___ . It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
         wordBox: ["colorful", "colorfully", "high", "highly", "tight", "tightly", "quick", "quickly", "happy", "happily"],
         answers: ["colorful", "high", "tightly", "high", "happily"],
         clueWords: [["kite"], ["flew"], ["string"], ["rose"], ["smiled"]],
@@ -852,7 +831,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hint: "Remember to use the objects around you as clues."
       },
       {
-        text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___. It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
+        text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___ . It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
         wordBox: ["colorful", "colorfully", "high", "highly", "tight", "tightly", "quick", "quickly", "happy", "happily"],
         answers: ["colorful", "high", "tightly", "high", "happily"],
         clueWords: [["kite"], ["flew"], ["string"], ["rose"], ["smiled"]],
@@ -1157,9 +1136,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       timerBar.style.width = "0%";
     }
-    const chapters = ["The Grammar Wizard needs your help!", "You're making progress!", "The Kingdom is almost saved!"];
+    const chapters = [
+      { text: "The Kingdom is in danger!", bg: "castle-bg.png" },
+      { text: "The Wizard’s magic grows!", bg: "forest-bg.png" },
+      { text: "Victory is near!", bg: "victory-bg.png" }
+    ];
     const chapterIndex = Math.min(Math.floor(stars / 5), chapters.length - 1);
-    storyProgress.textContent = `Story: ${chapters[chapterIndex]}`;
+    storyProgress.textContent = `Story: ${chapters[chapterIndex].text}`;
+    document.body.style.backgroundImage = `url(${chapters[chapterIndex].bg})`;
   }
 
   function startTimer() {
@@ -1188,29 +1172,36 @@ document.addEventListener("DOMContentLoaded", () => {
       feedbackDisplay.textContent = "Error: Passage not found.";
       return;
     }
-    if (!passage.text || !Array.isArray(passage.wordBox) || !Array.isArray(passage.answers) || !Array.isArray(passage.clueWords) || !Array.isArray(passage.hints)) {
+    if (
+      !passage.text ||
+      !Array.isArray(passage.wordBox) ||
+      !Array.isArray(passage.answers) ||
+      !Array.isArray(passage.clueWords) ||
+      !Array.isArray(passage.hints)
+    ) {
       passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
       feedbackDisplay.textContent = "Error: Missing required passage data.";
       return;
     }
-    const blanks = passage.text.match(/\d+/g) || [];
-    if (passage.answers.length !== blanks.length || passage.clueWords.length !== blanks.length || passage.hints.length !== blanks.length) {
-      feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
-    }
-
-    // Generate passage HTML and replace blank markers with a drop target (non-breaking space plus hint button).
+    // Generate passage HTML and replace blank markers with a drop target.
     let passageHTML = passage.text;
     if (passage.clueWords) {
       passage.clueWords.forEach((clues, index) => {
         const blankNum = index + 1;
-        clues.forEach(clue => {
+        clues.forEach((clue) => {
           const regex = new RegExp(`\\b${clue}\\b`, "gi");
-          passageHTML = passageHTML.replace(regex, `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`);
+          passageHTML = passageHTML.replace(
+            regex,
+            `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`
+          );
         });
       });
     }
-    passageHTML = passageHTML.replace(/___\(\d+\)___/g, (_, num) => {
-      return `<span class="blank" data-blank="${num}" tabindex="0">&nbsp;<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
+    // FIX: Use a capturing group for the number in the blank marker
+    passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
+      return `<span class="blank" data-blank="${num}" tabindex="0" role="button">
+                &nbsp;<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
+              </span>`;
     });
 
     // Clear existing content by cloning to remove old listeners.
@@ -1223,11 +1214,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     passageText.innerHTML = passageHTML;
     wordBox.innerHTML = shuffle([...passage.wordBox])
-      .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
+      .map(word => `<div class="word" draggable="true" tabindex="0" role="button">${word}</div>`)
       .join("");
 
     // Attach event listeners to blanks
-    document.querySelectorAll(".blank").forEach(blank => {
+    document.querySelectorAll(".blank").forEach((blank) => {
       blank.addEventListener("dragover", handleDragOver);
       blank.addEventListener("dragleave", handleDragLeave);
       blank.addEventListener("drop", handleDrop);
@@ -1250,7 +1241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Attach event listeners to words
-    document.querySelectorAll(".word").forEach(word => {
+    document.querySelectorAll(".word").forEach((word) => {
       word.addEventListener("dragstart", handleDragStart);
       word.addEventListener("dragend", handleDragEnd);
       word.addEventListener("click", () => {
@@ -1268,7 +1259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Attach event listeners to hint buttons
-    document.querySelectorAll(".hint-for-blank").forEach(button => {
+    document.querySelectorAll(".hint-for-blank").forEach((button) => {
       button.addEventListener("click", function () {
         const blankNum = this.parentElement.getAttribute("data-blank");
         const hintIndex = parseInt(blankNum) - 1;
@@ -1283,6 +1274,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateStatus();
           }
         }
+        // Highlight corresponding keywords
         document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
         document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.add("highlighted"));
         setTimeout(() => {
@@ -1505,8 +1497,8 @@ document.addEventListener("DOMContentLoaded", () => {
       feedbackDisplay.textContent = "Error: No passage to read.";
       return;
     }
-    // Replace blank markers with the word "blank" for speech synthesis.
-    const textToSpeak = passage.text.replace(/___\(\d+\)___/g, "blank");
+    // Replace blank markers with "blank" for speech synthesis.
+    const textToSpeak = passage.text.replace(/___\((\d+)\)___/g, "blank");
     speak(textToSpeak);
     menu.classList.add("hidden");
   });
@@ -1514,4 +1506,92 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize Game
   displayPassage();
   updateStatus();
+
+  // -------------------------
+  // Drag-and-Drop Handlers
+  // -------------------------
+  let draggedItem = null;
+  function handleDragStart(e) {
+    draggedItem = e.target;
+    e.dataTransfer.setData("text/plain", e.target.textContent);
+    e.target.classList.add("dragging");
+  }
+  function handleDragEnd(e) {
+    e.target.classList.remove("dragging");
+    draggedItem = null;
+  }
+  function handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add("drag-over");
+  }
+  function handleDragLeave(e) {
+    e.currentTarget.classList.remove("drag-over");
+  }
+  function handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove("drag-over");
+    const droppedWord = e.dataTransfer.getData("text/plain");
+    if (e.currentTarget.classList.contains("blank") && !e.currentTarget.classList.contains("filled")) {
+      placeWord(e.currentTarget, droppedWord);
+      if (draggedItem) {
+        draggedItem.remove();
+      }
+      updateStatus();
+    }
+  }
+
+  function placeWord(blank, word) {
+    blank.textContent = word;
+    blank.classList.add("filled", "slide-in");
+    checkAnswer(blank);
+  }
+
+  function showConfetti() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
+
+  function checkAnswer(blank) {
+    const blankId = parseInt(blank.getAttribute("data-blank"));
+    const userAnswer = blank.textContent.trim().toLowerCase();
+    const correctAnswer = passages[currentGrammarType][currentPassageIndex].answers[blankId - 1].toLowerCase();
+    if (userAnswer === correctAnswer) {
+      blank.classList.add("correct");
+      score += 10;
+      stars += 1;
+      feedbackDisplay.textContent = "Correct! Great job!";
+      feedbackDisplay.style.color = "green";
+      speak("Correct! Great job!");
+      correctSound.play();
+      showConfetti();
+      grammarWizard.classList.remove("hidden");
+      wizardMessage.textContent = "Well done! You're saving the Kingdom!";
+      setTimeout(() => grammarWizard.classList.add("hidden"), 3000);
+    } else {
+      blank.classList.add("incorrect");
+      feedbackDisplay.textContent = "Incorrect! Try again.";
+      feedbackDisplay.style.color = "red";
+      speak("Incorrect! Try again.");
+      incorrectSound.play();
+      grammarWizard.classList.remove("hidden");
+      wizardMessage.textContent = "Oops! Let's try again!";
+      setTimeout(() => grammarWizard.classList.add("hidden"), 3000);
+    }
+    updateStatus();
+  }
+
+  function updateTimer() {
+    updateStatus();
+  }
+
+  // -------------------------
+  // Aesthetic Improvement: Slide-in animation class added via CSS (ensure corresponding CSS is defined)
+  // -------------------------
+
+  // -------------------------
+  // End of Code
+  // -------------------------
 });
