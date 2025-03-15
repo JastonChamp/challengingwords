@@ -167,6 +167,13 @@ main {
   background-color: #2980b9;
 }
 
+/* Blank Container: Added to create positioning context */
+.blank-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 /* Blank Styles */
 .blank {
   display: inline-block;
