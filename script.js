@@ -816,7 +816,9 @@ window.passages = {
   ]
 };
 
+// ----------------------
 // Global Game State
+// ----------------------
 let currentGrammarType = "prepositions";
 let currentPassageIndex = 0;
 let score = 0;
@@ -828,7 +830,9 @@ let timerInterval = null;
 let challengeMode = true;
 let level = "Apprentice";
 
+// ----------------------
 // DOM Elements
+// ----------------------
 const grammarSelect = document.getElementById("grammar-type");
 let passageText = document.getElementById("passage-text");
 let wordBox = document.getElementById("word-box");
@@ -850,7 +854,9 @@ const levelDisplay = document.getElementById("level");
 const toggleThemeButton = document.getElementById("toggle-theme");
 const timerSettingSelect = document.getElementById("timer-setting");
 
+// ----------------------
 // Speech Synthesis Setup – UK Female Fallback
+// ----------------------
 const synth = window.speechSynthesis;
 let voices = [];
 let ukFemaleVoice = null;
@@ -884,14 +890,18 @@ function speak(text) {
   synth.speak(utterance);
 }
 
+// ----------------------
 // Onboarding
+// ----------------------
 if (!localStorage.getItem("hasSeenTutorial")) {
   alert("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank. Use the sidebar for hints and controls!");
   localStorage.setItem("hasSeenTutorial", "true");
   speak("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank.");
 }
 
+// ----------------------
 // Utility Functions
+// ----------------------
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
@@ -915,7 +925,12 @@ function updateStatus() {
   progressBar.style.width = `${((currentPassageIndex + 1) / window.passages[currentGrammarType].length) * 100}%`;
   if (challengeMode) {
     timerBar.style.width = `${(timeLeft / parseInt(timerSettingSelect.value)) * 100}%`;
-    timerBar.style.backgroundColor = timeLeft > (parseInt(timerSettingSelect.value) * 0.5) ? "#27ae60" : timeLeft > (parseInt(timerSettingSelect.value) * 0.2) ? "orange" : "red";
+    timerBar.style.backgroundColor =
+      timeLeft > (parseInt(timerSettingSelect.value) * 0.5)
+        ? "#27ae60"
+        : timeLeft > (parseInt(timerSettingSelect.value) * 0.2)
+        ? "orange"
+        : "red";
   } else {
     timerBar.style.width = "0%";
   }
@@ -948,7 +963,9 @@ function fadeOutIn(element, callback) {
   }, 500);
 }
 
-// Display Passage with improved feedback and animations
+// ----------------------
+// Display Passage
+// ----------------------
 function displayPassage() {
   clearInterval(timerInterval);
   hintUsage = {};
@@ -993,36 +1010,41 @@ function displayPassage() {
 
   fadeOutIn(passageText, () => {
     passageText.innerHTML = passageHTML;
+
+    // Attach drag-and-drop events to blank containers
+    document.querySelectorAll(".blank-container").forEach(container => {
+      container.addEventListener("dragover", handleContainerDragOver);
+      container.addEventListener("dragleave", handleContainerDragLeave);
+      container.addEventListener("drop", handleContainerDrop);
+    });
+
+    // Attach click and keydown events to blanks
+    document.querySelectorAll(".blank").forEach(blank => {
+      blank.addEventListener("click", () => {
+        if (selectedWord && !blank.classList.contains("filled")) {
+          placeWord(blank, selectedWord.textContent);
+          selectedWord.classList.remove("selected");
+          selectedWord = null;
+          updateStatus();
+        }
+      });
+      blank.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && selectedWord && !blank.classList.contains("filled")) {
+          placeWord(blank, selectedWord.textContent);
+          selectedWord.classList.remove("selected");
+          selectedWord = null;
+          updateStatus();
+        }
+      });
+    });
   });
   
+  // Populate word box
   wordBox.innerHTML = shuffle([...passage.wordBox])
     .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
     .join("");
 
-  // Attach event listeners for blanks
-  document.querySelectorAll(".blank").forEach(blank => {
-    blank.addEventListener("dragover", handleDragOver);
-    blank.addEventListener("dragleave", handleDragLeave);
-    blank.addEventListener("drop", handleDrop);
-    blank.addEventListener("click", () => {
-      if (selectedWord && !blank.classList.contains("filled")) {
-        placeWord(blank, selectedWord.textContent);
-        selectedWord.classList.remove("selected");
-        selectedWord = null;
-        updateStatus();
-      }
-    });
-    blank.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && selectedWord && !blank.classList.contains("filled")) {
-        placeWord(blank, selectedWord.textContent);
-        selectedWord.classList.remove("selected");
-        selectedWord = null;
-        updateStatus();
-      }
-    });
-  });
-
-  // Attach event listeners for words
+  // Attach events to words
   document.querySelectorAll(".word").forEach(word => {
     word.addEventListener("dragstart", handleDragStart);
     word.addEventListener("dragend", handleDragEnd);
@@ -1067,7 +1089,28 @@ function displayPassage() {
   updateStatus();
 }
 
-// Drag-and-Drop Handlers
+// ----------------------
+// Drag-and-Drop Handlers for Blank Containers
+// ----------------------
+function handleContainerDragOver(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add("drag-over");
+}
+function handleContainerDragLeave(e) {
+  e.currentTarget.classList.remove("drag-over");
+}
+function handleContainerDrop(e) {
+  e.preventDefault();
+  e.currentTarget.classList.remove("drag-over");
+  const droppedWord = e.dataTransfer.getData("text/plain");
+  const blank = e.currentTarget.querySelector(".blank");
+  if (blank && !blank.classList.contains("filled")) {
+    placeWord(blank, droppedWord);
+    updateStatus();
+  }
+}
+
+// Standard drag handlers for words remain unchanged
 let draggedItem = null;
 function handleDragStart(e) {
   draggedItem = e.target;
@@ -1078,23 +1121,10 @@ function handleDragEnd(e) {
   e.target.classList.remove("dragging");
   draggedItem = null;
 }
-function handleDragOver(e) {
-  e.preventDefault();
-  e.currentTarget.classList.add("drag-over");
-}
-function handleDragLeave(e) {
-  e.currentTarget.classList.remove("drag-over");
-}
-function handleDrop(e) {
-  e.preventDefault();
-  e.currentTarget.classList.remove("drag-over");
-  const droppedWord = e.dataTransfer.getData("text/plain");
-  if (e.currentTarget.classList.contains("blank") && !e.currentTarget.classList.contains("filled")) {
-    placeWord(e.currentTarget, droppedWord);
-    updateStatus();
-  }
-}
 
+// ----------------------
+// Word Placement and Feedback
+// ----------------------
 function placeWord(blank, word) {
   blank.textContent = word;
   blank.classList.add("filled");
@@ -1107,7 +1137,6 @@ function placeWord(blank, word) {
   checkAnswer(blank);
 }
 
-// Enhanced Feedback: Provide brief explanations for incorrect answers.
 function checkAnswer(blank) {
   const blankId = parseInt(blank.getAttribute("data-blank"));
   const userAnswer = blank.textContent.trim().toLowerCase();
@@ -1128,7 +1157,9 @@ function checkAnswer(blank) {
   updateStatus();
 }
 
+// ----------------------
 // Navigation and Other Controls
+// ----------------------
 grammarSelect.addEventListener("change", () => {
   currentGrammarType = grammarSelect.value;
   currentPassageIndex = 0;
@@ -1239,7 +1270,7 @@ toggleChallengeButton.addEventListener("click", () => {
   speak(`Challenge Mode ${challengeMode ? "ON" : "OFF"}`);
 });
 
-// Light/Dark Theme Toggle Implementation
+// Light/Dark Theme Toggle
 toggleThemeButton.addEventListener("click", () => {
   document.body.classList.toggle("light-mode");
   if (document.body.classList.contains("light-mode")) {
