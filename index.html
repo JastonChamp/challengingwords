@@ -56,7 +56,7 @@
     <button id="next-btn">➡️</button>
   </div>
 
-  <button id="menu-btn">☰</button>
+  <!-- Menu repositioned to top-right -->
   <div id="menu" class="menu hidden" aria-hidden="true">
     <button id="speak-passage-btn">🔊 Speak Passage</button>
     <button id="hint-btn">💡 Hint</button>
@@ -82,6 +82,14 @@
   <!-- Audio for Feedback -->
   <audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
   <audio id="incorrect-sound" src="https://www.soundjay.com/buttons/sounds/button-2.mp3"></audio>
+
+  <!-- Modal for Onboarding -->
+  <div class="modal hidden" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-button" aria-label="Close">&times;</button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
