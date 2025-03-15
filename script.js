@@ -850,6 +850,8 @@ const timerBar = document.getElementById("timer-bar");
 const levelDisplay = document.getElementById("level");
 const shareButton = document.getElementById("share-btn");
 const toggleChallengeButton = document.getElementById("toggle-challenge");
+const progressStepper = document.getElementById("progress-stepper");
+const wizardAdviceDisplay = document.getElementById("wizard-advice");
 
 // ----------------------------------------------------------------
 // Speech Synthesis Setup
@@ -897,6 +899,7 @@ if (!localStorage.getItem("hasSeenTutorial")) {
   alert("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank. Use the sidebar for hints and controls!");
   localStorage.setItem("hasSeenTutorial", "true");
   speak("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank.");
+  updateWizardAdvice("Let the adventure begin!");
 }
 
 // ----------------------------------------------------------------
@@ -918,6 +921,22 @@ function updateLevel() {
   levelDisplay.textContent = `Level: ${level}`;
 }
 
+function updateWizardAdvice(message) {
+  wizardAdviceDisplay.textContent = message;
+  wizardAdviceDisplay.classList.add("wizard-animate");
+  setTimeout(() => wizardAdviceDisplay.classList.remove("wizard-animate"), 2000);
+}
+
+function updateProgressStepper() {
+  // Create a series of dots equal to total passages.
+  const total = passages[currentGrammarType].length;
+  let dotsHtml = "";
+  for (let i = 0; i < total; i++) {
+    dotsHtml += `<span class="step-dot ${i === currentPassageIndex ? "active" : ""}" aria-label="Step ${i + 1}"></span>`;
+  }
+  progressStepper.innerHTML = dotsHtml;
+}
+
 function updateStatus() {
   scoreDisplay.textContent = `Score: ${score}`;
   starsDisplay.textContent = `Stars: ${stars}`;
@@ -931,6 +950,7 @@ function updateStatus() {
     timerBar.style.width = "0%";
   }
   updateLevel();
+  updateProgressStepper();
 }
 
 function startTimer() {
@@ -972,7 +992,7 @@ function displayPassage() {
     feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
   }
 
-  // Generate passage HTML with keyword clues highlighted
+  // Generate passage HTML with highlighted clues
   let passageHTML = passage.text;
   if (passage.clueWords) {
     passage.clueWords.forEach((clues, index) => {
@@ -988,7 +1008,6 @@ function displayPassage() {
     return `<span class="blank" data-blank="${num}" tabindex="0">_<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
   });
 
-  // Insert new content into passage and word box
   passageText.innerHTML = passageHTML;
   wordBox.innerHTML = shuffle([...passage.wordBox])
     .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
@@ -1110,6 +1129,11 @@ function checkAnswer(blank) {
     feedbackDisplay.textContent = "Correct! Great job!";
     feedbackDisplay.style.color = "green";
     speak("Correct! Great job!");
+    // Trigger a confetti effect at every 50-point milestone (placeholder)
+    if (score % 50 === 0) {
+      console.log("Confetti!"); // Replace with a proper confetti animation if desired.
+      updateWizardAdvice("Fantastic work! Keep it up!");
+    }
   } else {
     blank.classList.add("incorrect", "animate-incorrect");
     feedbackDisplay.textContent = "Incorrect! Try again.";
@@ -1161,6 +1185,7 @@ nextPassageButton.addEventListener("click", () => {
   if (currentPassageIndex >= passages[currentGrammarType].length) {
     feedbackDisplay.textContent = "Game Over! Final Score: " + score;
     speak("Game Over! Your final score is " + score);
+    updateWizardAdvice("The kingdom is saved... for now!");
     return;
   }
   timeLeft = 60;
