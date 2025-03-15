@@ -1110,7 +1110,9 @@ function handleContainerDrop(e) {
   }
 }
 
-// Standard drag handlers for words remain unchanged
+// ----------------------
+// Standard Drag Handlers for Words
+// ----------------------
 let draggedItem = null;
 function handleDragStart(e) {
   draggedItem = e.target;
@@ -1289,6 +1291,8 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// ----------------------
 // Initialize Game
+// ----------------------
 displayPassage();
 updateStatus();
