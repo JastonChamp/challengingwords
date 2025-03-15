@@ -6,21 +6,15 @@
   <title>Grammar Cloze Adventure</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <!-- Include Confetti.js for celebratory effects -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <!-- Include ResponsiveVoice.JS with your API key -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
 </head>
 <body>
   <header>
     <h1>Grammar Cloze Adventure</h1>
-    <p class="instructions">
-      Help the Grammar Wizard save the Kingdom by filling in the blanks! Drag or tap a word to fill in the blanks. Use the menu for hints and controls!
-    </p>
+    <p class="instructions">Drag or tap a word to fill in the blanks. Use the menu for hints and controls!</p>
   </header>
-  <div class="story-bar">
-    <p id="story-progress">Story: The Grammar Wizard needs your help to save the Kingdom! Earn stars to unlock the next chapter.</p>
-  </div>
+
   <div class="controls">
     <label for="grammar-type">Choose Grammar Type:</label>
     <select id="grammar-type">
@@ -32,15 +26,14 @@
       <option value="tenses">Tenses</option>
     </select>
   </div>
+
   <div class="game-container">
     <div id="passage-text"></div>
     <div id="word-box"></div>
   </div>
+
   <div id="feedback"></div>
-  <div id="badge-display" class="hidden">
-    <p>Congratulations! You've earned a badge!</p>
-    <img src="https://via.placeholder.com/100?text=Badge" alt="Badge">
-  </div>
+
   <div class="status-bar">
     <span id="progress">📖 Progress: 1 / 15</span>
     <span id="score">⭐ Score: 0</span>
@@ -50,35 +43,17 @@
     <button id="prev-btn">⬅️</button>
     <button id="next-btn">➡️</button>
   </div>
+
   <button id="menu-btn">☰</button>
   <div id="menu" class="menu hidden" aria-hidden="true">
-    <button id="speak-passage-btn">🔊 Speak Passage</button>
-    <button id="hint-btn">💡 Hint</button>
-    <button id="clear-btn">🗑️ Clear</button>
-    <button id="highlight-clues-btn">🔍 Highlight Clues</button>
-    <button id="toggle-challenge">⏱️ Toggle Challenge</button>
-    <button id="voice-command-btn">🎙️ Voice Command</button>
+    <button id="speak-passage-btn">🔊</button>
+    <button id="hint-btn">💡</button>
+    <button id="clear-btn">🗑️</button>
+    <button id="highlight-clues-btn">🔍</button>
+    <button id="toggle-challenge">⏱️</button>
   </div>
   <button id="fullscreen-btn">⤢</button>
-  <!-- Grammar Wizard Mascot -->
-  <div id="grammar-wizard" class="hidden">
-    <svg width="100" height="100" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40" fill="#ff6f61"/>
-      <circle cx="40" cy="40" r="5" fill="white"/>
-      <circle cx="60" cy="40" r="5" fill="white"/>
-      <path d="M40 60 Q50 70 60 60" fill="none" stroke="white" stroke-width="3"/>
-      <rect x="45" y="20" width="10" height="20" fill="#f1c40f"/>
-    </svg>
-    <p id="wizard-message">Great job! Keep going!</p>
-  </div>
-  <!-- Modal Container for Reviews and Onboarding -->
-  <div class="modal hidden">
-    <div class="modal-body"></div>
-    <button class="close-button">Close</button>
-  </div>
-  <!-- Audio for Feedback -->
-  <audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
-  <audio id="incorrect-sound" src="https://www.soundjay.com/buttons/sounds/button-2.mp3"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>
