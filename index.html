@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grammar Cloze Adventure</title>
-  <!-- Load fonts: Poppins for body and Lora for title -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <!-- Load fonts: Poppins for body and Lora for titles -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
   <!-- ResponsiveVoice (replace YOUR_API_KEY with your actual key) -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <header>
     <h1>Grammar Cloze Adventure</h1>
-    <p class="instructions">Drag or tap a word to fill in the blanks. Use the sidebar for hints and controls!</p>
+    <p class="instructions">
+      Drag or tap a word to fill in the blanks. Use the sidebar for hints and controls!
+    </p>
+    <!-- Light Mode Toggle -->
+    <button id="toggle-theme" class="theme-toggle" aria-label="Toggle light mode">Light Mode</button>
   </header>
 
   <!-- Wizard Advice Area -->
@@ -38,16 +42,47 @@
             <option value="tenses">Tenses</option>
           </select>
         </li>
-        <li><button id="toggle-challenge" class="sidebar-btn" aria-label="Toggle challenge mode">⏱️ Challenge</button></li>
-        <li><button id="hint-btn" class="sidebar-btn" aria-label="Get a hint">💡 Hint</button></li>
-        <li><button id="clear-btn" class="sidebar-btn" aria-label="Reset passage">🔄 Reset</button></li>
-        <li><button id="share-btn" class="sidebar-btn" aria-label="Share score">📤 Share</button></li>
-        <li><button id="read-passage-btn" class="sidebar-btn" aria-label="Read passage">🔊 Read Passage</button></li>
+        <li>
+          <!-- Placeholder for Timer Customization (e.g., 30s, 60s, or off) -->
+          <label for="timer-setting">Timer:</label>
+          <select id="timer-setting" aria-label="Select timer duration">
+            <option value="60" selected>60 seconds</option>
+            <option value="30">30 seconds</option>
+            <option value="off">Off</option>
+          </select>
+        </li>
+        <li>
+          <button id="toggle-challenge" class="sidebar-btn" aria-label="Toggle challenge mode">
+            ⏱️ Challenge
+          </button>
+        </li>
+        <li>
+          <button id="hint-btn" class="sidebar-btn" aria-label="Get a hint">
+            💡 Hint
+          </button>
+        </li>
+        <li>
+          <button id="clear-btn" class="sidebar-btn" aria-label="Reset passage">
+            🔄 Reset
+          </button>
+        </li>
+        <li>
+          <button id="share-btn" class="sidebar-btn" aria-label="Share score">
+            📤 Share
+          </button>
+        </li>
+        <li>
+          <button id="read-passage-btn" class="sidebar-btn" aria-label="Read passage">
+            🔊 Read Passage
+          </button>
+        </li>
       </ul>
     </nav>
     <div class="level-info">
       <span id="level">Level: Apprentice</span>
     </div>
+    <!-- Placeholder for Teacher Dashboard Integration -->
+    <!-- <a href="#" id="teacher-dashboard">Teacher Dashboard</a> -->
   </aside>
 
   <!-- Main Content Area -->
@@ -66,7 +101,7 @@
       <span id="timer">Time: 60s</span>
       <div id="progress-bar-container"><div id="progress-bar"></div></div>
       <div id="timer-container"><div id="timer-bar"></div></div>
-      <!-- Progress Stepper -->
+      <!-- Progress Stepper (future enhancement: kingdom map style) -->
       <div id="progress-stepper" class="progress-stepper" aria-label="Progress stepper"></div>
       <div class="navigation-buttons">
         <button id="prev-btn" aria-label="Previous passage">⬅️ Prev</button>
