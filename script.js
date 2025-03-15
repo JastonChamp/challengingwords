@@ -816,7 +816,9 @@ window.passages = {
   ]
 };
 
-  // Global game state
+  // ----------------------------------------------------------------
+  // Global Game State
+  // ----------------------------------------------------------------
   let currentGrammarType = "prepositions";
   let currentPassageIndex = 0;
   let score = 0;
@@ -826,9 +828,12 @@ window.passages = {
   let timeLeft = 60;
   let timerInterval = null;
   let challengeMode = true;
+  let level = "Apprentice";
 
+  // ----------------------------------------------------------------
   // DOM Elements
-  let grammarSelect = document.getElementById("grammar-type");
+  // ----------------------------------------------------------------
+  const grammarSelect = document.getElementById("grammar-type");
   let passageText = document.getElementById("passage-text");
   let wordBox = document.getElementById("word-box");
   const feedbackDisplay = document.getElementById("feedback");
@@ -838,17 +843,17 @@ window.passages = {
   const clearButton = document.getElementById("clear-btn");
   const progressDisplay = document.getElementById("progress");
   const scoreDisplay = document.getElementById("score");
-  const starsDisplay = document.getElementById("lives"); // Repurposed as stars
+  const starsDisplay = document.getElementById("stars");
+  const timerDisplay = document.getElementById("timer");
   const progressBar = document.getElementById("progress-bar");
-  const highlightCluesButton = document.getElementById("highlight-clues-btn");
-  const menuBtn = document.getElementById("menu-btn");
-  const menu = document.getElementById("menu");
-  const fullscreenBtn = document.getElementById("fullscreen-btn");
-  const speakPassageBtn = document.getElementById("speak-passage-btn");
-  const timerContainer = document.getElementById("timer-container");
   const timerBar = document.getElementById("timer-bar");
+  const levelDisplay = document.getElementById("level");
+  const shareButton = document.getElementById("share-btn");
+  const toggleChallengeButton = document.getElementById("toggle-challenge");
 
+  // ----------------------------------------------------------------
   // Speech Synthesis Setup
+  // ----------------------------------------------------------------
   const synth = window.speechSynthesis;
   let voices = [];
   let ukFemaleVoice = null;
@@ -856,7 +861,8 @@ window.passages = {
     voices = synth.getVoices();
     ukFemaleVoice = voices.find(voice =>
       voice.lang === "en-GB" &&
-      (voice.name.includes("Female") || voice.name.includes("Google UK English Female") || voice.name === "Samantha" || voice.name === "Kate")
+      (voice.name.includes("Female") || voice.name.includes("Google UK English Female") ||
+       voice.name === "Samantha" || voice.name === "Kate")
     ) || voices.find(voice => voice.lang === "en-GB");
     console.log("Voices loaded:", voices.length);
   }
@@ -869,7 +875,7 @@ window.passages = {
       return;
     }
     if (synth.speaking) synth.cancel();
-    loadVoices(); // Ensure voices are loaded
+    loadVoices();
     if (!voices.length) {
       feedbackDisplay.textContent = "Speech unavailable. Voices not loaded.";
       console.log("No voices available");
@@ -884,29 +890,47 @@ window.passages = {
     console.log("Speaking text:", text);
   }
 
+  // ----------------------------------------------------------------
   // Onboarding
+  // ----------------------------------------------------------------
   if (!localStorage.getItem("hasSeenTutorial")) {
-    alert("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank. Use the menu for hints and controls!");
+    alert("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank. Use the sidebar for hints and controls!");
     localStorage.setItem("hasSeenTutorial", "true");
     speak("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank.");
   }
 
+  // ----------------------------------------------------------------
   // Utility Functions
+  // ----------------------------------------------------------------
   function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
+  }
+
+  function updateLevel() {
+    // Level thresholds: Apprentice (<100), Journeyman (<200), Master Wizard (>=200)
+    if (score < 100) {
+      level = "Apprentice";
+    } else if (score < 200) {
+      level = "Journeyman";
+    } else {
+      level = "Master Wizard";
+    }
+    levelDisplay.textContent = `Level: ${level}`;
   }
 
   function updateStatus() {
     scoreDisplay.textContent = `Score: ${score}`;
     starsDisplay.textContent = `Stars: ${stars}`;
     progressDisplay.textContent = `Progress: ${currentPassageIndex + 1} / ${passages[currentGrammarType].length}`;
+    timerDisplay.textContent = `Time: ${timeLeft}s`;
     progressBar.style.width = `${((currentPassageIndex + 1) / passages[currentGrammarType].length) * 100}%`;
-    if (challengeMode && timerContainer) {
+    if (challengeMode) {
       timerBar.style.width = `${(timeLeft / 60) * 100}%`;
-      timerBar.style.backgroundColor = timeLeft > 30 ? "green" : timeLeft > 10 ? "orange" : "red";
+      timerBar.style.backgroundColor = timeLeft > 30 ? "#27ae60" : timeLeft > 10 ? "orange" : "red";
     } else {
       timerBar.style.width = "0%";
     }
+    updateLevel();
   }
 
   function startTimer() {
@@ -935,24 +959,28 @@ window.passages = {
       feedbackDisplay.textContent = "Error: Passage not found.";
       return;
     }
-    if (!passage.text || !Array.isArray(passage.wordBox) || !Array.isArray(passage.answers) || !Array.isArray(passage.clueWords) || !Array.isArray(passage.hints)) {
+    if (!passage.text || !Array.isArray(passage.wordBox) || !Array.isArray(passage.answers) ||
+        !Array.isArray(passage.clueWords) || !Array.isArray(passage.hints)) {
       passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
       feedbackDisplay.textContent = "Error: Missing required passage data.";
       return;
     }
     const blanks = passage.text.match(/\d+/g) || [];
-    if (passage.answers.length !== blanks.length || passage.clueWords.length !== blanks.length || passage.hints.length !== blanks.length) {
+    if (passage.answers.length !== blanks.length ||
+        passage.clueWords.length !== blanks.length ||
+        passage.hints.length !== blanks.length) {
       feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
     }
 
-    // Generate passage HTML
+    // Generate passage HTML with keyword clues highlighted
     let passageHTML = passage.text;
     if (passage.clueWords) {
       passage.clueWords.forEach((clues, index) => {
         const blankNum = index + 1;
         clues.forEach(clue => {
           const regex = new RegExp(`\\b${clue}\\b`, "gi");
-          passageHTML = passageHTML.replace(regex, `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`);
+          passageHTML = passageHTML.replace(regex,
+            `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`);
         });
       });
     }
@@ -960,21 +988,13 @@ window.passages = {
       return `<span class="blank" data-blank="${num}" tabindex="0">_<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
     });
 
-    // Clear existing content and listeners by cloning and replacing
-    const newPassageText = passageText.cloneNode(false);
-    const newWordBox = wordBox.cloneNode(false);
-    passageText.parentNode.replaceChild(newPassageText, passageText);
-    wordBox.parentNode.replaceChild(newWordBox, wordBox);
-    passageText = newPassageText;
-    wordBox = newWordBox;
-
-    // Insert new content
+    // Insert new content into passage and word box
     passageText.innerHTML = passageHTML;
     wordBox.innerHTML = shuffle([...passage.wordBox])
       .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
       .join("");
 
-    // Attach event listeners to new elements
+    // Attach event listeners for blanks
     document.querySelectorAll(".blank").forEach(blank => {
       blank.addEventListener("dragover", handleDragOver);
       blank.addEventListener("dragleave", handleDragLeave);
@@ -982,7 +1002,6 @@ window.passages = {
       blank.addEventListener("click", () => {
         if (selectedWord && !blank.classList.contains("filled")) {
           placeWord(blank, selectedWord.textContent);
-          // Do not remove the word—just deselect it
           selectedWord.classList.remove("selected");
           selectedWord = null;
           updateStatus();
@@ -998,6 +1017,7 @@ window.passages = {
       });
     });
 
+    // Attach event listeners for words
     document.querySelectorAll(".word").forEach(word => {
       word.addEventListener("dragstart", handleDragStart);
       word.addEventListener("dragend", handleDragEnd);
@@ -1015,6 +1035,7 @@ window.passages = {
       });
     });
 
+    // Attach event listeners for hint buttons on blanks
     document.querySelectorAll(".hint-for-blank").forEach(button => {
       button.addEventListener("click", function () {
         const blankNum = this.parentElement.getAttribute("data-blank");
@@ -1042,7 +1063,9 @@ window.passages = {
     updateStatus();
   }
 
+  // ----------------------------------------------------------------
   // Drag-and-Drop Handlers
+  // ----------------------------------------------------------------
   let draggedItem = null;
   function handleDragStart(e) {
     draggedItem = e.target;
@@ -1066,13 +1089,11 @@ window.passages = {
     const droppedWord = e.dataTransfer.getData("text/plain");
     if (e.currentTarget.classList.contains("blank") && !e.currentTarget.classList.contains("filled")) {
       placeWord(e.currentTarget, droppedWord);
-      // Do not remove the dragged word so it can be reused.
       updateStatus();
     }
   }
 
   function placeWord(blank, word) {
-    // Simply set the text of the blank with the word provided.
     blank.textContent = word;
     blank.classList.add("filled");
     checkAnswer(blank);
@@ -1083,14 +1104,14 @@ window.passages = {
     const userAnswer = blank.textContent.trim().toLowerCase();
     const correctAnswer = passages[currentGrammarType][currentPassageIndex].answers[blankId - 1].toLowerCase();
     if (userAnswer === correctAnswer) {
-      blank.classList.add("correct");
+      blank.classList.add("correct", "animate-correct");
       score += 10;
       stars += 1;
       feedbackDisplay.textContent = "Correct! Great job!";
       feedbackDisplay.style.color = "green";
       speak("Correct! Great job!");
     } else {
-      blank.classList.add("incorrect");
+      blank.classList.add("incorrect", "animate-incorrect");
       feedbackDisplay.textContent = "Incorrect! Try again.";
       feedbackDisplay.style.color = "red";
       speak("Incorrect! Try again.");
@@ -1098,53 +1119,13 @@ window.passages = {
     updateStatus();
   }
 
-  // Menu and Fullscreen Controls
-  menuBtn.addEventListener("click", () => {
-    const isHidden = menu.classList.toggle("hidden");
-    menu.setAttribute("aria-hidden", isHidden);
-  });
-  fullscreenBtn.addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(err => console.error(err));
-      document.body.classList.add("fullscreen");
-      fullscreenBtn.textContent = "";
-    } else {
-      document.exitFullscreen();
-      document.body.classList.remove("fullscreen");
-      fullscreenBtn.textContent = "⤢";
-    }
-  });
-  // Add Challenge Mode Toggle to Menu
-  document.getElementById("toggle-challenge").addEventListener("click", () => {
-    challengeMode = !challengeMode;
-    if (challengeMode) {
-      startTimer();
-      feedbackDisplay.textContent = "Challenge Mode ON";
-    } else {
-      clearInterval(timerInterval);
-      timerBar.style.width = "0%";
-      feedbackDisplay.textContent = "Challenge Mode OFF";
-    }
-    speak(`Challenge Mode ${challengeMode ? "ON" : "OFF"}`);
-    menu.classList.add("hidden");
-  });
-  // Highlight Clues Button
-  highlightCluesButton.addEventListener("click", () => {
-    const passage = passages[currentGrammarType][currentPassageIndex];
-    if (passage.clueWords) {
-      document.querySelectorAll(".keyword").forEach(el => el.classList.add("highlighted"));
-      speak("Highlighting clue words!");
-      setTimeout(() => {
-        document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
-      }, 5000); // Highlight for 5 seconds
-    }
-    menu.classList.add("hidden");
-  });
-  // Game Controls
+  // ----------------------------------------------------------------
+  // Other Controls and Keyboard Shortcuts
+  // ----------------------------------------------------------------
   grammarSelect.addEventListener("change", () => {
     currentGrammarType = grammarSelect.value;
     currentPassageIndex = 0;
-    timeLeft = 60; // Reset timer
+    timeLeft = 60;
     displayPassage();
     updateStatus();
   });
@@ -1182,28 +1163,25 @@ window.passages = {
       speak("Game Over! Your final score is " + score);
       return;
     }
-    timeLeft = 60; // Reset timer
+    timeLeft = 60;
     displayPassage();
     updateStatus();
-    menu.classList.add("hidden");
   });
   prevPassageButton.addEventListener("click", () => {
     if (currentPassageIndex > 0) {
       currentPassageIndex--;
-      timeLeft = 60; // Reset timer
+      timeLeft = 60;
       clearInterval(timerInterval);
       displayPassage();
       updateStatus();
     }
-    menu.classList.add("hidden");
   });
   clearButton.addEventListener("click", () => {
     hintUsage = {};
     selectedWord = null;
-    timeLeft = 60; // Reset timer
+    timeLeft = 60;
     clearInterval(timerInterval);
     displayPassage();
-    menu.classList.add("hidden");
   });
   hintButton.addEventListener("click", () => {
     const passage = passages[currentGrammarType][currentPassageIndex];
@@ -1212,25 +1190,48 @@ window.passages = {
       feedbackDisplay.style.color = "blue";
       speak(passage.hint);
     }
-    menu.classList.add("hidden");
   });
-  if (!speakPassageBtn) {
-    console.error("Speak button not found in DOM!");
-  } else {
-    speakPassageBtn.addEventListener("click", () => {
-      console.log("Speak button clicked!");
-      const passage = passages[currentGrammarType][currentPassageIndex];
-      if (!passage || !passage.text) {
-        console.error("No passage or text found:", passage);
-        feedbackDisplay.textContent = "Error: No passage to read.";
-        return;
-      }
-      const textToSpeak = passage.text.replace(/\d+/g, "blank");
-      speak(textToSpeak);
-      menu.classList.add("hidden");
-    });
-  }
+
+  // Share Score using Web Share API (if supported)
+  shareButton.addEventListener("click", () => {
+    const shareData = {
+      title: "Grammar Cloze Adventure",
+      text: `I am a ${level} with a score of ${score} in Grammar Cloze Adventure! Can you beat my score?`,
+      url: window.location.href
+    };
+    if (navigator.share) {
+      navigator.share(shareData).catch(err => console.error("Error sharing:", err));
+    } else {
+      alert("Sharing not supported on this browser.");
+    }
+  });
+
+  // Toggle Challenge Mode
+  toggleChallengeButton.addEventListener("click", () => {
+    challengeMode = !challengeMode;
+    if (challengeMode) {
+      startTimer();
+      feedbackDisplay.textContent = "Challenge Mode ON";
+    } else {
+      clearInterval(timerInterval);
+      timerBar.style.width = "0%";
+      feedbackDisplay.textContent = "Challenge Mode OFF";
+    }
+    speak(`Challenge Mode ${challengeMode ? "ON" : "OFF"}`);
+  });
+
+  // Keyboard Shortcuts: 'H' for hint, 'N' for next passage
+  document.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() === "h") {
+      hintButton.click();
+    } else if (e.key.toLowerCase() === "n") {
+      nextPassageButton.click();
+    }
+  });
+
+  // ----------------------------------------------------------------
   // Initialize Game
+  // ----------------------------------------------------------------
   displayPassage();
   updateStatus();
 });
