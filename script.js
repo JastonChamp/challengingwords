@@ -22,13 +22,12 @@ window.passages = {
     {
       text: "Tom sat ___(1)___ the sofa and watched TV. His mom was cooking ___(2)___ the kitchen. The dog slept ___(3)___ the rug. Tom’s sister played ___(4)___ the garden. Later, they ate dinner ___(5)___ the table.",
       wordBox: ["on", "in", "under", "by", "around", "at", "near"],
-      // Adjusted blank 3 to "under" (instead of duplicate "on")
-      answers: ["on", "in", "under", "in", "at"],
+      answers: ["on", "in", "on", "in", "at"],
       clueWords: [["sofa"], ["kitchen"], ["rug"], ["garden"], ["table"]],
       hints: [
         "Which preposition shows Tom’s position on the sofa?",
         "Where is his mom cooking?",
-        "Where should the dog sleep?",
+        "Where is the dog sleeping?",
         "Where does his sister play?",
         "Where do they eat dinner?"
       ],
@@ -37,8 +36,7 @@ window.passages = {
     {
       text: "The ball rolled ___(1)___ the hill and stopped ___(2)___ a tree. A squirrel ran ___(3)___ the tree and hid ___(4)___ the branches. The children played ___(5)___ the park all day.",
       wordBox: ["down", "up", "under", "by", "around", "near", "between"],
-      // For clarity, change blank 4 to "in" (for hiding in the branches) and blank 5 to "around"
-      answers: ["down", "by", "up", "in", "around"],
+      answers: ["down", "by", "up", "in", "in"],
       clueWords: [["hill"], ["tree"], ["squirrel"], ["branches"], ["park"]],
       hints: [
         "Which word shows the ball’s direction down the hill?",
@@ -52,58 +50,55 @@ window.passages = {
     {
       text: "The teacher stood ___(1)___ the classroom. She wrote ___(2)___ the whiteboard. The students sat ___(3)___ their desks. A poster hung ___(4)___ the wall. The clock was ___(5)___ the door.",
       wordBox: ["in", "on", "under", "by", "near", "above", "below"],
-      // Adjusted blank 3 to "at" and blank 4 to "near"
-      answers: ["in", "on", "at", "near", "above"],
+      answers: ["in", "on", "at", "on", "above"],
       clueWords: [["teacher"], ["whiteboard"], ["desks"], ["poster"], ["door"]],
       hints: [
         "Where is the teacher located?",
         "Where does she write?",
-        "How do the students sit?",
+        "How do the students sit relative to their desks?",
         "Where is the poster hung?",
-        "Where is the clock relative to the door?"
+        "Where is the clock in relation to the door?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "The fish swam ___(1)___ the pond. A frog jumped ___(2)___ a lily pad. The ducks floated ___(3)___ the water. A boy stood ___(4)___ the bridge and watched. His friend sat ___(5)___ the grass nearby.",
-      wordBox: ["in", "on", "under", "by", "around", "near", "between", "onto"],
-      // To ensure unique answers, change answers to: "in", "onto", "on", "by", "near"
-      answers: ["in", "onto", "on", "by", "near"],
+      wordBox: ["in", "on", "under", "by", "around", "near", "between"],
+      answers: ["in", "on", "on", "on", "on"],
       clueWords: [["fish"], ["lily pad"], ["ducks"], ["bridge"], ["grass"]],
       hints: [
         "Where does the fish swim?",
         "Where did the frog jump?",
         "Where do the ducks float?",
-        "Where did the boy stand?",
-        "Where did his friend sit?"
+        "Where does the boy stand?",
+        "Where does his friend sit?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "The kite flew ___(1)___ the sky. The boy held the string ___(2)___ his hands. The wind blew ___(3)___ the trees. The kite soared ___(4)___ the clouds. His sister cheered ___(5)___ the ground.",
-      wordBox: ["in", "on", "under", "by", "through", "above", "below", "with"],
-      // To avoid duplicate "in", change blank 2 to "with"
-      answers: ["in", "with", "through", "above", "on"],
+      wordBox: ["in", "on", "under", "by", "through", "above", "below"],
+      answers: ["in", "in", "through", "above", "on"],
       clueWords: [["kite"], ["string"], ["wind"], ["clouds"], ["ground"]],
       hints: [
-        "Which preposition describes the kite’s position?",
-        "How did the boy hold the string?",
-        "How does the wind move?",
-        "Where does the kite soar?",
+        "Which preposition describes the kite’s position in the sky?",
+        "How does the boy hold the string?",
+        "How does the wind move through the trees?",
+        "Where does the kite soar relative to the clouds?",
         "Where is his sister when she cheers?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "The book is ___(1)___ the shelf. A pen rolled ___(2)___ the desk. The bag is ___(3)___ the chair. The teacher walked ___(4)___ the room. A picture hangs ___(5)___ the wall.",
-      wordBox: ["on", "under", "by", "around", "near", "above", "in"],
-      answers: ["on", "under", "near", "around", "above"],
+      wordBox: ["on", "under", "by", "around", "near", "above", "below"],
+      answers: ["on", "under", "under", "around", "above"],
       clueWords: [["book"], ["pen"], ["bag"], ["teacher"], ["picture"]],
       hints: [
         "Which preposition shows where the book is?",
         "Where did the pen roll?",
-        "Where is the bag relative to the chair?",
-        "How did the teacher move?",
+        "Where is the bag located relative to the chair?",
+        "How did the teacher move in the room?",
         "Where is the picture hung?"
       ],
       hint: "Remember to use the objects around you as clues."
@@ -124,13 +119,13 @@ window.passages = {
     },
     {
       text: "The monkey climbed ___(1)___ the tree. It swung ___(2)___ the branches. A bird flew ___(3)___ its nest. The zookeeper stood ___(4)___ the cage. The children watched ___(5)___ the fence.",
-      wordBox: ["up", "on", "to", "by", "near", "under", "around"],
+      wordBox: ["up", "on", "under", "by", "around", "near", "to"],
       answers: ["up", "on", "to", "by", "near"],
       clueWords: [["monkey"], ["branches"], ["bird"], ["zookeeper"], ["fence"]],
       hints: [
         "Which preposition shows the direction of the monkey’s climb?",
-        "How did the monkey swing?",
-        "Where did the bird fly?",
+        "How did the monkey swing along the branches?",
+        "Where did the bird fly relative to its nest?",
         "Where did the zookeeper stand?",
         "Where did the children watch?"
       ],
@@ -167,22 +162,21 @@ window.passages = {
     {
       text: "The rain fell ___(1)___ the roof. The cat slept ___(2)___ the mat. A puddle formed ___(3)___ the house. The girl stood ___(4)___ an umbrella. The dog ran ___(5)___ the rain.",
       wordBox: ["on", "under", "by", "around", "near", "through", "in"],
-      // Adjusted to ensure unique answers:
-      answers: ["on", "under", "around", "by", "through"],
+      answers: ["on", "on", "near", "under", "through"],
       clueWords: [["rain"], ["cat"], ["puddle"], ["umbrella"], ["dog"]],
       hints: [
         "Where does the rain fall?",
         "Where does the cat sleep?",
-        "Where did the puddle form?",
-        "Where did the girl stand?",
-        "How did the dog run?"
+        "Where is the puddle formed?",
+        "Where does the girl stand?",
+        "How does the dog run relative to the rain?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "The flag is ___(1)___ the pole. The wind blew ___(2)___ the school. The students stood ___(3)___ the field. A bell rang ___(4)___ the building. They walked ___(5)___ their classrooms.",
       wordBox: ["on", "in", "under", "by", "around", "near", "to"],
-      answers: ["on", "around", "in", "by", "to"],
+      answers: ["on", "around", "on", "in", "to"],
       clueWords: [["flag"], ["wind"], ["students"], ["bell"], ["classrooms"]],
       hints: [
         "Where is the flag located?",
@@ -202,7 +196,7 @@ window.passages = {
         "Which preposition best describes where the boat floats?",
         "Where does the fish swim?",
         "Where does the man fish?",
-        "Where did the bird fly?",
+        "Where did the bird fly relative to the boat?",
         "Where is the net placed?"
       ],
       hint: "Remember to use the objects around you as clues."
@@ -217,7 +211,7 @@ window.passages = {
         "Where does the pilot sit?",
         "How do passengers look out?",
         "Where is the luggage located?",
-        "Where is the airport relative to the city?"
+        "Where is the airport in relation to the city?"
       ],
       hint: "Remember to use the objects around you as clues."
     }
@@ -229,25 +223,25 @@ window.passages = {
       answers: ["but", "until", "and", "or", "so"],
       clueWords: [["outside"], ["rain"], ["park"], ["play"], ["chose"]],
       hints: [
-        "Which conjunction shows contrast?",
+        "Which conjunction shows contrast in the sentence?",
         "How long did he wait?",
         "What happened after the rain stopped?",
         "What are his two options?",
-        "Which shows the result?"
+        "Which conjunction shows the result of his choice?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "I like apples ___(1)___ bananas. My sister likes oranges ___(2)___ grapes. We both like strawberries ___(3)___ they are sweet. Sometimes we eat fruit ___(4)___ breakfast ___(5)___ for a snack.",
       wordBox: ["and", "but", "or", "because", "so", "although", "after"],
-      answers: ["and", "or", "because", "for", "after"],
+      answers: ["and", "and", "because", "for", "or"],
       clueWords: [["apples"], ["oranges"], ["strawberries"], ["breakfast"], ["snack"]],
       hints: [
         "Which conjunction adds ideas?",
-        "Which indicates an alternative?",
-        "Which gives the reason?",
+        "Which conjunction is used again to add similar ideas?",
+        "Which word gives the reason for liking strawberries?",
         "When is fruit eaten?",
-        "Which shows a choice?"
+        "What choice is given for a snack?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -257,54 +251,53 @@ window.passages = {
       answers: ["and", "so", "and", "while", "although"],
       clueWords: [["dog"], ["hungry"], ["fed"], ["cat"], ["fight"]],
       hints: [
-        "Which conjunction connects the actions?",
-        "Why were they hungry?",
-        "What connects the feeding?",
-        "How are the activities related?",
-        "Which shows unexpected contrast?"
+        "Which conjunction connects the two actions of the dog and the cat?",
+        "Why did they behave in that way?",
+        "What connects the feeding event?",
+        "How are the two activities (sleeping and playing) related?",
+        "Which word shows the unexpected contrast?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "I can go to the park ___(1)___ stay home. If I go to the park, I will play ___(2)___ my friends. If I stay home, I will read ___(3)___ watch TV. I think I will go ___(4)___ it is sunny. My mom said I can go ___(5)___ I finish my homework.",
       wordBox: ["or", "and", "but", "because", "so", "if", "unless"],
-      // For uniqueness, using "or", "and", "but", "because", "if"
       answers: ["or", "and", "but", "because", "if"],
       clueWords: [["park"], ["play"], ["read"], ["sunny"], ["homework"]],
       hints: [
-        "Which word indicates a choice?",
+        "Which word indicates a choice between two options?",
         "What connects playing with friends?",
-        "What offers an alternative?",
-        "What gives the reason?",
-        "What condition must be met?"
+        "What offers an alternative to watching TV?",
+        "What gives the reason for going out?",
+        "What condition must be met to go out?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "The children were tired ___(1)___ they kept playing. They wanted to win ___(2)___ they tried hard. The coach cheered ___(3)___ they scored a goal. After the game, they were happy ___(4)___ exhausted. They celebrated ___(5)___ they went home.",
       wordBox: ["but", "so", "when", "although", "before"],
-      answers: ["but", "so", "when", "although", "before"],
+      answers: ["but", "so", "when", "but", "before"],
       clueWords: [["children"], ["win"], ["cheered"], ["happy"], ["home"]],
       hints: [
-        "Which conjunction shows contrast?",
-        "What is the result?",
+        "Which conjunction shows the contrast between tiredness and action?",
+        "What is the result of trying hard?",
         "When did the coach cheer?",
-        "Which contrasts happiness with exhaustion?",
-        "What indicates sequence?"
+        "What juxtaposition is presented after the game?",
+        "What is the sequence before going home?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
       text: "The sky was dark ___(1)___ it might rain. I took an umbrella ___(2)___ I didn’t want to get wet. It started raining ___(3)___ I reached the bus stop. I waited there ___(4)___ the rain stopped. I was glad ___(5)___ I stayed dry.",
-      wordBox: ["but", "and", "or", "because", "so", "until", "although"],
+      wordBox: ["but", "and", "or", "because", "so", "until", "after"],
       answers: ["and", "because", "when", "until", "so"],
       clueWords: [["sky"], ["umbrella"], ["raining"], ["bus stop"], ["dry"]],
       hints: [
-        "Which links the dark sky with rain?",
-        "Why did you take an umbrella?",
+        "Which word links the dark sky with the possibility of rain?",
+        "Why did I take an umbrella?",
         "When did it start raining?",
-        "How long did you wait?",
-        "What explains your gladness?"
+        "How long did I wait?",
+        "Why was I glad?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -314,11 +307,11 @@ window.passages = {
       answers: ["or", "because", "and", "but", "after"],
       clueWords: [["rice"], ["noodles"], ["together"], ["spicy"], ["water"]],
       hints: [
-        "Which word shows a choice?",
+        "Which word indicates a choice between rice and noodles?",
         "Why did my brother choose noodles?",
-        "How did we eat together?",
-        "Which contrasts spiciness and tastiness?",
-        "When did we drink water?"
+        "What did we do together?",
+        "How are the flavors contrasted?",
+        "What did we drink after eating?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -328,25 +321,81 @@ window.passages = {
       answers: ["so", "because", "and", "but", "after"],
       clueWords: [["room"], ["fast"], ["mom"], ["tired"], ["done"]],
       hints: [
-        "Which word shows the result?",
+        "What word shows the effect of the messy room?",
         "Why did we work fast?",
         "Who helped us?",
-        "Which contrasts tiredness with happiness?",
+        "How are the feelings contrasted?",
         "When did we rest?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
     {
+      text: "I can draw ___(1)___ paint today. I like painting ___(2)___ it is fun. I draw well ___(3)___ I need practice with paint. I will try both ___(4)___ I have time. My sister will join me ___(5)___ she likes art too.",
+      wordBox: ["or", "and", "but", "because", "so", "if", "although"],
+      answers: ["or", "because", "but", "because", "because"],
+      clueWords: [["draw"], ["painting"], ["practice"], ["time"], ["sister"]],
+      hints: [
+        "Which word shows a choice between drawing and painting?",
+        "Why do I like painting?",
+        "What is the contrast in my drawing skills?",
+        "Under what condition will I try both?",
+        "Why will my sister join me?"
+      ],
+      hint: "Remember to use the objects around you as clues."
+    },
+    {
+      text: "The movie was long ___(1)___ exciting. We watched it ___(2)___ we ate popcorn. It ended late ___(3)___ we stayed awake. We were sleepy ___(4)___ happy. We talked about it ___(5)___ we went to bed.",
+      wordBox: ["but", "and", "or", "because", "so", "after", "although"],
+      answers: ["but", "while", "but", "but", "before"],
+      clueWords: [["movie"], ["popcorn"], ["late"], ["sleepy"], ["bed"]],
+      hints: [
+        "Which conjunction contrasts the movie's length and excitement?",
+        "How were we multitasking while watching?",
+        "What does the late ending imply?",
+        "How are our feelings mixed?",
+        "When did we talk about it?"
+      ],
+      hint: "Remember to use the objects around you as clues."
+    },
+    {
+      text: "I wanted to swim ___(1)___ the pool was closed. I went to the park ___(2)___ I played there. It was hot ___(3)___ I brought water. I stayed ___(4)___ the sun set. I had fun ___(5)___ I was tired.",
+      wordBox: ["but", "and", "or", "because", "so", "until", "although"],
+      answers: ["but", "and", "so", "until", "although"],
+      clueWords: [["swim"], ["park"], ["hot"], ["sun"], ["tired"]],
+      hints: [
+        "Which word shows a contrast when the pool is closed?",
+        "Where did I go instead?",
+        "What result did the weather have on my actions?",
+        "Until when did I stay?",
+        "How did I feel at the end?"
+      ],
+      hint: "Remember to use the objects around you as clues."
+    },
+    {
+      text: "The cake was sweet ___(1)___ delicious. I wanted more ___(2)___ I was full. My friend ate some ___(3)___ she liked it too. We saved some ___(4)___ later. We smiled ___(5)___ we enjoyed it.",
+      wordBox: ["and", "but", "or", "because", "so", "for", "after"],
+      answers: ["and", "but", "because", "for", "because"],
+      clueWords: [["cake"], ["full"], ["friend"], ["saved"], ["smiled"]],
+      hints: [
+        "Which conjunction adds information?",
+        "What contrast is shown by wanting more while being full?",
+        "Why did my friend choose to eat some?",
+        "What does saving some later imply?",
+        "How do we express our enjoyment?"
+      ],
+      hint: "Remember to use the objects around you as clues."
+    },
+    {
       text: "The bell rang ___(1)___ we went to class. We studied math ___(2)___ science. I like math ___(3)___ it is easy. Science is fun ___(4)___ challenging. We worked hard ___(5)___ we wanted good grades.",
-      wordBox: ["and", "but", "or", "because", "so", "although", "when"],
+      wordBox: ["and", "but", "or", "because", "so", "although", "after"],
       answers: ["and", "but", "because", "although", "so"],
       clueWords: [["bell"], ["math"], ["easy"], ["challenging"], ["grades"]],
       hints: [
-        "Which connects the events?",
-        "What contrasts the subjects?",
+        "Which word connects the events at the start?",
+        "What subjects did we study?",
         "Why do I like math?",
-        "How is science challenging?",
-        "What motivates us?"
+        "How is science presented as a challenge?",
+        "What motivates us to work hard?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -356,11 +405,11 @@ window.passages = {
       answers: ["or", "because", "so", "while", "although"],
       clueWords: [["book"], ["stories"], ["quiet"], ["brother"], ["fun"]],
       hints: [
-        "Which word indicates a choice?",
-        "Why did you choose a book?",
-        "What is the effect of a quiet environment?",
-        "What did your brother do while you read?",
-        "How do you describe your experience?"
+        "Which word indicates a choice between two activities?",
+        "What is the reason I chose a book?",
+        "What effect does a quiet environment have?",
+        "What did my brother do while I read?",
+        "How do we describe our overall experience?"
       ],
       hint: "Remember to use the objects around you as clues."
     }
@@ -372,11 +421,11 @@ window.passages = {
       answers: ["barks", "sleep", "has", "works", "fly"],
       clueWords: [["dog"], ["cats"], ["child"], ["team"], ["birds"]],
       hints: [
-        "Which verb form matches 'dog'?",
-        "Which form for 'cats'?",
-        "What does each child require?",
+        "Which verb form matches the singular 'dog'?",
+        "Which form is used with plural 'cats'?",
+        "What verb form does 'each child' require?",
         "How should the team be treated?",
-        "What form for 'birds'?"
+        "What form should be used for 'birds'?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -387,10 +436,10 @@ window.passages = {
       clueWords: [["friend"], ["students"], ["teacher"], ["books"], ["bird"]],
       hints: [
         "Which verb form fits 'my friend'?",
-        "What do plural students do?",
-        "Which form is needed for 'teacher'?",
+        "What do plural students do with homework?",
+        "Which form is needed for 'each teacher'?",
         "How are the books arranged?",
-        "What verb agrees with 'bird'?"
+        "What verb form agrees with 'the bird'?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -401,8 +450,8 @@ window.passages = {
       clueWords: [["flowers"], ["flower"], ["bees"], ["gardener"], ["insects"]],
       hints: [
         "Which verb form is used with plural 'flowers'?",
-        "Which fits the singular 'flower'?",
-        "What do bees do?",
+        "Which form fits the singular 'flower'?",
+        "What verb is used for plural 'bees'?",
         "Which form does the gardener require?",
         "How are the insects treated?"
       ],
@@ -414,11 +463,11 @@ window.passages = {
       answers: ["goes", "drive", "wears", "move", "roars"],
       clueWords: [["car"], ["drivers"], ["passenger"], ["buses"], ["motorcycle"]],
       hints: [
-        "Which verb agrees with 'car'?",
-        "Which form for 'drivers'?",
+        "Which verb agrees with the singular 'car'?",
+        "What form is used for plural 'drivers'?",
         "What does each passenger need?",
         "How are the buses treated?",
-        "Which fits 'motorcycle'?"
+        "What verb form fits the singular 'motorcycle'?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -430,9 +479,9 @@ window.passages = {
       hints: [
         "Which form fits 'the baby'?",
         "What do parents do?",
-        "How does each toy behave?",
+        "How does 'each toy' behave?",
         "What do the children do?",
-        "Which verb agrees with 'dog'?"
+        "Which verb form agrees with 'the dog'?"
       ],
       hint: "Remember to use the objects around you as clues."
     }
@@ -444,11 +493,11 @@ window.passages = {
       answers: ["her", "he", "he", "they", "she"],
       clueWords: [["Mary"], ["John"], ["book"], ["both"], ["desk"]],
       hints: [
-        "Which pronoun shows ownership for Mary?",
+        "Which pronoun replaces Mary’s book?",
         "Who did Mary ask?",
         "Who wasn’t sure where it was?",
         "Who looked for the book?",
-        "Who eventually found it?"
+        "Where was the book eventually found?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -459,7 +508,7 @@ window.passages = {
       clueWords: [["cat"], ["tail"], ["dog"], ["both"], ["tree"]],
       hints: [
         "Which pronoun shows possession for the cat?",
-        "How is the tail described?",
+        "What is the cat’s tail like?",
         "What did the dog do?",
         "Who ran around?",
         "Where did they rest?"
@@ -469,12 +518,12 @@ window.passages = {
     {
       text: "Tom and Jerry are friends. ___(1)___ play together every day. ___(2)___ share their toys. Sometimes, ___(3)___ argue, but ___(4)___ always make up. ___(5)___ are best friends.",
       wordBox: ["They", "He", "She", "It", "We", "You", "Them"],
-      answers: ["They", "They", "They", "They", "They"],
+      answers: ["They", "They", "they", "they", "They"],
       clueWords: [["Tom"], ["Jerry"], ["toys"], ["argue"], ["friends"]],
       hints: [
         "Which pronoun refers to Tom and Jerry?",
         "What do they do together?",
-        "What happens sometimes?",
+        "What happens sometimes between them?",
         "What is their resolution?",
         "How are they described as friends?"
       ],
@@ -490,7 +539,7 @@ window.passages = {
         "How was the test described?",
         "What did everyone do?",
         "Who graded the papers?",
-        "How did they feel?"
+        "How did they feel about their work?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -500,7 +549,7 @@ window.passages = {
       answers: ["its", "She", "her", "they", "them"],
       clueWords: [["bird"], ["nest"], ["eggs"], ["chicks"], ["worms"]],
       hints: [
-        "Which pronoun shows possession for the nest?",
+        "Which pronoun shows possession for the bird’s nest?",
         "Who laid the eggs?",
         "Whose nest is it?",
         "How did the chicks behave?",
@@ -510,7 +559,7 @@ window.passages = {
     },
     {
       text: "The boy dropped ___(1)___ pencil. ___(2)___ picked it up quickly. The girl next to ___(3)___ smiled. ___(4)___ both laughed about it. Later, ___(5)___ gave her a new pencil.",
-      wordBox: ["he", "him", "his", "she", "them", "they"],
+      wordBox: ["he", "him", "his", "she", "her", "they", "them"],
       answers: ["his", "He", "her", "They", "she"],
       clueWords: [["boy"], ["pencil"], ["girl"], ["laughed"], ["new"]],
       hints: [
@@ -581,7 +630,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ teacher explained the lesson ___(2)___ . The students listened ___(3)___ and took notes ___(4)___ . They all worked ___(5)___ on their assignments.",
+      text: "The ___(1)___ teacher explained the lesson ___(2)___. The students listened ___(3)___ and took notes ___(4)___. They all worked ___(5)___ on their assignments.",
       wordBox: ["kind", "kindly", "clear", "clearly", "attentive", "attentively", "careful", "carefully", "hard", "hardly"],
       answers: ["kind", "clearly", "attentively", "carefully", "hard"],
       clueWords: [["teacher"], ["explained"], ["listened"], ["notes"], ["assignments"]],
@@ -590,7 +639,7 @@ window.passages = {
         "How did she explain?",
         "How did the students listen?",
         "How did they take notes?",
-        "How much effort did they put in?"
+        "How much effort did they put into their work?"
       ],
       hint: "Remember to use the objects around you as clues."
     },
@@ -609,7 +658,7 @@ window.passages = {
       hint: "Remember to use the objects around you as clues."
     },
     {
-      text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___ . It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
+      text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___. It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
       wordBox: ["colorful", "colorfully", "high", "highly", "tight", "tightly", "quick", "quickly", "happy", "happily"],
       answers: ["colorful", "high", "tightly", "high", "happily"],
       clueWords: [["kite"], ["flew"], ["string"], ["rose"], ["smiled"]],
@@ -768,530 +817,574 @@ window.passages = {
 };
 
 // =======================
-// Global Game State
+// Helper Classes & Functions
 // =======================
-let currentGrammarType = "prepositions";
-let currentPassageIndex = 0;
-let score = 0;
-let stars = 0;
-let hintUsage = {};
-let selectedWord = null;
-let timeLeft = 60;
-let timerInterval = null;
-let challengeMode = true;
-let badgesEarned = 0;
-
-// =======================
-// DOM Elements
-// =======================
-let grammarSelect = document.getElementById("grammar-type");
-let passageText = document.getElementById("passage-text");
-let wordBox = document.getElementById("word-box");
-const feedbackDisplay = document.getElementById("feedback");
-const nextPassageButton = document.getElementById("next-btn");
-const prevPassageButton = document.getElementById("prev-btn");
-const hintButton = document.getElementById("hint-btn");
-const clearButton = document.getElementById("clear-btn");
-const progressDisplay = document.getElementById("progress");
-const scoreDisplay = document.getElementById("score");
-const starsDisplay = document.getElementById("lives");
-const progressBar = document.getElementById("progress-bar");
-const highlightCluesButton = document.getElementById("highlight-clues-btn");
-const menuBtn = document.getElementById("menu-btn");
-const menu = document.getElementById("menu");
-const fullscreenBtn = document.getElementById("fullscreen-btn");
-const speakPassageBtn = document.getElementById("speak-passage-btn");
-const timerContainer = document.getElementById("timer-container");
-const timerBar = document.getElementById("timer-bar");
-const grammarWizard = document.getElementById("grammar-wizard");
-const wizardMessage = document.getElementById("wizard-message");
-const badgeDisplay = document.getElementById("badge-display");
-const storyProgress = document.getElementById("story-progress");
-const voiceCommandBtn = document.getElementById("voice-command-btn");
-const correctSound = document.getElementById("correct-sound");
-const incorrectSound = document.getElementById("incorrect-sound");
-
-// =======================
-// Speech Synthesis Setup
-// =======================
-const synth = window.speechSynthesis;
-let voices = [];
-let ukFemaleVoice = null;
-function loadVoices() {
-  voices = synth.getVoices();
-  ukFemaleVoice = voices.find(voice =>
-    voice.lang === "en-GB" &&
-    (voice.name.includes("Female") || voice.name.includes("Google UK English Female") || voice.name === "Samantha" || voice.name === "Kate")
-  ) || voices.find(voice => voice.lang === "en-GB");
-  console.log("Voices loaded:", voices.length);
-}
-loadVoices();
-synth.onvoiceschanged = loadVoices;
-function speak(text) {
-  if (!window.speechSynthesis) {
-    feedbackDisplay.textContent = "Speech synthesis not supported in this browser.";
-    console.error("SpeechSynthesis not supported");
-    return;
+class Timer {
+  constructor(duration, updateCallback, endCallback) {
+    this.duration = duration;
+    this.timeLeft = duration;
+    this.interval = null;
+    this.updateCallback = updateCallback;
+    this.endCallback = endCallback;
   }
-  if (synth.speaking) synth.cancel();
-  loadVoices();
-  if (!voices.length) {
-    feedbackDisplay.textContent = "Speech unavailable. Voices not loaded.";
-    return;
+  start() {
+    this.clear();
+    this.timeLeft = this.duration;
+    this.interval = setInterval(() => {
+      this.timeLeft--;
+      if (this.updateCallback) this.updateCallback(this.timeLeft);
+      if (this.timeLeft <= 0) {
+        this.clear();
+        if (this.endCallback) this.endCallback();
+      }
+    }, 1000);
   }
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-GB";
-  if (ukFemaleVoice) utterance.voice = ukFemaleVoice;
-  utterance.rate = 0.9;
-  utterance.pitch = 1.1;
-  synth.speak(utterance);
-  console.log("Speaking text:", text);
+  clear() {
+    if (this.interval) clearInterval(this.interval);
+  }
 }
 
-// =======================
-// Voice Recognition Setup
-// =======================
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-let recognition = null;
-if (SpeechRecognition) {
-  recognition = new SpeechRecognition();
-  recognition.continuous = false;
-  recognition.lang = "en-US";
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-  recognition.onresult = (event) => {
-    const command = event.results[0][0].transcript.toLowerCase();
-    console.log("Voice command detected:", command);
-    document.querySelectorAll(".word").forEach(word => {
-      if (command.includes(word.textContent.toLowerCase())) {
-        selectedWord = word;
-        document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
-        word.classList.add("selected");
-        speak(`Selected word: ${word.textContent}`);
-      }
-    });
-    if (command.includes("place") || command.includes("put")) {
-      const blanks = document.querySelectorAll(".blank:not(.filled)");
-      if (selectedWord && blanks.length > 0) {
-        placeWord(blanks[0], selectedWord.textContent);
-        selectedWord.remove();
-        selectedWord = null;
-        updateStatus();
-      }
+class SpeechManager {
+  constructor() {
+    this.synth = window.speechSynthesis;
+    this.voices = [];
+    this.ukFemaleVoice = null;
+    this.loadVoices();
+    if (this.synth.onvoiceschanged !== undefined) {
+      this.synth.onvoiceschanged = () => this.loadVoices();
     }
-  };
-  recognition.onerror = (event) => {
-    console.error("Speech recognition error:", event.error);
-    feedbackDisplay.textContent = "Voice command error. Please try again.";
-  };
-  voiceCommandBtn.addEventListener("click", () => {
-    recognition.start();
-    feedbackDisplay.textContent = "Listening for voice command...";
-    menu.classList.add("hidden");
-  });
-} else {
-  voiceCommandBtn.style.display = "none";
-  console.log("Speech Recognition not supported in this browser.");
-}
-
-// =======================
-// Onboarding
-// =======================
-if (!localStorage.getItem("hasSeenTutorial")) {
-  const welcomeMessage = "Welcome to Grammar Cloze Adventure! Help the Grammar Wizard save the Kingdom by filling in the blanks. Drag, tap, or use voice commands to select a word!";
-  feedbackDisplay.textContent = welcomeMessage;
-  localStorage.setItem("hasSeenTutorial", "true");
-  speak(welcomeMessage);
-  grammarWizard.classList.remove("hidden");
-  wizardMessage.textContent = "Let's get started!";
-}
-
-// =======================
-// Utility Functions
-// =======================
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-function updateStatus() {
-  scoreDisplay.textContent = `Score: ${score}`;
-  starsDisplay.textContent = `Stars: ${stars}`;
-  const total = window.passages[currentGrammarType].length;
-  progressDisplay.textContent = `Progress: ${currentPassageIndex + 1} / ${total}`;
-  progressBar.style.width = `${((currentPassageIndex + 1) / total) * 100}%`;
-  if (challengeMode) {
-    timerBar.style.width = `${(timeLeft / 60) * 100}%`;
-    timerBar.style.backgroundColor =
-      timeLeft > 30 ? "green" : timeLeft > 10 ? "orange" : "red";
-  } else {
-    timerBar.style.width = "0%";
   }
-  const chapters = [
-    { text: "The Kingdom is in danger!", bg: "castle-bg.png" },
-    { text: "The Wizard’s magic grows!", bg: "forest-bg.png" },
-    { text: "Victory is near!", bg: "victory-bg.png" }
-  ];
-  const chapter = chapters[Math.min(Math.floor(stars / 5), chapters.length - 1)];
-  storyProgress.textContent = `Story: ${chapter.text}`;
-  document.body.style.backgroundImage = `url(${chapter.bg})`;
-}
-
-function startTimer() {
-  if (!challengeMode) return;
-  clearInterval(timerInterval);
-  timeLeft = 60;
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    updateStatus();
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      feedbackDisplay.textContent = "Time's up! Moving to next passage.";
-      speak("Time's up! Moving to next passage.");
-      setTimeout(() => nextPassageButton.click(), 1000);
+  loadVoices() {
+    this.voices = this.synth.getVoices();
+    this.ukFemaleVoice =
+      this.voices.find(voice =>
+        voice.lang === "en-GB" &&
+        (voice.name.includes("Female") ||
+         voice.name.includes("Google UK English Female"))
+      ) ||
+      this.voices.find(voice => voice.lang === "en-GB");
+  }
+  speak(text) {
+    if (!this.synth) return;
+    if (this.synth.speaking) this.synth.cancel();
+    if (!this.voices.length) {
+      console.warn("No voices available.");
+      return;
     }
-  }, 1000);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-GB";
+    if (this.ukFemaleVoice) utterance.voice = this.ukFemaleVoice;
+    utterance.rate = 0.9;
+    utterance.pitch = 1.1;
+    this.synth.speak(utterance);
+  }
+}
+
+class ModalManager {
+  constructor() {
+    this.modal = document.querySelector(".modal");
+    this.closeButton = this.modal.querySelector(".close-button");
+    this.modalBody = this.modal.querySelector(".modal-body");
+    this.closeButton.addEventListener("click", () => this.hide());
+    this.closeButton.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") this.hide();
+    });
+  }
+  show(content) {
+    this.modalBody.innerHTML = content;
+    this.modal.classList.remove("hidden");
+  }
+  hide() {
+    this.modal.classList.add("hidden");
+  }
 }
 
 // =======================
-// Display Passage & Attach Events
+// Main Game Engine
 // =======================
-function displayPassage() {
-  clearInterval(timerInterval);
-  hintUsage = {};
-  selectedWord = null;
-  const passage = window.passages[currentGrammarType]?.[currentPassageIndex];
-  if (!passage) {
-    passageText.innerHTML = "<p>Error: Passage not found.</p>";
-    feedbackDisplay.textContent = "Error: Passage not found.";
-    return;
+class GameEngine {
+  constructor() {
+    // Game State
+    this.passages = window.passages;
+    this.currentGrammarType = "prepositions";
+    this.currentPassageIndex = 0;
+    this.score = 0;
+    this.stars = 0;
+    this.hintUsage = {};
+    this.badgesEarned = 0;
+    this.challengeMode = true;
+    this.selectedWord = null;
+    this.timeLeft = 60;
+
+    // DOM Elements
+    this.grammarSelect = document.getElementById("grammar-type");
+    this.passageText = document.getElementById("passage-text");
+    this.wordBox = document.getElementById("word-box");
+    this.feedbackDisplay = document.getElementById("feedback");
+    this.nextPassageButton = document.getElementById("next-btn");
+    this.prevPassageButton = document.getElementById("prev-btn");
+    this.hintButton = document.getElementById("hint-btn");
+    this.clearButton = document.getElementById("clear-btn");
+    this.progressDisplay = document.getElementById("progress");
+    this.scoreDisplay = document.getElementById("score");
+    this.starsDisplay = document.getElementById("lives");
+    this.progressBar = document.getElementById("progress-bar");
+    this.timerBar = document.getElementById("timer-bar");
+    this.timerContainer = document.getElementById("timer-container");
+    this.menu = document.getElementById("menu");
+    this.menuBtn = document.getElementById("menu-btn");
+    this.fullscreenBtn = document.getElementById("fullscreen-btn");
+    this.speakPassageBtn = document.getElementById("speak-passage-btn");
+    this.highlightCluesButton = document.getElementById("highlight-clues-btn");
+    // Voice command button is still included
+    this.voiceCommandBtn = document.getElementById("voice-command-btn");
+    this.badgeDisplay = document.getElementById("badge-display");
+    this.storyProgress = document.getElementById("story-progress");
+    this.grammarWizard = document.getElementById("grammar-wizard");
+    this.wizardMessage = document.getElementById("wizard-message");
+    this.correctSound = document.getElementById("correct-sound");
+    this.incorrectSound = document.getElementById("incorrect-sound");
+
+    // Support Classes
+    this.timer = new Timer(60, (t) => this.updateTimer(t), () => this.handleTimeUp());
+    this.speechManager = new SpeechManager();
+    this.modalManager = new ModalManager();
+
+    // Initialize
+    this.attachEventListeners();
+    this.displayPassage();
+    this.updateStatus();
+    this.showWelcomeMessage();
   }
-  if (
-    !passage.text ||
-    !Array.isArray(passage.wordBox) ||
-    !Array.isArray(passage.answers) ||
-    !Array.isArray(passage.clueWords) ||
-    !Array.isArray(passage.hints)
-  ) {
-    passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
-    feedbackDisplay.textContent = "Error: Missing required passage data.";
-    return;
-  }
-  let passageHTML = passage.text;
-  if (passage.clueWords) {
-    passage.clueWords.forEach((clues, index) => {
-      const blankNum = index + 1;
-      clues.forEach(clue => {
-        const regex = new RegExp(`\\b${clue}\\b`, "gi");
-        passageHTML = passageHTML.replace(
-          regex,
-          `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`
-        );
-      });
-    });
-  }
-  passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (match, num) => {
-    return `<span class="blank" data-blank="${num}" tabindex="0" role="button">
-              <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
-            </span>`;
-  });
-  passageText.innerHTML = passageHTML;
-  wordBox.innerHTML = shuffle([...passage.wordBox])
-    .map(word => `<div class="word" draggable="true" tabindex="0" role="button">${word}</div>`)
-    .join("");
-  // Attach events to blanks.
-  document.querySelectorAll(".blank").forEach(blank => {
-    blank.addEventListener("dragover", handleDragOver);
-    blank.addEventListener("dragleave", handleDragLeave);
-    blank.addEventListener("drop", handleDrop);
-    blank.addEventListener("click", () => {
-      if (selectedWord && !blank.classList.contains("filled")) {
-        placeWord(blank, selectedWord.textContent);
-        selectedWord.remove();
-        selectedWord = null;
-        updateStatus();
+
+  attachEventListeners() {
+    // WordBox events (delegation)
+    this.wordBox.addEventListener("click", (e) => {
+      if (e.target.classList.contains("word")) {
+        this.selectWord(e.target);
       }
     });
-    blank.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && selectedWord && !blank.classList.contains("filled")) {
-        placeWord(blank, selectedWord.textContent);
-        selectedWord.remove();
-        selectedWord = null;
-        updateStatus();
+    this.wordBox.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target.classList.contains("word")) {
+        this.selectWord(e.target);
       }
     });
-  });
-  // Attach events to words.
-  document.querySelectorAll(".word").forEach(word => {
-    word.addEventListener("dragstart", handleDragStart);
-    word.addEventListener("dragend", handleDragEnd);
-    word.addEventListener("click", () => {
-      selectedWord = word;
-      document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
-      word.classList.add("selected");
-    });
-    word.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        selectedWord = word;
-        document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
-        word.classList.add("selected");
-      }
-    });
-  });
-  // Attach events to hint buttons.
-  document.querySelectorAll(".hint-for-blank").forEach(button => {
-    button.addEventListener("click", function () {
-      const blankNum = this.parentElement.getAttribute("data-blank");
-      const hintIndex = parseInt(blankNum) - 1;
-      if (passage.hints && passage.hints[hintIndex]) {
-        feedbackDisplay.textContent = passage.hints[hintIndex];
-        feedbackDisplay.style.color = "blue";
-        speak(passage.hints[hintIndex]);
-        if (!hintUsage[blankNum] && challengeMode) {
-          hintUsage[blankNum] = true;
-          score = Math.max(0, score - 5);
-          feedbackDisplay.textContent += " (-5 points for hint)";
-          updateStatus();
+    // Passage Text events (delegation for blanks)
+    this.passageText.addEventListener("click", (e) => {
+      if (e.target.classList.contains("blank") && !e.target.classList.contains("filled")) {
+        if (this.selectedWord) {
+          this.placeWord(e.target, this.selectedWord.textContent);
+          this.selectedWord.remove();
+          this.selectedWord = null;
+          this.updateStatus();
         }
       }
-      document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
-      document.querySelectorAll(`.keyword-${blankNum}`).forEach(el => el.classList.add("highlighted"));
-      setTimeout(() => {
-        document.querySelectorAll(".keyword").forEach(el => el.classList.remove("highlighted"));
-      }, 3000);
     });
-  });
-  if (challengeMode) startTimer();
-  updateStatus();
-}
-
-// =======================
-// Drag-and-Drop Handlers
-// =======================
-let draggedItem = null;
-function handleDragStart(e) {
-  draggedItem = e.target;
-  e.dataTransfer.setData("text/plain", e.target.textContent);
-  e.target.classList.add("dragging");
-}
-function handleDragEnd(e) {
-  e.target.classList.remove("dragging");
-  draggedItem = null;
-}
-function handleDragOver(e) {
-  e.preventDefault();
-  e.currentTarget.classList.add("drag-over");
-}
-function handleDragLeave(e) {
-  e.currentTarget.classList.remove("drag-over");
-}
-function handleDrop(e) {
-  e.preventDefault();
-  e.currentTarget.classList.remove("drag-over");
-  const droppedWord = e.dataTransfer.getData("text/plain");
-  if (e.currentTarget.classList.contains("blank") && !e.currentTarget.classList.contains("filled")) {
-    placeWord(e.currentTarget, droppedWord);
-    if (draggedItem) {
-      draggedItem.remove();
-    }
-    updateStatus();
-  }
-}
-
-function placeWord(blank, word) {
-  blank.textContent = word;
-  blank.classList.add("filled", "slide-in");
-  checkAnswer(blank);
-}
-
-function showConfetti() {
-  confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-}
-
-function checkAnswer(blank) {
-  const blankId = parseInt(blank.getAttribute("data-blank"));
-  const userAnswer = blank.textContent.trim().toLowerCase();
-  const correctAnswer = window.passages[currentGrammarType][currentPassageIndex].answers[blankId - 1].toLowerCase();
-  if (userAnswer === correctAnswer) {
-    blank.classList.add("correct");
-    score += 10;
-    stars += 1;
-    feedbackDisplay.textContent = "Correct! Great job!";
-    feedbackDisplay.style.color = "green";
-    speak("Correct! Great job!");
-    correctSound.play();
-    showConfetti();
-    grammarWizard.classList.remove("hidden");
-    wizardMessage.textContent = "Well done! You're saving the Kingdom!";
-    setTimeout(() => grammarWizard.classList.add("hidden"), 3000);
-  } else {
-    blank.classList.add("incorrect");
-    feedbackDisplay.textContent = "Incorrect! Try again.";
-    feedbackDisplay.style.color = "red";
-    speak("Incorrect! Try again.");
-    incorrectSound.play();
-    grammarWizard.classList.remove("hidden");
-    wizardMessage.textContent = "Oops! Let's try again!";
-    setTimeout(() => grammarWizard.classList.add("hidden"), 3000);
-  }
-  updateStatus();
-}
-
-// =======================
-// Menu and Fullscreen Controls
-// =======================
-menuBtn.addEventListener("click", () => {
-  const isHidden = menu.classList.toggle("hidden");
-  menu.setAttribute("aria-hidden", isHidden);
-});
-fullscreenBtn.addEventListener("click", () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch(err => console.error(err));
-    document.body.classList.add("fullscreen");
-    fullscreenBtn.textContent = "";
-  } else {
-    document.exitFullscreen();
-    document.body.classList.remove("fullscreen");
-    fullscreenBtn.textContent = "⤢";
-  }
-});
-
-// =======================
-// Challenge Mode Toggle
-// =======================
-document.getElementById("toggle-challenge").addEventListener("click", () => {
-  challengeMode = !challengeMode;
-  if (challengeMode) {
-    resetTimer();
-    feedbackDisplay.textContent = "Challenge Mode ON";
-    startTimer();
-  } else {
-    clearInterval(timerInterval);
-    timerBar.style.width = "0%";
-    feedbackDisplay.textContent = "Challenge Mode OFF";
-  }
-  speak(`Challenge Mode ${challengeMode ? "ON" : "OFF"}`);
-  menu.classList.add("hidden");
-});
-
-// =======================
-// Highlight Clues Button
-// =======================
-highlightCluesButton.addEventListener("click", () => {
-  const passage = window.passages[currentGrammarType][currentPassageIndex];
-  if (passage.clueWords) {
-    const keywords = passageText.querySelectorAll(".keyword");
-    keywords.forEach((el) => el.classList.add("highlighted"));
-    speak("Highlighting clue words!");
-    setTimeout(() => keywords.forEach((el) => el.classList.remove("highlighted")), 5000);
-  }
-  menu.classList.add("hidden");
-});
-
-// =======================
-// Game Controls
-// =======================
-grammarSelect.addEventListener("change", (e) => {
-  currentGrammarType = e.target.value;
-  currentPassageIndex = 0;
-  timeLeft = 60;
-  displayPassage();
-  updateStatus();
-});
-
-nextPassageButton.addEventListener("click", () => {
-  const blanks = passageText.querySelectorAll(".blank");
-  let allFilled = true;
-  blanks.forEach(blank => {
-    if (!blank.classList.contains("filled")) allFilled = false;
-  });
-  if (allFilled) {
-    const passage = window.passages[currentGrammarType][currentPassageIndex];
-    let reviewText = "<h2>Review</h2><ul>";
-    passage.answers.forEach((ans, i) => {
-      reviewText += `<li>Blank ${i + 1}: "${ans}" – ${passage.hints[i]}</li>`;
+    // Grammar Type Change
+    this.grammarSelect.addEventListener("change", (e) => {
+      this.currentGrammarType = e.target.value;
+      this.currentPassageIndex = 0;
+      this.resetTimer();
+      this.displayPassage();
+      this.updateStatus();
     });
-    reviewText += "</ul>";
-    // Show review in an alert (or use a modal if preferred)
-    alert(reviewText);
-    speak("Here’s your review!");
-    if (challengeMode) {
-      if (Object.keys(hintUsage).length === 0) {
-        score += 20;
-        feedbackDisplay.innerHTML = 'Correct! Bonus: <span class="bonus">+20!</span>';
-        speak("Bonus! 20 extra points for no hints.");
+    // Navigation Buttons
+    this.nextPassageButton.addEventListener("click", () => this.handleNextPassage());
+    this.prevPassageButton.addEventListener("click", () => {
+      if (this.currentPassageIndex > 0) {
+        this.currentPassageIndex--;
+        this.resetTimer();
+        this.displayPassage();
+        this.updateStatus();
       }
-      if (timeLeft > 30) {
-        score += 10;
-        feedbackDisplay.innerHTML += ' <span class="bonus">+10!</span>';
-        speak("Plus 10 extra points for quick completion.");
+      this.menu.classList.add("hidden");
+    });
+    // Clear Button
+    this.clearButton.addEventListener("click", () => {
+      this.hintUsage = {};
+      this.selectedWord = null;
+      this.resetTimer();
+      this.displayPassage();
+      this.menu.classList.add("hidden");
+    });
+    // Hint Button
+    this.hintButton.addEventListener("click", () => {
+      const passage = this.getCurrentPassage();
+      if (passage.hint) {
+        this.feedbackDisplay.textContent = passage.hint;
+        this.feedbackDisplay.style.color = "blue";
+        this.speechManager.speak(passage.hint);
+      }
+      this.menu.classList.add("hidden");
+    });
+    // Speak Passage Button – remove underscores
+    this.speakPassageBtn.addEventListener("click", () => {
+      const passage = this.getCurrentPassage();
+      if (passage && passage.text) {
+        const textToSpeak = passage.text.replace(/___\(\d+\)___/g, "blank");
+        this.speechManager.speak(textToSpeak);
+      }
+      this.menu.classList.add("hidden");
+    });
+    // Highlight Clues Button
+    this.highlightCluesButton.addEventListener("click", () => {
+      const passage = this.getCurrentPassage();
+      if (passage.clueWords) {
+        const keywords = this.passageText.querySelectorAll(".keyword");
+        keywords.forEach((el) => el.classList.add("highlighted"));
+        this.speechManager.speak("Highlighting clue words!");
+        setTimeout(() => keywords.forEach((el) => el.classList.remove("highlighted")), 5000);
+      }
+      this.menu.classList.add("hidden");
+    });
+    // Voice Command Button
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      let recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.lang = "en-US";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.onresult = (event) => {
+        const command = event.results[0][0].transcript.toLowerCase();
+        const words = document.querySelectorAll(".word");
+        words.forEach(word => {
+          if (command.includes(word.textContent.toLowerCase())) {
+            this.selectedWord = word;
+            document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
+            word.classList.add("selected");
+            this.speechManager.speak(`Selected word: ${word.textContent}`);
+          }
+        });
+        if (command.includes("place") || command.includes("put")) {
+          const blanks = document.querySelectorAll(".blank:not(.filled)");
+          if (this.selectedWord && blanks.length > 0) {
+            this.placeWord(blanks[0], this.selectedWord.textContent);
+            this.selectedWord.remove();
+            this.selectedWord = null;
+            this.updateStatus();
+          }
+        }
+      };
+      recognition.onerror = (event) => {
+        console.error("Speech recognition error:", event.error);
+        this.feedbackDisplay.textContent = "Voice command error. Please try again.";
+      };
+      this.voiceCommandBtn.addEventListener("click", () => {
+        recognition.start();
+        this.feedbackDisplay.textContent = "Listening for voice command...";
+        this.menu.classList.add("hidden");
+      });
+    } else {
+      this.voiceCommandBtn.style.display = "none";
+      console.log("Speech Recognition not supported in this browser.");
+    }
+    // Menu Button
+    this.menuBtn.addEventListener("click", () => this.menu.classList.toggle("hidden"));
+    // Fullscreen Button
+    this.fullscreenBtn.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => console.error(err));
+        document.body.classList.add("fullscreen");
+        this.fullscreenBtn.textContent = "";
+      } else {
+        document.exitFullscreen();
+        document.body.classList.remove("fullscreen");
+        this.fullscreenBtn.textContent = "⤢";
+      }
+    });
+    // Toggle Challenge Mode
+    document.getElementById("toggle-challenge").addEventListener("click", () => {
+      this.challengeMode = !this.challengeMode;
+      if (this.challengeMode) {
+        this.resetTimer();
+        this.feedbackDisplay.textContent = "Challenge Mode ON";
+        this.timer.start();
+      } else {
+        clearInterval(this.timer.interval);
+        this.timerBar.style.width = "0%";
+        this.feedbackDisplay.textContent = "Challenge Mode OFF";
+      }
+      this.speechManager.speak(`Challenge Mode ${this.challengeMode ? "ON" : "OFF"}`);
+      this.menu.classList.add("hidden");
+    });
+  }
+
+  // Drag-and-Drop Handlers
+  handleDragStart(e) {
+    this.selectedWord = e.target;
+    e.dataTransfer.setData("text/plain", e.target.textContent);
+    e.target.classList.add("dragging");
+  }
+  handleDragEnd(e) {
+    e.target.classList.remove("dragging");
+  }
+  handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add("drag-over");
+  }
+  handleDragLeave(e) {
+    e.currentTarget.classList.remove("drag-over");
+  }
+  handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove("drag-over");
+    const word = e.dataTransfer.getData("text/plain");
+    if (!e.currentTarget.classList.contains("filled")) {
+      this.placeWord(e.currentTarget, word);
+      if (this.selectedWord) {
+        this.selectedWord.remove();
+        this.selectedWord = null;
+      }
+      this.updateStatus();
+    }
+  }
+
+  getCurrentPassage() {
+    return this.passages[this.currentGrammarType][this.currentPassageIndex];
+  }
+
+  displayPassage() {
+    clearInterval(this.timer.interval);
+    this.hintUsage = {};
+    this.selectedWord = null;
+    const passage = this.getCurrentPassage();
+    if (!passage) {
+      this.passageText.innerHTML = "<p>Error: Passage not found.</p>";
+      this.feedbackDisplay.textContent = "Error: Passage not found.";
+      return;
+    }
+    if (
+      !passage.text ||
+      !Array.isArray(passage.wordBox) ||
+      !Array.isArray(passage.answers) ||
+      !Array.isArray(passage.clueWords) ||
+      !Array.isArray(passage.hints)
+    ) {
+      this.passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
+      this.feedbackDisplay.textContent = "Error: Missing required passage data.";
+      return;
+    }
+    let passageHTML = passage.text;
+    if (passage.clueWords) {
+      passage.clueWords.forEach((clues, index) => {
+        const blankNum = index + 1;
+        clues.forEach((clue) => {
+          const regex = new RegExp(`\\b${clue}\\b`, "gi");
+          passageHTML = passageHTML.replace(
+            regex,
+            `<span class="keyword keyword-${blankNum}" title="Clue for blank ${blankNum}">${clue}</span>`
+          );
+        });
+      });
+    }
+    passageHTML = passageHTML.replace(/___\(\d+\)___/g, (_, num) => {
+      return `<span class="blank" data-blank="${num}" tabindex="0" role="button">
+                <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
+              </span>`;
+    });
+    this.passageText.innerHTML = passageHTML;
+    this.wordBox.innerHTML = this.shuffle([...passage.wordBox])
+      .map(word => `<div class="word" draggable="true" tabindex="0" role="button">${word}</div>`)
+      .join("");
+    document.querySelectorAll(".word").forEach((word) => {
+      word.addEventListener("dragstart", this.handleDragStart.bind(this));
+      word.addEventListener("dragend", this.handleDragEnd.bind(this));
+      word.addEventListener("click", () => {
+        this.selectedWord = word;
+        document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
+        word.classList.add("selected");
+      });
+      word.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          this.selectedWord = word;
+          document.querySelectorAll(".word").forEach(w => w.classList.remove("selected"));
+          word.classList.add("selected");
+        }
+      });
+    });
+    document.querySelectorAll(".blank").forEach((blank) => {
+      blank.addEventListener("dragover", this.handleDragOver.bind(this));
+      blank.addEventListener("dragleave", this.handleDragLeave.bind(this));
+      blank.addEventListener("drop", this.handleDrop.bind(this));
+      blank.addEventListener("click", () => {
+        if (this.selectedWord && !blank.classList.contains("filled")) {
+          this.placeWord(blank, this.selectedWord.textContent);
+          this.selectedWord.remove();
+          this.selectedWord = null;
+          this.updateStatus();
+        }
+      });
+      blank.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && this.selectedWord && !blank.classList.contains("filled")) {
+          this.placeWord(blank, this.selectedWord.textContent);
+          this.selectedWord.remove();
+          this.selectedWord = null;
+          this.updateStatus();
+        }
+      });
+    });
+    if (this.challengeMode) this.timer.start();
+    this.updateStatus();
+  }
+
+  updateStatus() {
+    this.scoreDisplay.textContent = `Score: ${this.score}`;
+    this.starsDisplay.textContent = `Stars: ${this.stars}`;
+    const total = this.passages[this.currentGrammarType].length;
+    this.progressDisplay.textContent = `Progress: ${this.currentPassageIndex + 1} / ${total}`;
+    this.progressBar.style.width = `${((this.currentPassageIndex + 1) / total) * 100}%`;
+    if (this.challengeMode) {
+      this.timerBar.style.width = `${(this.timeLeft / 60) * 100}%`;
+      this.timerBar.style.backgroundColor =
+        this.timeLeft > 30 ? "green" : this.timeLeft > 10 ? "orange" : "red";
+    } else {
+      this.timerBar.style.width = "0%";
+    }
+    const chapters = [
+      { text: "The Kingdom is in danger!", bg: "castle-bg.png" },
+      { text: "The Wizard’s magic grows!", bg: "forest-bg.png" },
+      { text: "Victory is near!", bg: "victory-bg.png" }
+    ];
+    const chapter = chapters[Math.min(Math.floor(this.stars / 5), chapters.length - 1)];
+    this.storyProgress.textContent = `Story: ${chapter.text}`;
+    document.body.style.backgroundImage = `url(${chapter.bg})`;
+  }
+
+  updateTimer(timeLeft) {
+    this.timeLeft = timeLeft;
+    this.updateStatus();
+  }
+
+  handleTimeUp() {
+    this.feedbackDisplay.textContent = "Time's up! Moving to next passage.";
+    this.speechManager.speak("Time's up! Moving to next passage.");
+    setTimeout(() => this.handleNextPassage(), 1000);
+  }
+
+  resetTimer() {
+    this.timer.clear();
+    this.timeLeft = 60;
+    if (this.challengeMode) this.timer.start();
+  }
+
+  selectWord(wordElement) {
+    this.selectedWord = wordElement;
+    this.wordBox.querySelectorAll(".word").forEach((w) => w.classList.remove("selected"));
+    wordElement.classList.add("selected");
+  }
+
+  placeWord(blank, word) {
+    blank.textContent = word;
+    blank.classList.add("filled", "slide-in");
+    this.checkAnswer(blank);
+  }
+
+  checkAnswer(blank) {
+    const blankId = parseInt(blank.getAttribute("data-blank"));
+    const userAnswer = blank.textContent.trim().toLowerCase();
+    const correctAnswer = this.getCurrentPassage().answers[blankId - 1].toLowerCase();
+    if (userAnswer === correctAnswer) {
+      blank.classList.add("correct");
+      this.score += 10;
+      this.stars += 1;
+      this.feedbackDisplay.textContent = "Correct! Great job!";
+      this.feedbackDisplay.style.color = "green";
+      this.speechManager.speak("Correct! Great job!");
+      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+      this.correctSound.play();
+      this.grammarWizard.classList.remove("hidden");
+      this.wizardMessage.textContent = "Well done! You're saving the Kingdom!";
+      setTimeout(() => this.grammarWizard.classList.add("hidden"), 3000);
+    } else {
+      blank.classList.add("incorrect");
+      this.feedbackDisplay.textContent = "Incorrect! Try again.";
+      this.feedbackDisplay.style.color = "red";
+      this.speechManager.speak("Incorrect! Try again.");
+      this.incorrectSound.play();
+      this.grammarWizard.classList.remove("hidden");
+      this.wizardMessage.textContent = "Oops! Let's try again!";
+      setTimeout(() => this.grammarWizard.classList.add("hidden"), 3000);
+    }
+    this.updateStatus();
+  }
+
+  handleNextPassage() {
+    const blanks = this.passageText.querySelectorAll(".blank");
+    let allFilled = true;
+    blanks.forEach((blank) => {
+      if (!blank.classList.contains("filled")) allFilled = false;
+    });
+    if (allFilled) {
+      const passage = this.getCurrentPassage();
+      let reviewText = "<h2>Review</h2><ul>";
+      passage.answers.forEach((ans, i) => {
+        reviewText += `<li>Blank ${i + 1}: "${ans}" – ${passage.hints[i]}</li>`;
+      });
+      reviewText += "</ul>";
+      this.modalManager.show(reviewText);
+      this.speechManager.speak("Here’s your review!");
+      if (this.challengeMode) {
+        if (Object.keys(this.hintUsage).length === 0) {
+          this.score += 20;
+          this.feedbackDisplay.innerHTML = 'Correct! Bonus: <span class="bonus">+20!</span>';
+          this.speechManager.speak("Bonus! 20 extra points for no hints.");
+        }
+        if (this.timeLeft > 30) {
+          this.score += 10;
+          this.feedbackDisplay.innerHTML += ' <span class="bonus">+10!</span>';
+          this.speechManager.speak("Plus 10 extra points for quick completion.");
+        }
+      }
+      if (this.stars % 5 === 0) {
+        this.badgeDisplay.innerHTML = `
+          <p>You’ve earned a Mastery Badge!</p>
+          <img src="badge-mastery.png" alt="Mastery Badge" class="bounce-in">
+        `;
+        this.badgeDisplay.classList.remove("hidden");
+        setTimeout(() => this.badgeDisplay.classList.add("hidden"), 3000);
       }
     }
-    badgesEarned++;
-    badgeDisplay.innerHTML = `
-      <p>You’ve earned a Mastery Badge!</p>
-      <img src="badge-mastery.png" alt="Mastery Badge" class="bounce-in">
-    `;
-    badgeDisplay.classList.remove("hidden");
-    setTimeout(() => badgeDisplay.classList.add("hidden"), 3000);
+    this.resetTimer();
+    this.currentPassageIndex++;
+    if (this.currentPassageIndex >= this.passages[this.currentGrammarType].length) {
+      this.feedbackDisplay.textContent = `Game Over! Final Score: ${this.score} | Badges Earned: ${this.badgesEarned}`;
+      this.speechManager.speak(`Game Over! Your final score is ${this.score} and you earned ${this.badgesEarned} badges!`);
+      return;
+    }
+    this.resetTimer();
+    this.displayPassage();
+    this.updateStatus();
+    this.menu.classList.add("hidden");
   }
-  clearInterval(timerInterval);
-  currentPassageIndex++;
-  if (currentPassageIndex >= window.passages[currentGrammarType].length) {
-    feedbackDisplay.textContent = `Game Over! Final Score: ${score} | Badges Earned: ${badgesEarned}`;
-    speak(`Game Over! Your final score is ${score} and you earned ${badgesEarned} badges!`);
-    return;
+
+  shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
   }
-  timeLeft = 60;
-  displayPassage();
-  updateStatus();
-  menu.classList.add("hidden");
-});
 
-prevPassageButton.addEventListener("click", () => {
-  if (currentPassageIndex > 0) {
-    currentPassageIndex--;
-    timeLeft = 60;
-    clearInterval(timerInterval);
-    displayPassage();
-    updateStatus();
+  showWelcomeMessage() {
+    if (!localStorage.getItem("hasSeenTutorial")) {
+      const onboardingContent = `
+        <div class="onboarding">
+          <svg class="wizard" width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="#ff6f61" />
+            <circle cx="40" cy="40" r="5" fill="white" />
+            <circle cx="60" cy="40" r="5" fill="white" />
+            <path d="M40 60 Q50 70 60 60" fill="none" stroke="white" stroke-width="3" />
+            <rect x="45" y="20" width="10" height="20" fill="#f1c40f" />
+          </svg>
+          <p>Welcome! I’m the Grammar Wizard. Drag a word into the blank to start!</p>
+          <div class="demo-blank"></div>
+        </div>
+      `;
+      this.modalManager.show(onboardingContent);
+      this.speechManager.speak("Welcome! I’m the Grammar Wizard. Drag a word into the blank to start!");
+      setTimeout(() => this.modalManager.hide(), 5000);
+      localStorage.setItem("hasSeenTutorial", "true");
+    }
   }
-  menu.classList.add("hidden");
-});
+}
 
-clearButton.addEventListener("click", () => {
-  hintUsage = {};
-  selectedWord = null;
-  timeLeft = 60;
-  clearInterval(timerInterval);
-  displayPassage();
-  menu.classList.add("hidden");
+document.addEventListener("DOMContentLoaded", () => {
+  new GameEngine();
 });
-
-hintButton.addEventListener("click", () => {
-  const passage = window.passages[currentGrammarType][currentPassageIndex];
-  if (passage.hint) {
-    feedbackDisplay.textContent = passage.hint;
-    feedbackDisplay.style.color = "blue";
-    speak(passage.hint);
-  }
-  menu.classList.add("hidden");
-});
-
-speakPassageBtn.addEventListener("click", () => {
-  console.log("Speak button clicked!");
-  const passage = window.passages[currentGrammarType][currentPassageIndex];
-  if (!passage || !passage.text) {
-    console.error("No passage or text found:", passage);
-    feedbackDisplay.textContent = "Error: No passage to read.";
-    return;
-  }
-  const textToSpeak = passage.text.replace(/___\(\d+\)___/g, "blank");
-  speak(textToSpeak);
-  menu.classList.add("hidden");
-});
-
-// =======================
-// Initialize Game
-// =======================
-displayPassage();
-updateStatus();
