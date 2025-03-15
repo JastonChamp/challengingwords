@@ -816,7 +816,6 @@ window.passages = {
   ]
 };
 
- 
 // ----------------------------------------------------------------
 // Global Game State
 // ----------------------------------------------------------------
@@ -863,7 +862,7 @@ let voices = [];
 let ukFemaleVoice = null;
 function loadVoices() {
   voices = synth.getVoices();
-  // First try to find an en-GB voice with "female" in the name or common UK female names.
+  // First, try to find an en-GB voice with "female" in the name or matching common UK female names.
   ukFemaleVoice = voices.find(voice =>
     voice.lang === "en-GB" &&
     (voice.name.toLowerCase().includes("female") ||
@@ -871,7 +870,7 @@ function loadVoices() {
      voice.name.toLowerCase() === "kate")
   );
   if (!ukFemaleVoice) {
-    // Fallback: check among all en voices for preferred female names.
+    // Fallback: Check among all en voices for a preferred female name.
     const preferredNames = ["samantha", "kate", "alice", "emily", "olivia", "julia", "sue", "susan"];
     ukFemaleVoice = voices.find(voice =>
        voice.lang.startsWith("en") &&
@@ -1026,8 +1025,12 @@ function displayPassage() {
       });
     });
   }
+  // Revised: Place hint icon outside of the blank text.
   passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
-    return `<span class="blank" data-blank="${num}" tabindex="0">_<button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
+    return `<span class="blank-container" data-blank="${num}">
+              <span class="blank" tabindex="0">_</span>
+              <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
+            </span>`;
   });
 
   passageText.innerHTML = passageHTML;
@@ -1040,7 +1043,7 @@ function displayPassage() {
     blank.addEventListener("dragleave", handleDragLeave);
     blank.addEventListener("drop", handleDrop);
     blank.addEventListener("click", () => {
-      if (selectedWord && !blank.classList.contains("filled")) {
+      if (selectedWord && !blank.parentElement.classList.contains("filled")) {
         placeWord(blank, selectedWord.textContent);
         selectedWord.classList.remove("selected");
         selectedWord = null;
@@ -1048,7 +1051,7 @@ function displayPassage() {
       }
     });
     blank.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && selectedWord && !blank.classList.contains("filled")) {
+      if (e.key === "Enter" && selectedWord && !blank.parentElement.classList.contains("filled")) {
         placeWord(blank, selectedWord.textContent);
         selectedWord.classList.remove("selected");
         selectedWord = null;
@@ -1076,7 +1079,8 @@ function displayPassage() {
 
   document.querySelectorAll(".hint-for-blank").forEach(button => {
     button.addEventListener("click", function () {
-      const blankNum = this.parentElement.getAttribute("data-blank");
+      const blankContainer = this.parentElement;
+      const blankNum = blankContainer.getAttribute("data-blank");
       const hintIndex = parseInt(blankNum) - 1;
       if (passage.hints && passage.hints[hintIndex]) {
         feedbackDisplay.textContent = passage.hints[hintIndex];
@@ -1125,20 +1129,23 @@ function handleDrop(e) {
   e.preventDefault();
   e.currentTarget.classList.remove("drag-over");
   const droppedWord = e.dataTransfer.getData("text/plain");
-  if (e.currentTarget.classList.contains("blank") && !e.currentTarget.classList.contains("filled")) {
-    placeWord(e.currentTarget, droppedWord);
+  // The blank is inside a container; use the inner .blank element.
+  const blank = e.currentTarget.querySelector(".blank");
+  if (blank && !e.currentTarget.classList.contains("filled")) {
+    placeWord(blank, droppedWord);
     updateStatus();
   }
 }
 
 function placeWord(blank, word) {
   blank.textContent = word;
-  blank.classList.add("filled");
+  // Mark the entire container as filled.
+  blank.parentElement.classList.add("filled");
   checkAnswer(blank);
 }
 
 function checkAnswer(blank) {
-  const blankId = parseInt(blank.getAttribute("data-blank"));
+  const blankId = parseInt(blank.parentElement.getAttribute("data-blank"));
   const userAnswer = blank.textContent.trim().toLowerCase();
   const correctAnswer = passages[currentGrammarType][currentPassageIndex].answers[blankId - 1].toLowerCase();
   if (userAnswer === correctAnswer) {
@@ -1175,7 +1182,7 @@ nextPassageButton.addEventListener("click", () => {
   const blanks = document.querySelectorAll(".blank");
   let allFilled = true;
   blanks.forEach(blank => {
-    if (!blank.classList.contains("filled")) allFilled = false;
+    if (!blank.parentElement.classList.contains("filled")) allFilled = false;
   });
   if (allFilled) {
     const passage = passages[currentGrammarType][currentPassageIndex];
