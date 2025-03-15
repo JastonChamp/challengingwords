@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grammar Cloze Adventure</title>
-  <!-- Primary and secondary fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Comic+Neue&display=swap" rel="stylesheet">
+  <!-- Load fonts: Poppins for body and Playfair Display for title -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <!-- ResponsiveVoice (replace YOUR_API_KEY with your actual key) -->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_API_KEY"></script>
@@ -29,6 +29,7 @@
       <ul>
         <li>
           <label for="grammar-type">Grammar Type:</label>
+          <!-- Using a dropdown here for simplicity; can be replaced by tabs/cards -->
           <select id="grammar-type" aria-label="Select grammar type">
             <option value="prepositions">Prepositions</option>
             <option value="conjunctions">Conjunctions</option>
@@ -42,6 +43,7 @@
         <li><button id="hint-btn" class="sidebar-btn" aria-label="Get a hint">💡 Hint</button></li>
         <li><button id="clear-btn" class="sidebar-btn" aria-label="Reset passage">🔄 Reset</button></li>
         <li><button id="share-btn" class="sidebar-btn" aria-label="Share score">📤 Share</button></li>
+        <li><button id="read-passage-btn" class="sidebar-btn" aria-label="Read passage">🔊 Read Passage</button></li>
       </ul>
     </nav>
     <div class="level-info">
@@ -49,13 +51,13 @@
     </div>
   </aside>
 
-  <!-- Main Content -->
+  <!-- Main Content Area -->
   <main>
     <div class="game-container">
       <div id="passage-text" aria-label="Grammar passage"></div>
       <div id="word-box" aria-label="Available words"></div>
     </div>
-    <!-- Feedback -->
+    <!-- Feedback area with ARIA live region -->
     <div id="feedback" aria-live="assertive"></div>
     <!-- Status Bar -->
     <div class="status-bar">
@@ -65,7 +67,7 @@
       <span id="timer">Time: 60s</span>
       <div id="progress-bar-container"><div id="progress-bar"></div></div>
       <div id="timer-container"><div id="timer-bar"></div></div>
-      <!-- Progress Stepper -->
+      <!-- Progress Stepper as checkpoints -->
       <div id="progress-stepper" class="progress-stepper" aria-label="Progress stepper"></div>
       <div class="navigation-buttons">
         <button id="prev-btn" aria-label="Previous passage">⬅️ Prev</button>
