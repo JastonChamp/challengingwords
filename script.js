@@ -816,6 +816,7 @@ window.passages = {
   ]
 };
 
+ 
 // ----------------------------------------------------------------
 // Global Game State
 // ----------------------------------------------------------------
@@ -862,22 +863,23 @@ let voices = [];
 let ukFemaleVoice = null;
 function loadVoices() {
   voices = synth.getVoices();
-  // First, try to get a UK female voice from en-GB voices.
+  // First try to find an en-GB voice with "female" in the name or common UK female names.
   ukFemaleVoice = voices.find(voice =>
     voice.lang === "en-GB" &&
     (voice.name.toLowerCase().includes("female") ||
-     voice.name === "Samantha" || voice.name === "Kate")
+     voice.name.toLowerCase() === "samantha" ||
+     voice.name.toLowerCase() === "kate")
   );
   if (!ukFemaleVoice) {
-    // Fallback: search all English voices for one with a preferred female name.
-    const preferredFemaleNames = ["samantha", "kate", "alice", "emily", "olivia", "julia", "sue", "susan"];
+    // Fallback: check among all en voices for preferred female names.
+    const preferredNames = ["samantha", "kate", "alice", "emily", "olivia", "julia", "sue", "susan"];
     ukFemaleVoice = voices.find(voice =>
        voice.lang.startsWith("en") &&
-       preferredFemaleNames.includes(voice.name.toLowerCase())
+       preferredNames.includes(voice.name.toLowerCase())
     );
   }
   if (!ukFemaleVoice) {
-    // Final fallback: pick any en-GB voice (even if male).
+    // Final fallback: any available en-GB voice.
     ukFemaleVoice = voices.find(voice => voice.lang === "en-GB");
   }
   console.log("Selected voice:", ukFemaleVoice);
@@ -899,7 +901,6 @@ function speak(text) {
     return;
   }
   const utterance = new SpeechSynthesisUtterance(text);
-  // Use the UK female voice if available.
   utterance.lang = "en-GB";
   if (ukFemaleVoice) {
     utterance.voice = ukFemaleVoice;
@@ -910,9 +911,8 @@ function speak(text) {
   console.log("Speaking text:", text);
 }
 
-// New: Function to read the passage aloud
+// New: Read Passage Aloud
 function readPassage() {
-  // Extract plain text from the passage area (ignore buttons)
   const textToRead = passageText.textContent.replace(/\d+/g, "blank");
   speak(textToRead);
 }
@@ -935,7 +935,6 @@ function shuffle(array) {
 }
 
 function updateLevel() {
-  // Level thresholds: Apprentice (<100), Journeyman (<200), Master Wizard (>=200)
   if (score < 100) {
     level = "Apprentice";
   } else if (score < 200) {
