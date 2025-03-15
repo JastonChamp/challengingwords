@@ -862,7 +862,7 @@ let voices = [];
 let ukFemaleVoice = null;
 function loadVoices() {
   voices = synth.getVoices();
-  // First, try to find an en-GB voice with "female" in the name or matching common UK female names.
+  // Try to find an en-GB voice with "female" in its name or common UK female names.
   ukFemaleVoice = voices.find(voice =>
     voice.lang === "en-GB" &&
     (voice.name.toLowerCase().includes("female") ||
@@ -870,7 +870,7 @@ function loadVoices() {
      voice.name.toLowerCase() === "kate")
   );
   if (!ukFemaleVoice) {
-    // Fallback: Check among all en voices for a preferred female name.
+    // Fallback: search among all English voices for preferred female names.
     const preferredNames = ["samantha", "kate", "alice", "emily", "olivia", "julia", "sue", "susan"];
     ukFemaleVoice = voices.find(voice =>
        voice.lang.startsWith("en") &&
@@ -1027,10 +1027,7 @@ function displayPassage() {
   }
   // Revised: Place hint icon outside of the blank text.
   passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
-    return `<span class="blank-container" data-blank="${num}">
-              <span class="blank" tabindex="0">_</span>
-              <button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button>
-            </span>`;
+    return `<span class="blank-container" data-blank="${num}"><span class="blank" tabindex="0">_</span><button class="hint-for-blank" aria-label="Hint for blank ${num}" title="Hint">💡</button></span>`;
   });
 
   passageText.innerHTML = passageHTML;
@@ -1129,7 +1126,6 @@ function handleDrop(e) {
   e.preventDefault();
   e.currentTarget.classList.remove("drag-over");
   const droppedWord = e.dataTransfer.getData("text/plain");
-  // The blank is inside a container; use the inner .blank element.
   const blank = e.currentTarget.querySelector(".blank");
   if (blank && !e.currentTarget.classList.contains("filled")) {
     placeWord(blank, droppedWord);
@@ -1139,7 +1135,6 @@ function handleDrop(e) {
 
 function placeWord(blank, word) {
   blank.textContent = word;
-  // Mark the entire container as filled.
   blank.parentElement.classList.add("filled");
   checkAnswer(blank);
 }
