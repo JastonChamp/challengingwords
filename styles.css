@@ -7,20 +7,19 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #e0f7fa;
-  color: #2c3e50;
+  background-color: #e0f7fa; /* Light teal background */
+  color: #2c3e50; /* Dark blue for text */
   line-height: 1.6;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
 }
 
 /* Header Styles */
 header {
   text-align: center;
   margin-bottom: 20px;
-  background-color: #fff3e0;
+  background-color: #fff3e0; /* Soft orange */
   padding: 15px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,7 +27,7 @@ header {
 
 h1 {
   font-size: 2.5em;
-  color: #ff6f61;
+  color: #ff6f61; /* Coral pink */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -38,79 +37,38 @@ h1 {
   margin-top: 10px;
 }
 
-/* Story Bar */
-.story-bar {
-  text-align: center;
-  margin-bottom: 20px;
-  background-color: #f1c40f;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#story-progress {
-  font-size: 1.1em;
-  color: #2c3e50;
-}
-
-/* Menu and Fullscreen Buttons (Top-Right) */
+/* Menu and Fullscreen Buttons */
 #menu-btn,
 #fullscreen-btn {
-  position: fixed;
+  position: absolute;
   top: 20px;
-  font-size: 2em;
-  background: #ff6f61;
+  font-size: 1.5em;
+  background: #ff6f61; /* Coral pink button */
   border: none;
-  border-radius: 15px;
-  padding: 15px 20px;
+  border-radius: 10px;
+  padding: 8px 15px;
   color: white;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
 }
+
 #menu-btn {
-  right: 120px;
+  right: 60px;
 }
+
 #fullscreen-btn {
   right: 20px;
 }
+
 #menu-btn:hover,
 #fullscreen-btn:hover {
   transform: scale(1.1);
-  background-color: #e65b50;
+  background-color: #e65b50; /* Darker shade on hover */
 }
 
-/* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.modal.hidden {
-  display: none;
-}
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 90%;
-  position: relative;
-}
-.close-button {
-  position: absolute;
+body.fullscreen #menu-btn,
+body.fullscreen #fullscreen-btn {
   top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
 }
 
 /* Controls and Dropdown */
@@ -118,11 +76,13 @@ h1 {
   margin-bottom: 20px;
   text-align: center;
 }
+
 label {
   font-size: 1.2em;
   margin-right: 10px;
   color: #2c3e50;
 }
+
 #grammar-type {
   padding: 10px;
   font-size: 1em;
@@ -133,6 +93,7 @@ label {
   cursor: pointer;
   transition: border-color 0.2s;
 }
+
 #grammar-type:hover {
   border-color: #e65b50;
 }
@@ -140,113 +101,115 @@ label {
 /* Game Container */
 .game-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   margin-bottom: 20px;
 }
+
 #passage-text {
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
   background: #fff;
   padding: 20px;
   border-radius: 15px;
-  min-height: 150px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
-  border: 2px solid #4ecdc4;
+  border: 2px solid #4ecdc4; /* Teal border */
 }
+
 #word-box {
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
   background: #fff;
   padding: 20px;
   border-radius: 15px;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
-  border: 2px solid #4ecdc4;
+  border: 2px solid #4ecdc4; /* Teal border */
 }
 
-/* Words */
 .word {
-  background: #ff6f61;
+  background: #ff6f61; /* Coral pink */
   color: white;
-  padding: 15px 25px;
+  padding: 10px 20px;
   border-radius: 10px;
   cursor: move;
   user-select: none;
   transition: transform 0.2s, background-color 0.2s;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  font-size: 1.2em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .word:hover {
   transform: scale(1.1);
-  background-color: #e65b50;
+  background-color: #e65b50; /* Darker pink on hover */
 }
+
 .word.dragging {
   opacity: 0.6;
-  animation: bounce 0.5s infinite;
 }
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
+
 .word.selected {
-  background-color: #ff6f61;
+  background-color: #ff6f61; /* Coral pink when selected */
   outline: 2px solid #fff;
 }
+
 .word:focus {
   outline: 2px solid #3498db;
   background-color: #3498db;
 }
 
-/* Blank (Drop Target) */
 .blank {
   display: inline-block;
   width: 80px;
-  min-height: 2em;
   text-align: center;
-  border-bottom: 3px dashed #4ecdc4;
+  border-bottom: 3px dashed #4ecdc4; /* Teal dashed underline */
   margin: 0 5px;
   position: relative;
   cursor: pointer;
   font-size: 1.1em;
   color: #2c3e50;
 }
+
 .blank.drag-over {
   border-color: #ff6f61;
-  background-color: #ffebee;
+  background-color: #ffebee; /* Light red background on drag */
 }
+
 .blank.filled {
   border-bottom: none;
   font-weight: bold;
 }
+
 .blank.correct {
   color: #27ae60;
   border-bottom: 3px dashed #27ae60;
-  background-color: #e8f5e9;
+  background-color: #e8f5e9; /* Light green background */
 }
+
 .blank.incorrect {
   color: #c0392b;
   border-bottom: 3px dashed #c0392b;
-  background-color: #ffebee;
+  background-color: #ffebee; /* Light red background */
 }
+
 .blank:focus {
   outline: 2px solid #3498db;
 }
 
-/* Hint Button */
 .hint-for-blank {
   position: absolute;
   top: -25px;
   right: -15px;
   font-size: 1em;
-  background: #f1c40f;
+  background: #f1c40f; /* Yellow */
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   color: white;
   display: flex;
@@ -254,17 +217,18 @@ label {
   justify-content: center;
   transition: transform 0.2s, background-color 0.2s;
 }
+
 .hint-for-blank:hover {
   transform: scale(1.2);
-  background-color: #f39c12;
+  background-color: #f39c12; /* Darker yellow on hover */
 }
 
-/* Keywords */
 .keyword {
   font-weight: bold;
   color: #8e44ad;
   transition: background-color 0.3s;
 }
+
 .keyword.highlighted {
   background-color: #f1c40f;
   color: #fff;
@@ -272,63 +236,42 @@ label {
   border-radius: 10px;
 }
 
-/* Grammar Wizard Mascot */
-#grammar-wizard {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
-#grammar-wizard.hidden {
-  display: none;
-}
-#wizard-message {
-  font-size: 1em;
-  color: #2c3e50;
-  background: #fff;
-  padding: 5px 10px;
-  border-radius: 10px;
-  margin-top: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
 /* Menu Styles */
 .menu {
   position: fixed;
-  top: 70px;
+  top: 60px;
   right: 20px;
   background: #fff;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border: 2px solid #4ecdc4;
 }
+
 .menu.hidden {
   display: none;
 }
+
 .menu button {
   display: block;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   margin: 8px 0;
-  background: #ff6f61;
+  background: #4ecdc4; /* Teal button */
   color: white;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 1em;
   transition: transform 0.2s, background-color 0.2s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .menu button:hover {
   transform: scale(1.05);
-  background-color: #e65b50;
+  background-color: #3baead; /* Darker teal on hover */
 }
+
 .menu button:focus {
   outline: 2px solid #fff;
 }
@@ -346,12 +289,14 @@ label {
   border-radius: 15px;
   border: 2px solid #ff6f61;
 }
+
 #progress,
 #score,
 #lives {
   font-size: 1.1em;
   color: #2c3e50;
 }
+
 #progress-bar-container,
 #timer-container {
   flex: 1;
@@ -361,19 +306,21 @@ label {
   border-radius: 10px;
   overflow: hidden;
 }
+
 #progress-bar,
 #timer-bar {
   height: 100%;
   transition: width 0.3s ease, background-color 0.3s ease;
 }
+
 #progress-bar {
   background: #27ae60;
 }
+
 #timer-bar {
-  background: #27ae60;
+  background: #27ae60; /* Green for time */
 }
 
-/* Feedback */
 #feedback {
   text-align: center;
   font-size: 1.2em;
@@ -383,48 +330,32 @@ label {
   border: 2px solid #4ecdc4;
   margin-top: 10px;
 }
+
 .bonus {
   color: #f1c40f;
   font-weight: bold;
 }
 
-/* Badge Display */
-#badge-display {
-  text-align: center;
-  margin-top: 20px;
-  background: #fff;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border: 2px solid #f1c40f;
-  animation: fadeIn 0.5s ease-in-out;
-}
-#badge-display.hidden {
-  display: none;
-}
-
 /* Responsive Design */
-@media (min-width: 768px) {
-  .game-container {
-    flex-direction: row;
-  }
-  #passage-text,
-  #word-box {
-    flex: 1;
-    min-width: 300px;
-  }
-}
 @media (max-width: 600px) {
   body {
     padding: 10px;
   }
+
   h1 {
     font-size: 1.8em;
   }
+
+  #passage-text,
+  #word-box {
+    min-width: 100%;
+  }
+
   .menu {
-    top: 70px;
+    top: 50px;
     right: 10px;
   }
+
   .status-bar {
     flex-direction: column;
     text-align: center;
