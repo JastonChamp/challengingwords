@@ -6,7 +6,7 @@
   <title>Grammar Cloze Adventure</title>
   <!-- Load fonts: Poppins for body, Lora for titles, and OpenDyslexic for dyslexia-friendly toggle -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- OpenDyslexic (via CDN) -->
+  <!-- OpenDyslexic via CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-dyslexic/1.0.0/OpenDyslexic-Regular.min.css" integrity="sha512-0LJHTx5mCJlI6+KNeYchpPsptJo6WHyc+dcYf3ABdyIkn4bNyVLw6OfTEap79+34HKSfd1x2ElcCFstVaW0Kkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="styles.css" />
   <!-- ResponsiveVoice (replace YOUR_API_KEY with your actual key) -->
@@ -15,18 +15,30 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
+  <!-- Storyline Modal (Guided Tour) -->
+  <div id="storyline-modal" class="modal">
+    <div class="modal-content">
+      <h2>The Wizard's Quest</h2>
+      <p id="storyline-text">Welcome, young wizard! Let’s begin your quest.</p>
+      <button id="start-quest" class="modal-btn">Begin Quest</button>
+    </div>
+  </div>
+
   <header>
     <h1>Grammar Cloze Adventure</h1>
     <p class="instructions">
       Drag or tap a word to fill in the blanks. Use the sidebar for hints and controls!
     </p>
     <!-- Theme Toggle Button -->
-    <button id="toggle-theme" class="theme-toggle" aria-label="Toggle dark/light mode">Switch to Light Mode</button>
+    <button id="toggle-theme" class="theme-toggle" aria-label="Toggle dark/light mode">
+      Switch to Light Mode
+    </button>
   </header>
 
-  <!-- Wizard Advice Area -->
+  <!-- Wizard Advice Area with Expanded Mascots -->
   <div id="wizard-advice" class="wizard-advice" aria-live="polite">
     <img src="wizard-icon.png" alt="Wizard" class="wizard-mascot" />
+    <img src="sidekick-dragon.png" alt="Dragon" class="sidekick-mascot" />
     Greetings, young wizard! Ready to save the kingdom of grammar?
   </div>
 
@@ -39,10 +51,7 @@
           <select id="grammar-type" aria-label="Select grammar type">
             <option value="prepositions">Prepositions</option>
             <option value="conjunctions">Conjunctions</option>
-            <option value="subjectVerbAgreement">Subject-Verb Agreement</option>
-            <option value="pronouns">Pronouns</option>
-            <option value="adjectivesAdverbs">Adjectives & Adverbs</option>
-            <option value="tenses">Tenses</option>
+            <!-- Add more options as needed -->
           </select>
         </li>
         <li>
@@ -52,6 +61,10 @@
             <option value="30">30 seconds</option>
             <option value="off">Off</option>
           </select>
+        </li>
+        <li>
+          <label for="text-size-slider">Text Size:</label>
+          <input type="range" id="text-size-slider" min="1" max="2" step="0.1" value="1.4">
         </li>
         <li>
           <button id="toggle-challenge" class="sidebar-btn" aria-label="Toggle challenge mode">
@@ -75,7 +88,7 @@
         </li>
         <li>
           <button id="read-passage-btn" class="sidebar-btn" aria-label="Listen to passage">
-            🔊 Listen to Passage
+            🔊 Listen
           </button>
         </li>
         <li>
@@ -96,9 +109,9 @@
       <div id="passage-text" aria-label="Grammar passage"></div>
       <div id="word-box" aria-label="Available words"></div>
     </div>
-    <!-- Feedback area -->
+    <!-- Feedback Area -->
     <div id="feedback" aria-live="assertive"></div>
-    <!-- Status Bar -->
+    <!-- Status Bar with Progress Indicators -->
     <div class="status-bar">
       <span id="progress"><i class="icon progress-icon"></i> Progress: 1 / 15</span>
       <span id="score"><i class="icon score-icon"></i> Score: 0</span>
