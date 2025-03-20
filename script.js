@@ -816,9 +816,9 @@ window.passages = {
   ]
 };
 
-// ----------------------
+// =======================
 // Global Game State
-// ----------------------
+// =======================
 let currentGrammarType = "prepositions";
 let currentPassageIndex = 0;
 let score = 0;
@@ -830,9 +830,9 @@ let timerInterval = null;
 let challengeMode = true;
 let level = "Apprentice";
 
-// ----------------------
+// =======================
 // DOM Elements
-// ----------------------
+// =======================
 const grammarSelect = document.getElementById("grammar-type");
 let passageText = document.getElementById("passage-text");
 let wordBox = document.getElementById("word-box");
@@ -853,10 +853,24 @@ const timerBar = document.getElementById("timer-bar");
 const levelDisplay = document.getElementById("level");
 const toggleThemeButton = document.getElementById("toggle-theme");
 const timerSettingSelect = document.getElementById("timer-setting");
+
+// Additional DOM Elements for narrative enhancements
+const storylineModal = document.getElementById("storyline-modal");
+const storylineText = document.getElementById("storyline-text");
+const startQuestButton = document.getElementById("start-quest");
+
 // Dyslexia-friendly font toggle
 const toggleDyslexiaButton = document.getElementById("toggle-dyslexia");
 toggleDyslexiaButton.addEventListener("click", () => {
   document.body.classList.toggle("dyslexia");
+});
+
+// Additional Accessibility: Text Size Slider
+const textSizeSlider = document.getElementById("text-size-slider");
+textSizeSlider.addEventListener("input", () => {
+  const newSize = textSizeSlider.value; // Example value "1.4"
+  document.getElementById("passage-text").style.fontSize = newSize + "em";
+  document.getElementById("word-box").style.fontSize = newSize + "em";
 });
 
 // ----------------------
@@ -969,12 +983,84 @@ function fadeOutIn(element, callback) {
 }
 
 // ----------------------
-// Display Passage
+// Narrative Functions
+// ----------------------
+
+// Show the storyline modal based on the selected grammar type
+function showStorylineModal(grammarType) {
+  const questMessages = {
+    prepositions: "Welcome, young wizard! Collect the Gem of Prepositions by navigating the Enchanted Forest.",
+    conjunctions: "Next, find the Gem of Conjunctions by solving the Wise Owl’s riddles.",
+    subjectVerbAgreement: "Brilliant! Unleash your power by mastering Subject-Verb Agreement.",
+    pronouns: "Awesome! Gather the Gem of Pronouns by following the clues.",
+    adjectivesAdverbs: "Fantastic! Capture the Gem of Adjectives & Adverbs by exploring the enchanted realm.",
+    tenses: "Great work! Secure the Gem of Tenses as you journey through time."
+  };
+  storylineText.textContent = questMessages[grammarType] || "Continue your quest to master grammar!";
+  storylineModal.style.display = "flex";
+}
+
+// When the start quest button is clicked, hide the modal and display the passage
+startQuestButton.addEventListener("click", () => {
+  storylineModal.style.display = "none";
+  displayPassage();
+});
+
+// ----------------------
+// Narrative Introductions & Reward Messages
+// ----------------------
+function getNarrativeIntro(grammarType, passageIndex) {
+  const narratives = {
+    prepositions: [
+      "The wizard reaches a river. Help him cross by completing the sentence.",
+      "A hidden cave appears. Unlock its secrets using prepositions."
+    ],
+    conjunctions: [
+      "The Wise Owl asks a riddle. Solve it with the right conjunction.",
+      "A magical door blocks your path. Connect the ideas to open it."
+    ],
+    subjectVerbAgreement: [
+      "The enchanted creatures gather. Help the wizard form the right verbs.",
+      "A spell of correct agreement is needed. Fill in the blanks accurately."
+    ],
+    pronouns: [
+      "Lost in the maze, a precious book awaits. Find the correct pronoun to locate it.",
+      "The wizard’s scroll is missing. Use the clues to uncover the right pronouns."
+    ],
+    adjectivesAdverbs: [
+      "A mysterious creature roams the lands. Describe it with the right adjectives and adverbs.",
+      "A burst of colors appears. Choose the correct words to capture its beauty."
+    ],
+    tenses: [
+      "Time shifts in the enchanted forest. Use the correct tenses to reveal its secrets.",
+      "A tale of past, present, and future unfolds. Complete the sentences to unlock the mystery."
+    ]
+  };
+  return narratives[grammarType] && narratives[grammarType][passageIndex]
+    ? narratives[grammarType][passageIndex]
+    : "Continue your quest with this challenge.";
+}
+
+function getRewardMessage(grammarType) {
+  const rewards = {
+    prepositions: "Well done! You’ve found the Gem of Prepositions!",
+    conjunctions: "Great job! You’ve earned the Gem of Conjunctions!",
+    subjectVerbAgreement: "Excellent! You’ve unlocked the Gem of Subject-Verb Agreement!",
+    pronouns: "Awesome! You’ve collected the Gem of Pronouns!",
+    adjectivesAdverbs: "Fantastic! You’ve secured the Gem of Adjectives & Adverbs!",
+    tenses: "Brilliant! You’ve captured the Gem of Tenses!"
+  };
+  return rewards[grammarType] || "You’ve completed this part of the quest!";
+}
+
+// ----------------------
+// Display Passage (with Narrative Intro)
 // ----------------------
 function displayPassage() {
   clearInterval(timerInterval);
   hintUsage = {};
   selectedWord = null;
+  
   const passage = window.passages[currentGrammarType]?.[currentPassageIndex];
   if (!passage) {
     passageText.innerHTML = "<p>Error: Passage not found.</p>";
@@ -987,15 +1073,19 @@ function displayPassage() {
     feedbackDisplay.textContent = "Error: Missing required passage data.";
     return;
   }
+  
   const blanks = passage.text.match(/\d+/g) || [];
   if (passage.answers.length !== blanks.length ||
       passage.clueWords.length !== blanks.length ||
       passage.hints.length !== blanks.length) {
     feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
   }
-
-  // Generate passage HTML with highlighted keywords and blank containers
-  let passageHTML = passage.text;
+  
+  // Build passage HTML with a narrative introduction
+  let passageHTML = `<p class="narrative-intro">${getNarrativeIntro(currentGrammarType, currentPassageIndex)}</p>`;
+  passageHTML += passage.text;
+  
+  // Highlight keywords based on clues
   if (passage.clueWords) {
     passage.clueWords.forEach((clues, index) => {
       const blankNum = index + 1;
@@ -1006,13 +1096,15 @@ function displayPassage() {
       });
     });
   }
+  
+  // Replace blank markers with HTML blank containers
   passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
     return `<span class="blank-container">
               <span class="blank" data-blank="${num}" tabindex="0">_</span>
               <button class="hint-for-blank" data-blank="${num}" aria-label="Hint for blank ${num}">💡</button>
             </span>`;
   });
-
+  
   fadeOutIn(passageText, () => {
     passageText.innerHTML = passageHTML;
     
@@ -1043,7 +1135,7 @@ function displayPassage() {
       });
     });
     
-    // **Attach event listeners for hint buttons inside the callback**
+    // Attach event listeners for hint buttons
     document.querySelectorAll(".hint-for-blank").forEach(button => {
       button.addEventListener("click", function () {
         const blankNum = this.getAttribute("data-blank");
@@ -1067,12 +1159,12 @@ function displayPassage() {
     });
   });
   
-  // Populate word box
+  // Populate word box with draggable words
   wordBox.innerHTML = shuffle([...passage.wordBox])
     .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
     .join("");
-
-  // Attach events to words
+  
+  // Attach events to word elements
   document.querySelectorAll(".word").forEach(word => {
     word.addEventListener("dragstart", handleDragStart);
     word.addEventListener("dragend", handleDragEnd);
@@ -1089,7 +1181,7 @@ function displayPassage() {
       }
     });
   });
-
+  
   if (challengeMode) startTimer();
   updateStatus();
 }
@@ -1171,7 +1263,8 @@ grammarSelect.addEventListener("change", () => {
   currentGrammarType = grammarSelect.value;
   currentPassageIndex = 0;
   timeLeft = (timerSettingSelect.value === "off") ? 0 : parseInt(timerSettingSelect.value);
-  displayPassage();
+  // Show the storyline modal instead of immediately displaying a passage
+  showStorylineModal(currentGrammarType);
   updateStatus();
 });
 
@@ -1182,17 +1275,16 @@ nextPassageButton.addEventListener("click", () => {
     if (!blank.classList.contains("filled")) allFilled = false;
   });
   if (allFilled) {
-    const passage = window.passages[currentGrammarType][currentPassageIndex];
-    let reviewText = "Review:\n";
-    passage.answers.forEach((ans, i) => {
-      reviewText += `Blank ${i + 1}: "${ans}" - ${passage.hints[i]}\n`;
-    });
-    alert(reviewText);
-    speak("Here’s your review!");
+    // Use narrative reward message based on grammar type
+    const rewardMessage = getRewardMessage(currentGrammarType);
+    feedbackDisplay.textContent = rewardMessage;
+    feedbackDisplay.style.color = "green";
+    speak(rewardMessage);
+    // Bonus scoring logic if applicable
     if (challengeMode) {
       if (Object.keys(hintUsage).length === 0) {
         score += 20;
-        feedbackDisplay.innerHTML = 'Correct! Bonus: <span class="bonus">+20!</span>';
+        feedbackDisplay.innerHTML += ' <span class="bonus">+20!</span>';
         speak("Bonus! 20 extra points for no hints.");
       }
       if (timeLeft > (parseInt(timerSettingSelect.value) * 0.5)) {
