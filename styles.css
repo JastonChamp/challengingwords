@@ -5,10 +5,10 @@
   box-sizing: border-box;
 }
 
-/* Default dark mode styling */
+/* Default dark mode styling using vibrant pastel hues */
 body {
-  background-color: #2c3e50; /* Dark blue */
-  color: #ecf0f1; /* Light text */
+  background-color: #4a6fa5; /* Pastel dark blue */
+  color: #f0f8ff; /* Light, soft text */
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
   padding: 20px;
@@ -28,6 +28,42 @@ body.dyslexia {
   font-family: "OpenDyslexic", sans-serif;
 }
 
+/* Guided Tour Modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  color: #2c3e50;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+}
+.modal-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.modal-btn:hover {
+  background: #45a049;
+}
+
 /* Header Styles */
 header {
   text-align: center;
@@ -38,36 +74,30 @@ header {
   position: relative;
   transition: background 0.3s;
 }
-
-/* Dark mode header */
 body:not(.light-mode) header {
-  background: linear-gradient(135deg, #34495e, #2c3e50);
+  background: linear-gradient(135deg, #5a7db1, #4a6fa5);
 }
-
-/* Light mode header */
 body.light-mode header {
   background: linear-gradient(135deg, #fbc02d, #f1c40f);
 }
-
 h1 {
   font-size: 2.8em;
   font-family: "Lora", serif;
   transition: color 0.3s;
 }
 body:not(.light-mode) h1 {
-  color: #ecf0f1;
+  color: #f0f8ff;
 }
 body.light-mode h1 {
   color: #2c3e50;
 }
-
 .instructions {
   font-size: 1.2em;
   margin-top: 10px;
   transition: color 0.3s;
 }
 body:not(.light-mode) .instructions {
-  color: #bdc3c7;
+  color: #e0e0e0;
 }
 body.light-mode .instructions {
   color: #2c3e50;
@@ -90,7 +120,7 @@ body.light-mode .instructions {
   background-color: #fdd835;
 }
 
-/* Wizard Advice Styles */
+/* Wizard Advice Styles with Expanded Mascots */
 #wizard-advice {
   padding: 15px;
   border-radius: 5px;
@@ -99,20 +129,23 @@ body.light-mode .instructions {
   margin-bottom: 20px;
   position: relative;
   transition: background 0.3s, color 0.3s;
-  box-shadow: 0 0 10px rgba(251, 192, 45, 0.6);
+  box-shadow: 0 0 10px rgba(251,192,45,0.6);
 }
 body:not(.light-mode) #wizard-advice {
-  background-color: #34495e;
-  color: #ecf0f1;
+  background-color: #4a6fa5;
+  color: #f0f8ff;
 }
 body.light-mode #wizard-advice {
   background-color: #fff3e0;
   color: #2c3e50;
 }
 .wizard-mascot {
+  width: 40px;
+  margin-right: 10px;
+}
+.sidekick-mascot {
   width: 30px;
   vertical-align: middle;
-  margin-right: 10px;
 }
 
 /* Sidebar Styles */
@@ -124,11 +157,11 @@ body.light-mode #wizard-advice {
   height: 100%;
   padding: 20px;
   overflow-y: auto;
-  transition: background 0.3s, color 0.3s, transform 0.3s ease;
+  transition: background 0.3s, color 0.3s;
 }
 body:not(.light-mode) .sidebar {
-  background-color: #2c3e50;
-  color: #ecf0f1;
+  background-color: #3a5276;
+  color: #f0f8ff;
 }
 body.light-mode .sidebar {
   background-color: #dcedc8;
@@ -171,7 +204,7 @@ body.light-mode .sidebar {
   text-align: center;
 }
 
-/* Collapsible sidebar on mobile */
+/* Mobile Adjustments for Sidebar */
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
@@ -191,7 +224,7 @@ main {
   transition: background 0.3s;
 }
 body:not(.light-mode) main {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
+  background: linear-gradient(135deg, #4a6fa5, #3a5276);
 }
 body.light-mode main {
   background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
@@ -213,7 +246,6 @@ body.light-mode main {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 2px solid #2ecc71;
   min-width: 300px;
-  /* Scroll-like texture */
   background-image: url('scroll-texture.png');
   background-size: cover;
 }
@@ -225,7 +257,7 @@ body.light-mode main {
   color: #2c3e50;
 }
 body:not(.light-mode) #passage-text {
-  color: #ecf0f1;
+  color: #f0f8ff;
 }
 #word-box {
   flex: 1;
@@ -282,7 +314,7 @@ body:not(.light-mode) #passage-text {
   color: #2c3e50;
 }
 body:not(.light-mode) .blank {
-  color: #ecf0f1;
+  color: #f0f8ff;
 }
 .blank.drag-over {
   border-color: #ef5350;
@@ -307,7 +339,7 @@ body:not(.light-mode) .blank {
 /* Hint Button (hover reveal, positioned closer to blank) */
 .hint-for-blank {
   position: absolute;
-  top: -20px;  /* Closer to blank */
+  top: -20px;
   right: -10px;
   width: 20px;
   height: 20px;
@@ -320,12 +352,10 @@ body:not(.light-mode) .blank {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;  /* Hidden by default */
+  opacity: 0;
   transition: opacity 0.3s ease, transform 0.2s, background-color 0.2s;
   z-index: 10;
 }
-
-/* Reveal on hover/focus */
 .blank-container:hover .hint-for-blank,
 .blank:focus + .hint-for-blank {
   opacity: 1;
@@ -335,11 +365,10 @@ body:not(.light-mode) .blank {
   background-color: #fdd835;
   animation: pulse 1s infinite;
 }
-
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(251, 192, 45, 0.6); }
-  70% { box-shadow: 0 0 0 10px rgba(251, 192, 45, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(251, 192, 45, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(251,192,45,0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(251,192,45,0); }
+  100% { box-shadow: 0 0 0 0 rgba(251,192,45,0); }
 }
 
 /* Keyword Highlight */
@@ -372,7 +401,7 @@ body:not(.light-mode) .blank {
 }
 body:not(.light-mode) .status-bar {
   background: #2c3e50;
-  color: #ecf0f1;
+  color: #f0f8ff;
 }
 .status-bar span {
   font-size: 1.1em;
@@ -446,7 +475,7 @@ body:not(.light-mode) .status-bar {
   color: #2c3e50;
 }
 body:not(.light-mode) #feedback {
-  color: #ecf0f1;
+  color: #f0f8ff;
 }
 
 /* Animations for Correct/Incorrect Feedback */
