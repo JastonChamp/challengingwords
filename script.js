@@ -1,1021 +1,1103 @@
 "use strict";
 
-// =======================
-// Full Passages Data
-// =======================
+/* =====================================================
+   DATA DEFINITIONS: Adjusted Passages with Primary Levels
+   ===================================================== */
 window.passages = {
-  prepositions: [
-    {
-      text: "Sally placed her bag ___(1)___ the table. She looked ___(2)___ the window and saw a bird. The bird was perched ___(3)___ the fence. Her cat hid ___(4)___ a chair. Sally walked ___(5)___ the door quietly.",
-      wordBox: ["in", "on", "under", "by", "through", "around", "towards"],
-      answers: ["on", "through", "by", "under", "towards"],
-      clueWords: [["bag"], ["window"], ["fence"], ["chair"], ["door"]],
-      hints: [
-        "Which preposition correctly shows the bag’s position relative to the table?",
-        "How is Sally looking out of the window?",
-        "Which preposition best describes the bird’s position on the fence?",
-        "Where is the cat hiding?",
-        "Which direction does Sally move?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "Tom sat ___(1)___ the sofa and watched TV. His mom was cooking ___(2)___ the kitchen. The dog slept ___(3)___ the rug. Tom’s sister played ___(4)___ the garden. Later, they ate dinner ___(5)___ the table.",
-      wordBox: ["on", "in", "under", "by", "around", "at", "near"],
-      answers: ["on", "in", "on", "in", "at"],
-      clueWords: [["sofa"], ["kitchen"], ["rug"], ["garden"], ["table"]],
-      hints: [
-        "Which preposition shows Tom’s position on the sofa?",
-        "Where is his mom cooking?",
-        "Where is the dog sleeping?",
-        "Where does his sister play?",
-        "Where do they eat dinner?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ball rolled ___(1)___ the hill and stopped ___(2)___ a tree. A squirrel ran ___(3)___ the tree and hid ___(4)___ the branches. The children played ___(5)___ the park all day.",
-      wordBox: ["down", "up", "under", "by", "around", "near", "between"],
-      answers: ["down", "by", "up", "in", "in"],
-      clueWords: [["hill"], ["tree"], ["squirrel"], ["branches"], ["park"]],
-      hints: [
-        "Which word shows the ball’s direction down the hill?",
-        "Where did the ball stop relative to the tree?",
-        "How did the squirrel move along the tree?",
-        "Where did the squirrel hide?",
-        "Where did the children play?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The teacher stood ___(1)___ the classroom. She wrote ___(2)___ the whiteboard. The students sat ___(3)___ their desks. A poster hung ___(4)___ the wall. The clock was ___(5)___ the door.",
-      wordBox: ["in", "on", "under", "by", "near", "above", "below"],
-      answers: ["in", "on", "at", "on", "above"],
-      clueWords: [["teacher"], ["whiteboard"], ["desks"], ["poster"], ["door"]],
-      hints: [
-        "Where is the teacher located?",
-        "Where does she write?",
-        "How do the students sit relative to their desks?",
-        "Where is the poster hung?",
-        "Where is the clock in relation to the door?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The fish swam ___(1)___ the pond. A frog jumped ___(2)___ a lily pad. The ducks floated ___(3)___ the water. A boy stood ___(4)___ the bridge and watched. His friend sat ___(5)___ the grass nearby.",
-      wordBox: ["in", "on", "under", "by", "around", "near", "between"],
-      answers: ["in", "on", "on", "at", "on"],
-      clueWords: [["fish"], ["lily pad"], ["ducks"], ["bridge"], ["grass"]],
-      hints: [
-        "Where does the fish swim?",
-        "Where did the frog jump?",
-        "Where do the ducks float?",
-        "Where does the boy stand?",
-        "Where does his friend sit?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The kite flew ___(1)___ the sky. The boy held the string ___(2)___ his hands. The wind blew ___(3)___ the trees. The kite soared ___(4)___ the clouds. His sister cheered ___(5)___ the ground.",
-      wordBox: ["in", "on", "under", "by", "through", "above", "below"],
-      answers: ["in", "in", "through", "above", "on"],
-      clueWords: [["kite"], ["string"], ["wind"], ["clouds"], ["ground"]],
-      hints: [
-        "Which preposition describes the kite’s position in the sky?",
-        "How does the boy hold the string?",
-        "How does the wind move through the trees?",
-        "Where does the kite soar relative to the clouds?",
-        "Where is his sister when she cheers?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The book is ___(1)___ the shelf. A pen rolled ___(2)___ the desk. The bag is ___(3)___ the chair. The teacher walked ___(4)___ the room. A picture hangs ___(5)___ the wall.",
-      wordBox: ["on", "under", "by", "around", "near", "above", "below"],
-      answers: ["on", "under", "under", "around", "on"],
-      clueWords: [["book"], ["pen"], ["bag"], ["teacher"], ["picture"]],
-      hints: [
-        "Which preposition shows where the book is?",
-        "Where did the pen roll?",
-        "Where is the bag located relative to the chair?",
-        "How did the teacher move in the room?",
-        "Where is the picture hung?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The bus stopped ___(1)___ the bus stop. People waited ___(2)___ the shelter. The driver sat ___(3)___ the wheel. A girl looked ___(4)___ her phone. The bus moved ___(5)___ the road.",
-      wordBox: ["at", "in", "on", "under", "by", "near", "along"],
-      answers: ["at", "in", "at", "at", "along"],
-      clueWords: [["bus"], ["shelter"], ["driver"], ["girl"], ["road"]],
-      hints: [
-        "Which preposition indicates where the bus stopped?",
-        "Where did people wait?",
-        "Where did the driver sit?",
-        "Where did the girl look?",
-        "How did the bus move?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The monkey climbed ___(1)___ the tree. It swung ___(2)___ the branches. A bird flew ___(3)___ its nest. The zookeeper stood ___(4)___ the cage. The children watched ___(5)___ the fence.",
-      wordBox: ["up", "on", "under", "by", "around", "near", "to"],
-      answers: ["up", "on", "to", "by", "near"],
-      clueWords: [["monkey"], ["branches"], ["bird"], ["zookeeper"], ["fence"]],
-      hints: [
-        "Which preposition shows the direction of the monkey’s climb?",
-        "How did the monkey swing along the branches?",
-        "Where did the bird fly relative to its nest?",
-        "Where did the zookeeper stand?",
-        "Where did the children watch?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The plate is ___(1)___ the table. A spoon fell ___(2)___ the floor. The soup is ___(3)___ the bowl. Mother cooked ___(4)___ the stove. We ate ___(5)___ the dining room.",
-      wordBox: ["on", "under", "in", "by", "around", "near", "at"],
-      answers: ["on", "on", "in", "at", "in"],
-      clueWords: [["plate"], ["spoon"], ["soup"], ["stove"], ["dining room"]],
-      hints: [
-        "Where is the plate located?",
-        "Where did the spoon fall?",
-        "Where is the soup?",
-        "Where did Mother cook?",
-        "Where did we eat?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The boy ran ___(1)___ the playground. He jumped ___(2)___ a bench. His friends waited ___(3)___ the slide. The ball rolled ___(4)___ the sandpit. They played ___(5)___ the sun set.",
-      wordBox: ["in", "on", "under", "by", "around", "near", "until"],
-      answers: ["around", "over", "by", "into", "until"],
-      clueWords: [["boy"], ["bench"], ["slide"], ["ball"], ["sun"]],
-      hints: [
-        "Which preposition shows where the boy ran?",
-        "How did he jump relative to the bench?",
-        "Where did his friends wait?",
-        "How did the ball roll?",
-        "Until when did they play?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The rain fell ___(1)___ the roof. The cat slept ___(2)___ the mat. A puddle formed ___(3)___ the house. The girl stood ___(4)___ an umbrella. The dog ran ___(5)___ the rain.",
-      wordBox: ["on", "under", "by", "around", "near", "through", "in"],
-      answers: ["on", "on", "near", "under", "through"],
-      clueWords: [["rain"], ["cat"], ["puddle"], ["umbrella"], ["dog"]],
-      hints: [
-        "Where does the rain fall?",
-        "Where does the cat sleep?",
-        "Where is the puddle formed?",
-        "Where does the girl stand?",
-        "How does the dog run relative to the rain?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The flag is ___(1)___ the pole. The wind blew ___(2)___ the school. The students stood ___(3)___ the field. A bell rang ___(4)___ the building. They walked ___(5)___ their classrooms.",
-      wordBox: ["on", "in", "under", "by", "around", "near", "to"],
-      answers: ["on", "around", "on", "in", "to"],
-      clueWords: [["flag"], ["wind"], ["students"], ["bell"], ["classrooms"]],
-      hints: [
-        "Where is the flag located?",
-        "How did the wind blow?",
-        "Where did the students stand?",
-        "Where did the bell ring?",
-        "Which direction did they walk?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The boat floated ___(1)___ the river. A fish swam ___(2)___ the water. The man fished ___(3)___ the bank. A bird flew ___(4)___ the boat. The net was ___(5)___ the deck.",
-      wordBox: ["on", "in", "under", "by", "around", "near", "above"],
-      answers: ["on", "in", "by", "above", "on"],
-      clueWords: [["boat"], ["fish"], ["bank"], ["bird"], ["net"]],
-      hints: [
-        "Which preposition best describes where the boat floats?",
-        "Where does the fish swim?",
-        "Where does the man fish?",
-        "Where did the bird fly relative to the boat?",
-        "Where is the net placed?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The plane flew ___(1)___ the clouds. The pilot sat ___(2)___ the cockpit. Passengers looked ___(3)___ the windows. The luggage was ___(4)___ the seats. The airport was ___(5)___ the city.",
-      wordBox: ["in", "on", "under", "by", "through", "near", "below"],
-      answers: ["through", "in", "out", "under", "near"],
-      clueWords: [["plane"], ["pilot"], ["passengers"], ["luggage"], ["airport"]],
-      hints: [
-        "Which word shows how the plane moved through the clouds?",
-        "Where does the pilot sit?",
-        "How do passengers look out?",
-        "Where is the luggage located?",
-        "Where is the airport in relation to the city?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    }
-  ],
-  conjunctions: [
-    {
-      text: "Tom wanted to go outside ___(1)___ it was raining. He waited ___(2)___ the rain stopped ___(3)___ then ran to the park. He could play ___(4)___ read a book, ___(5)___ he chose to play.",
-      wordBox: ["but", "and", "or", "until", "because", "so", "although"],
-      answers: ["but", "until", "and", "or", "so"],
-      clueWords: [["outside"], ["rain"], ["park"], ["play"], ["chose"]],
-      hints: [
-        "Which conjunction shows contrast in the sentence?",
-        "How long did he wait?",
-        "What happened after the rain stopped?",
-        "What are his two options?",
-        "Which conjunction shows the result of his choice?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "I like apples ___(1)___ bananas. My sister likes oranges ___(2)___ grapes. We both like strawberries ___(3)___ they are sweet. Sometimes we eat fruit ___(4)___ breakfast ___(5)___ for a snack.",
-      wordBox: ["and", "but", "or", "because", "so", "although", "after"],
-      answers: ["and", "and", "because", "for", "or"],
-      clueWords: [["apples"], ["oranges"], ["strawberries"], ["breakfast"], ["snack"]],
-      hints: [
-        "Which conjunction adds ideas?",
-        "Which conjunction is used again to add similar ideas?",
-        "Which word gives the reason for liking strawberries?",
-        "When is fruit eaten?",
-        "What choice is given for a snack?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The dog barked loudly ___(1)___ the cat meowed softly. They were hungry ___(2)___ they wanted food. The owner fed them ___(3)___ they stopped making noise. Later, the dog slept ___(4)___ the cat played. They are friends ___(5)___ they sometimes fight.",
-      wordBox: ["and", "but", "or", "because", "so", "although", "after"],
-      answers: ["while", "so", "and", "while", "although"],
-      clueWords: [["dog"], ["hungry"], ["fed"], ["cat"], ["fight"]],
-      hints: [
-        "Which conjunction shows the contrasting simultaneous actions of the dog and the cat?",
-        "Why did they behave in that way?",
-        "What connects the feeding event?",
-        "How are the two activities (sleeping and playing) related?",
-        "Which word shows the unexpected contrast?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "I can go to the park ___(1)___ stay home. If I go to the park, I will play ___(2)___ my friends. If I stay home, I will read ___(3)___ watch TV. I think I will go ___(4)___ it is sunny. My mom said I can go ___(5)___ I finish my homework.",
-      wordBox: ["or", "and", "but", "because", "so", "if", "unless"],
-      answers: ["or", "with", "or", "because", "if"],
-      clueWords: [["park"], ["play"], ["read"], ["sunny"], ["homework"]],
-      hints: [
-        "Which word indicates a choice between two options?",
-        "Who will you play with?",
-        "What is the alternative activity?",
-        "What reason is given for going out?",
-        "What condition must be met to go out?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The children were tired ___(1)___ they kept playing. They wanted to win ___(2)___ they tried hard. The coach cheered ___(3)___ they scored a goal. After the game, they were happy ___(4)___ exhausted. They celebrated ___(5)___ they went home.",
-      wordBox: ["but", "and", "or", "because", "so", "although", "after"],
-      answers: ["but", "so", "when", "but", "before"],
-      clueWords: [["children"], ["win"], ["cheered"], ["happy"], ["home"]],
-      hints: [
-        "Which conjunction shows the contrast between tiredness and action?",
-        "What is the result of trying hard?",
-        "When did the coach cheer?",
-        "What juxtaposition is presented after the game?",
-        "What is the sequence before going home?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The sky was dark ___(1)___ it might rain. I took an umbrella ___(2)___ I didn’t want to get wet. It started raining ___(3)___ I reached the bus stop. I waited there ___(4)___ the rain stopped. I was glad ___(5)___ I stayed dry.",
-      wordBox: ["but", "and", "or", "because", "so", "until", "after"],
-      answers: ["so", "because", "when", "until", "because"],
-      clueWords: [["sky"], ["umbrella"], ["raining"], ["bus stop"], ["dry"]],
-      hints: [
-        "Which word links the dark sky with the possibility of rain?",
-        "Why did I take an umbrella?",
-        "When did it start raining?",
-        "How long did I wait?",
-        "Why was I glad?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "I wanted to eat rice ___(1)___ noodles. My brother chose noodles ___(2)___ he likes them more. We ate together ___(3)___ we shared the food. It was spicy ___(4)___ tasty. We drank water ___(5)___ we finished.",
-      wordBox: ["or", "and", "but", "because", "so", "although", "after"],
-      answers: ["or", "because", "and", "but", "after"],
-      clueWords: [["rice"], ["noodles"], ["together"], ["spicy"], ["water"]],
-      hints: [
-        "Which word indicates a choice between rice and noodles?",
-        "Why did my brother choose noodles?",
-        "What did we do together?",
-        "How are the flavors contrasted?",
-        "What did we drink after eating?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    }
-  ],
-  subjectVerbAgreement: [
-    {
-      text: "The dog ___(1)___ loudly every morning. The cats ___(2)___ quietly in the garden. Each child ___(3)___ a toy. The team ___(4)___ hard to win. Many birds ___(5)___ in the sky.",
-      wordBox: ["bark", "barks", "sleep", "sleeps", "has", "have", "work", "works", "fly", "flies"],
-      answers: ["barks", "sleep", "has", "works", "fly"],
-      clueWords: [["dog"], ["cats"], ["child"], ["team"], ["birds"]],
-      hints: [
-        "Which verb form matches the singular 'dog'?",
-        "Which form is used with plural 'cats'?",
-        "What verb form does 'each child' require?",
-        "How should the team be treated?",
-        "What form should be used for 'birds'?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "My friend ___(1)___ to school every day. The students ___(2)___ their homework. Each teacher ___(3)___ a classroom. The books ___(4)___ on the shelf. The bird ___(5)___ in the tree.",
-      wordBox: ["walk", "walks", "do", "does", "have", "has", "are", "is", "sing", "sings"],
-      answers: ["walks", "do", "has", "are", "sings"],
-      clueWords: [["friend"], ["students"], ["teacher"], ["books"], ["bird"]],
-      hints: [
-        "Which verb form fits 'my friend'?",
-        "What do plural students do with homework?",
-        "Which form is needed for 'each teacher'?",
-        "How are the books arranged?",
-        "What verb form agrees with 'the bird'?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The flowers ___(1)___ beautifully in the garden. Each flower ___(2)___ a different color. The bees ___(3)___ around the flowers. The gardener ___(4)___ the plants every day. Many insects ___(5)___ in the garden.",
-      wordBox: ["bloom", "blooms", "have", "has", "buzz", "buzzes", "water", "waters", "live", "lives"],
-      answers: ["bloom", "has", "buzz", "waters", "live"],
-      clueWords: [["flowers"], ["flower"], ["bees"], ["gardener"], ["insects"]],
-      hints: [
-        "Which verb form is used with plural 'flowers'?",
-        "Which form fits the singular 'flower'?",
-        "What verb is used for plural 'bees'?",
-        "Which form is required for 'the gardener'?",
-        "How do we treat the plural 'insects'?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The car ___(1)___ fast on the road. The drivers ___(2)___ carefully. Each passenger ___(3)___ a seatbelt. The buses ___(4)___ slowly in traffic. The motorcycle ___(5)___ loudly.",
-      wordBox: ["go", "goes", "drive", "drives", "wear", "wears", "move", "moves", "roar", "roars"],
-      answers: ["goes", "drive", "wears", "move", "roars"],
-      clueWords: [["car"], ["drivers"], ["passenger"], ["buses"], ["motorcycle"]],
-      hints: [
-        "Which verb agrees with the singular 'car'?",
-        "What verb form is used for plural 'drivers'?",
-        "What is required for each passenger?",
-        "How are the buses treated?",
-        "What verb form fits the singular 'motorcycle'?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The baby ___(1)___ in the crib. The parents ___(2)___ the baby. Each toy ___(3)___ a different sound. The children ___(4)___ with the toys. The dog ___(5)___ the children play.",
-      wordBox: ["sleep", "sleeps", "watch", "watches", "make", "makes", "play", "plays", "watch", "watches"],
-      answers: ["sleeps", "watch", "makes", "play", "watches"],
-      clueWords: [["baby"], ["parents"], ["toy"], ["children"], ["dog"]],
-      hints: [
-        "Which form fits 'the baby'?",
-        "What do parents do?",
-        "How does 'each toy' behave?",
-        "What do the children do?",
-        "Which verb form agrees with 'the dog'?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    }
-  ],
-  pronouns: [
-    {
-      text: "Mary lost ___(1)___ book yesterday. She asked John if ___(2)___ had seen it. He said that ___(3)___ didn’t know where it was. ___(4)___ both looked for it. Later, ___(5)___ found it under the desk.",
-      wordBox: ["she", "her", "he", "him", "they", "them", "it"],
-      answers: ["her", "he", "he", "they", "she"],
-      clueWords: [["Mary"], ["John"], ["book"], ["both"], ["desk"]],
-      hints: [
-        "Which pronoun replaces Mary’s book?",
-        "Who did Mary ask?",
-        "Who didn’t know where it was?",
-        "Who looked for the book?",
-        "Where was the book eventually found?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The cat chased ___(1)___ tail. ___(2)___ was very playful. The dog watched ___(3)___ and barked. ___(4)___ both ran around the yard. Later, ___(5)___ rested under the tree.",
-      wordBox: ["it", "its", "he", "him", "they", "them", "she"],
-      answers: ["its", "It", "it", "They", "they"],
-      clueWords: [["cat"], ["tail"], ["dog"], ["both"], ["tree"]],
-      hints: [
-        "Which pronoun shows possession for the cat?",
-        "What is the cat’s tail like?",
-        "What did the dog do?",
-        "Who ran around?",
-        "Where did they rest?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "Tom and Jerry are friends. ___(1)___ play together every day. ___(2)___ share their toys. Sometimes, ___(3)___ argue, but ___(4)___ always make up. ___(5)___ are best friends.",
-      wordBox: ["They", "He", "She", "It", "We", "You", "Them"],
-      answers: ["They", "They", "they", "they", "They"],
-      clueWords: [["Tom"], ["Jerry"], ["toys"], ["argue"], ["friends"]],
-      hints: [
-        "Which pronoun refers to Tom and Jerry?",
-        "What do they do together?",
-        "What happens sometimes between them?",
-        "What is their resolution?",
-        "How are they described as friends?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The teacher gave ___(1)___ a test. ___(2)___ was difficult, but ___(3)___ all tried their best. After the test, ___(4)___ graded the papers. ___(5)___ were proud of their work.",
-      wordBox: ["us", "it", "they", "she", "he", "them", "we"],
-      answers: ["us", "It", "they", "she", "They"],
-      clueWords: [["teacher"], ["test"], ["tried"], ["graded"], ["proud"]],
-      hints: [
-        "Who did the teacher give the test to?",
-        "How was the test described?",
-        "What did everyone do?",
-        "Who graded the papers?",
-        "How did they feel about their work?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The bird built ___(1)___ nest in the tree. ___(2)___ laid eggs in ___(3)___ nest. The chicks hatched and ___(4)___ chirped loudly. The mother bird fed ___(5)___ worms.",
-      wordBox: ["it", "its", "she", "her", "they", "them", "he"],
-      answers: ["its", "She", "her", "they", "them"],
-      clueWords: [["bird"], ["nest"], ["eggs"], ["chicks"], ["worms"]],
-      hints: [
-        "Which pronoun shows possession for the bird’s nest?",
-        "Who laid the eggs?",
-        "Whose nest is it?",
-        "How did the chicks behave?",
-        "What did the mother bird feed them?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The boy dropped ___(1)___ pencil. ___(2)___ picked it up quickly. The girl next to ___(3)___ smiled. ___(4)___ both laughed about it. Later, ___(5)___ gave her a new pencil.",
-      wordBox: ["he", "him", "his", "she", "her", "they", "them"],
-      answers: ["his", "He", "her", "They", "he"],
-      clueWords: [["boy"], ["pencil"], ["girl"], ["laughed"], ["new"]],
-      hints: [
-        "Which pronoun shows ownership of the pencil?",
-        "Who picked it up?",
-        "Who smiled?",
-        "What did they do together?",
-        "Who gave a new pencil?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The dog wagged ___(1)___ tail. ___(2)___ ran to the park. The children played with ___(3)___ . ___(4)___ all had fun together. The dog licked ___(5)___ hands.",
-      wordBox: ["it", "its", "he", "him", "they", "them", "us"],
-      answers: ["its", "It", "it", "They", "their"],
-      clueWords: [["dog"], ["park"], ["children"], ["fun"], ["hands"]],
-      hints: [
-        "Which pronoun shows possession for the tail?",
-        "What did it do?",
-        "What did the children do?",
-        "How did everyone have fun?",
-        "What did the dog do to the hands?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "My sister and I went shopping. ___(1)___ bought new shoes. ___(2)___ tried them on. The shopkeeper helped ___(3)___ . ___(4)___ thanked him. ___(5)___ was very kind.",
-      wordBox: ["we", "us", "she", "her", "he", "him", "they"],
-      answers: ["We", "We", "us", "We", "He"],
-      clueWords: [["sister"], ["shoes"], ["shopkeeper"], ["tried"], ["kind"]],
-      hints: [
-        "Who bought new shoes?",
-        "Who tried the shoes on?",
-        "Who helped?",
-        "Who thanked the shopkeeper?",
-        "How was the shopkeeper described?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The teacher called ___(1)___ to the front. ___(2)___ asked John a question. ___(3)___ answered correctly. The class clapped for ___(4)___ . ___(5)___ smiled proudly.",
-      wordBox: ["he", "him", "she", "her", "they", "them", "us"],
-      answers: ["him", "She", "he", "him", "He"],
-      clueWords: [["called"], ["John"], ["answered"], ["clapped"], ["smiled"]],
-      hints: [
-        "Who was called to the front?",
-        "Who asked the question?",
-        "Who answered?",
-        "For whom did the class clap?",
-        "Who smiled proudly?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The kite flew high. ___(1)___ caught the wind. The boy held ___(2)___ string. His sister watched ___(3)___ . ___(4)___ both cheered loudly. ___(5)___ waved at them.",
-      wordBox: ["it", "its", "he", "him", "she", "her", "they"],
-      answers: ["It", "its", "it", "They", "she"],
-      clueWords: [["kite"], ["wind"], ["string"], ["cheered"], ["waved"]],
-      hints: [
-        "Which word indicates what caught the wind?",
-        "What does the boy hold?",
-        "Who is being watched?",
-        "What did both do?",
-        "Who waved?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The baby dropped ___(1)___ toy. He cried loudly. The mother picked ___(2)___ up. She hugged him tightly. Everyone smiled at him.",
-      wordBox: ["it", "its", "he", "him", "she", "her", "they", "everyone"],
-      answers: ["its", "He", "it", "She", "Everyone"],
-      clueWords: [["baby"], ["toy"], ["mother"], ["hugged"], ["smiled"]],
-      hints: [
-        "Which pronoun shows possession for the toy?",
-        "Who cried?",
-        "What did the mother pick up?",
-        "Who hugged tightly?",
-        "Who smiled?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The team won the game. ___(1)___ celebrated together. The coach praised ___(2)___ . ___(3)___ all cheered loudly. The trophy was for ___(4)___ . ___(5)___ held it high.",
-      wordBox: ["they", "them", "he", "him", "we", "us", "it"],
-      answers: ["They", "them", "They", "them", "They"],
-      clueWords: [["team"], ["celebrated"], ["coach"], ["trophy"], ["held"]],
-      hints: [
-        "Which pronoun represents the team?",
-        "What did they do together?",
-        "Who did the coach praise?",
-        "For whom was the trophy?",
-        "Who held it high?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The flower lost ___(1)___ petals. They fell to the ground. The girl picked ___(2)___ up. She showed them to her friend. She liked the color.",
-      wordBox: ["it", "its", "she", "her", "they", "them"],
-      answers: ["its", "them", "them", "She", "she"],
-      clueWords: [["flower"], ["petals"], ["girl"], ["showed"], ["color"]],
-      hints: [
-        "Which pronoun shows the flower’s petals?",
-        "What happened to the petals?",
-        "Who picked them up?",
-        "Who showed them to her friend?",
-        "Who liked the color?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The bus stopped for ___(1)___ . ___(2)___ got on quickly. The driver waved at ___(3)___ . ___(4)___ all sat down. ___(5)___ started the bus again.",
-      wordBox: ["we", "us", "they", "them", "he", "him", "it"],
-      answers: ["us", "We", "us", "We", "He"],
-      clueWords: [["bus"], ["stopped"], ["driver"], ["sat"], ["started"]],
-      hints: [
-        "Which pronoun indicates who the bus stopped for?",
-        "Who got on quickly?",
-        "Who did the driver wave at?",
-        "Who sat down?",
-        "Who started the bus again?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The monkey stole ___(1)___ banana. ___(2)___ ate it fast. The zookeeper chased ___(3)___ . ___(4)___ laughed at the monkey. ___(5)___ was funny.",
-      wordBox: ["it", "its", "he", "him", "they", "them", "us"],
-      answers: ["its", "It", "it", "They", "It"],
-      clueWords: [["monkey"], ["banana"], ["zookeeper"], ["laughed"], ["funny"]],
-      hints: [
-        "Which pronoun shows possession for the banana?",
-        "Who ate it?",
-        "Who did the zookeeper chase?",
-        "Who laughed?",
-        "What was funny?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    }
-  ],
-  adjectivesAdverbs: [
-    {
-      text: "The ___(1)___ cat ran ___(2)___ across the yard. It jumped ___(3)___ onto the fence. The boy watched ___(4)___ as it moved ___(5)___ toward the tree.",
-      wordBox: ["quick", "quickly", "high", "highly", "soft", "softly", "careful", "carefully", "silent", "silently"],
-      answers: ["quick", "quickly", "high", "carefully", "silently"],
-      clueWords: [["cat"], ["ran"], ["jumped"], ["watched"], ["tree"]],
-      hints: [
-        "What describes the cat?",
-        "How did the cat run?",
-        "How high did it jump?",
-        "How did the boy watch?",
-        "How did it move toward the tree?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ sun shone ___(2)___ in the sky. The children played ___(3)___ in the park. They laughed ___(4)___ as they ran ___(5)___ the slides.",
-      wordBox: ["bright", "brightly", "happy", "happily", "loud", "loudly", "down", "slow", "slowly"],
-      answers: ["bright", "brightly", "happily", "loudly", "down"],
-      clueWords: [["sun"], ["shone"], ["children"], ["laughed"], ["slides"]],
-      hints: [
-        "What describes the sun?",
-        "How did the sun shine?",
-        "How did the children play?",
-        "How did they laugh?",
-        "Which direction did they run?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ puppy barked ___(2)___ at the mailman. It wagged its tail ___(3)___ when it saw its owner. The owner petted it ___(4)___ and spoke ___(5)___ to it.",
-      wordBox: ["small", "smallly", "loud", "loudly", "quick", "quickly", "gentle", "gently", "soft", "softly"],
-      answers: ["small", "loudly", "quickly", "gently", "softly"],
-      clueWords: [["puppy"], ["barked"], ["tail"], ["petted"], ["spoke"]],
-      hints: [
-        "What describes the puppy?",
-        "How did it bark?",
-        "How did it wag its tail?",
-        "How did the owner pet it?",
-        "How did the owner speak?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ teacher explained the lesson ___(2)___. The students listened ___(3)___ and took notes ___(4)___. They all worked ___(5)___ on their assignments.",
-      wordBox: ["kind", "kindly", "clear", "clearly", "attentive", "attentively", "careful", "carefully", "hard", "hardly"],
-      answers: ["kind", "clearly", "attentively", "carefully", "hard"],
-      clueWords: [["teacher"], ["explained"], ["listened"], ["notes"], ["assignments"]],
-      hints: [
-        "What describes the teacher?",
-        "How did she explain?",
-        "How did the students listen?",
-        "How did they take notes?",
-        "How much effort did they put into their work?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ wind blew ___(2)___ through the trees. The leaves rustled ___(3)___ as they fell ___(4)___ to the ground. The children played ___(5)___ in the park.",
-      wordBox: ["strong", "strongly", "soft", "softly", "gentle", "gently", "slow", "slowly", "happy", "happily"],
-      answers: ["strong", "strongly", "softly", "slowly", "happily"],
-      clueWords: [["wind"], ["blew"], ["rustled"], ["fell"], ["park"]],
-      hints: [
-        "What describes the wind?",
-        "How did it blow?",
-        "How did the leaves rustle?",
-        "How did they fall?",
-        "How did the children play?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ kite flew ___(2)___ in the sky. The boy pulled the string ___(3)___. It rose ___(4)___ above the trees. He smiled ___(5)___ at his success.",
-      wordBox: ["colorful", "colorfully", "high", "highly", "tight", "tightly", "quick", "quickly", "happy", "happily"],
-      answers: ["colorful", "high", "tightly", "high", "happily"],
-      clueWords: [["kite"], ["flew"], ["string"], ["rose"], ["smiled"]],
-      hints: [
-        "What describes the kite?",
-        "How high did it fly?",
-        "How did the boy pull the string?",
-        "How high did it rise?",
-        "How did he smile?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ bird sang ___(2)___ in the morning. It perched ___(3)___ on a branch. The children listened ___(4)___ to the song. The tune was ___(5)___ to hear.",
-      wordBox: ["pretty", "prettily", "sweet", "sweetly", "high", "highly", "quiet", "quietly", "nice", "nicely"],
-      answers: ["pretty", "sweetly", "high", "quietly", "nice"],
-      clueWords: [["bird"], ["sang"], ["perched"], ["listened"], ["tune"]],
-      hints: [
-        "What describes the bird?",
-        "How did it sing?",
-        "How high did it perch?",
-        "How did the children listen?",
-        "What describes the tune?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ rain fell ___(2)___ on the roof. The girl watched ___(3)___ as it dripped ___(4)___. The sound was ___(5)___ and calming.",
-      wordBox: ["heavy", "heavily", "soft", "softly", "careful", "carefully", "slow", "slowly", "gentle", "gently"],
-      answers: ["heavy", "heavily", "carefully", "slowly", "gentle"],
-      clueWords: [["rain"], ["fell"], ["watched"], ["dripped"], ["sound"]],
-      hints: [
-        "What describes the rain?",
-        "How did it fall?",
-        "How did the girl watch?",
-        "How did it drip?",
-        "What describes the sound?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ boy ran ___(2)___ to the bus. He waved ___(3)___ at his friends. The bus moved ___(4)___ down the road. He sat ___(5)___ in his seat.",
-      wordBox: ["fast", "fastly", "quick", "quickly", "happy", "happily", "slow", "slowly", "quiet", "quietly"],
-      answers: ["fast", "quickly", "happily", "slowly", "quietly"],
-      clueWords: [["boy"], ["ran"], ["waved"], ["moved"], ["seat"]],
-      hints: [
-        "What describes the boy?",
-        "How did he run?",
-        "How did he wave?",
-        "How did the bus move?",
-        "How did he sit?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ cake smelled ___(2)___ in the oven. The baker mixed the batter ___(3)___ . It baked ___(4)___ and turned ___(5)___ brown.",
-      wordBox: ["sweet", "sweetly", "nice", "nicely", "careful", "carefully", "slow", "slowly", "golden", "goldenly"],
-      answers: ["sweet", "nicely", "carefully", "slowly", "golden"],
-      clueWords: [["cake"], ["smelled"], ["batter"], ["baked"], ["turned"]],
-      hints: [
-        "What describes the cake?",
-        "How did it smell?",
-        "How did the baker mix?",
-        "How did it bake?",
-        "What describes its color?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ dog barked ___(2)___ at strangers. It wagged its tail ___(3)___ for its owner. The owner called ___(4)___ to it. The dog ran ___(5)___ to him.",
-      wordBox: ["big", "bigly", "loud", "loudly", "happy", "happily", "soft", "softly", "quick", "quickly"],
-      answers: ["big", "loudly", "happily", "softly", "quickly"],
-      clueWords: [["dog"], ["barked"], ["tail"], ["called"], ["ran"]],
-      hints: [
-        "What describes the dog?",
-        "How did it bark?",
-        "How did it wag its tail?",
-        "How did the owner call?",
-        "How did the dog run?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ flowers grew ___(2)___ in the garden. The gardener watered them ___(3)___ . They smelled ___(4)___ and looked ___(5)___ in the sun.",
-      wordBox: ["tall", "tallly", "quick", "quickly", "careful", "carefully", "sweet", "sweetly", "pretty", "prettily"],
-      answers: ["tall", "quickly", "carefully", "sweet", "pretty"],
-      clueWords: [["flowers"], ["grew"], ["watered"], ["smelled"], ["looked"]],
-      hints: [
-        "What describes the flowers?",
-        "How did they grow?",
-        "How did the gardener water?",
-        "How did they smell?",
-        "What describes their appearance?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ MRT moved ___(2)___ through the tunnel. The driver worked ___(3)___ . Passengers stood ___(4)___ and waited ___(5)___ for their stations.",
-      wordBox: ["fast", "fastly", "smooth", "smoothly", "careful", "carefully", "quiet", "quietly", "calm", "calmly"],
-      answers: ["fast", "smoothly", "carefully", "quietly", "calmly"],
-      clueWords: [["MRT"], ["moved"], ["driver"], ["passengers"], ["stations"]],
-      hints: [
-        "What describes the MRT?",
-        "How did it move?",
-        "How did the driver work?",
-        "How did passengers stand?",
-        "How did they wait?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The ___(1)___ hawker cooked ___(2)___ for the crowd. The food smelled ___(3)___ and tasted ___(4)___ . Customers ate ___(5)___ at the tables.",
-      wordBox: ["busy", "busily", "quick", "quickly", "good", "well", "nice", "nicely", "happy", "happily"],
-      answers: ["busy", "quickly", "nice", "well", "happily"],
-      clueWords: [["hawker"], ["cooked"], ["smelled"], ["tasted"], ["tables"]],
-      hints: [
-        "What describes the hawker?",
-        "How did he cook?",
-        "What describes the smell?",
-        "How did the food taste?",
-        "How did customers eat?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    }
-  ],
-  tenses: [
-    {
-      text: "I ___(1)___ to the park yesterday. My friends ___(2)___ there with me. We ___(3)___ games and ___(4)___ a picnic. The sun ___(5)___ brightly all day.",
-      wordBox: ["go", "went", "was", "were", "play", "played", "have", "had", "shine", "shone"],
-      answers: ["went", "were", "played", "had", "shone"],
-      clueWords: [["yesterday"], ["friends"], ["games"], ["picnic"], ["sun"]],
-      hints: [
-        "What did I do yesterday?",
-        "Where were my friends?",
-        "What did we do with games?",
-        "What did we have?",
-        "How did the sun behave all day?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "She ___(1)___ her homework now. She ___(2)___ it last night. Her brother ___(3)___ TV while she works. They ___(4)___ dinner later. Yesterday, they ___(5)___ at a restaurant.",
-      wordBox: ["do", "does", "did", "watch", "watches", "have", "had", "ate", "eat"],
-      answers: ["does", "did", "watches", "have", "ate"],
-      clueWords: [["now"], ["last night"], ["TV"], ["dinner"], ["restaurant"]],
-      hints: [
-        "What is she doing now?",
-        "What did she do last night?",
-        "What does her brother do?",
-        "What will they do later?",
-        "What did they do yesterday?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The dog ___(1)___ in the yard every morning. Yesterday, it ___(2)___ a bone. It ___(3)___ happy when it found it. We ___(4)___ it play. Tomorrow, we ___(5)___ it again.",
-      wordBox: ["run", "runs", "find", "found", "is", "was", "watch", "watched", "see", "will see"],
-      answers: ["runs", "found", "was", "watched", "will see"],
-      clueWords: [["morning"], ["bone"], ["happy"], ["play"], ["tomorrow"]],
-      hints: [
-        "What does the dog do every morning?",
-        "What did it do yesterday?",
-        "How did it feel?",
-        "What did we do?",
-        "What will we do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "We ___(1)___ to school every day. Last week, we ___(2)___ a school trip. The bus ___(3)___ us there. We ___(4)___ fun all day. Tomorrow, we ___(5)___ a test.",
-      wordBox: ["go", "went", "take", "took", "have", "had", "write", "will write", "are"],
-      answers: ["go", "went", "took", "had", "will write"],
-      clueWords: [["every day"], ["school trip"], ["bus"], ["fun"], ["test"]],
-      hints: [
-        "What do we do every day?",
-        "What did we do last week?",
-        "How did the bus help us?",
-        "What did we experience?",
-        "What will we do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "He ___(1)___ his bike now. Yesterday, he ___(2)___ to the park. He ___(3)___ with his friends there. They ___(4)___ ice cream after playing. Tomorrow, he ___(5)___ again.",
-      wordBox: ["ride", "rides", "go", "went", "play", "played", "eat", "ate", "will go"],
-      answers: ["rides", "went", "played", "ate", "will go"],
-      clueWords: [["bike"], ["park"], ["friends"], ["ice cream"], ["tomorrow"]],
-      hints: [
-        "What is he doing now?",
-        "Where did he go yesterday?",
-        "What did he do there?",
-        "What did they eat?",
-        "What will he do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The teacher ___(1)___ the class every day. Last month, she ___(2)___ us a story. We ___(3)___ it very much. Now, we ___(4)___ a new book. Next week, we ___(5)___ a quiz.",
-      wordBox: ["teach", "teaches", "tell", "told", "like", "liked", "read", "reads", "will have"],
-      answers: ["teaches", "told", "liked", "read", "will have"],
-      clueWords: [["class"], ["story"], ["liked"], ["new book"], ["quiz"]],
-      hints: [
-        "What does the teacher do every day?",
-        "What did she do last month?",
-        "How did we feel about it?",
-        "What are we doing now?",
-        "What will we do next week?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The birds ___(1)___ in the tree now. Yesterday, they ___(2)___ away. They ___(3)___ back today. We ___(4)___ them sing. Tomorrow, they ___(5)___ again.",
-      wordBox: ["sing", "sings", "fly", "flew", "come", "came", "hear", "heard", "will sing"],
-      answers: ["sing", "flew", "came", "hear", "will sing"],
-      clueWords: [["now"], ["away"], ["back"], ["sing"], ["tomorrow"]],
-      hints: [
-        "What are the birds doing now?",
-        "What did they do yesterday?",
-        "What did they do today?",
-        "What do we do?",
-        "What will they do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "I ___(1)___ my room every weekend. Last weekend, I ___(2)___ it thoroughly. My mom ___(3)___ happy with me. She ___(4)___ me a treat. Next weekend, I ___(5)___ it again.",
-      wordBox: ["clean", "cleans", "cleaned", "is", "was", "give", "gave", "will clean"],
-      answers: ["clean", "cleaned", "was", "gave", "will clean"],
-      clueWords: [["room"], ["last weekend"], ["happy"], ["treat"], ["next weekend"]],
-      hints: [
-        "What do I do every weekend?",
-        "What did I do last weekend?",
-        "How did my mom feel?",
-        "What did she do?",
-        "What will I do next weekend?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "She ___(1)___ to school every day. Yesterday, she ___(2)___ late. Her teacher ___(3)___ her a note. She ___(4)___ it home. Tomorrow, she ___(5)___ early.",
-      wordBox: ["go", "goes", "arrive", "arrived", "give", "gave", "take", "took", "will come"],
-      answers: ["goes", "arrived", "gave", "took", "will come"],
-      clueWords: [["every day"], ["late"], ["teacher"], ["home"], ["early"]],
-      hints: [
-        "What does she do every day?",
-        "What happened yesterday?",
-        "What did her teacher do?",
-        "What did she do with the note?",
-        "What will she do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The cat ___(1)___ on the mat now. Last night, it ___(2)___ a mouse. It ___(3)___ proud of itself. We ___(4)___ it yesterday. Tomorrow, we ___(5)___ it again.",
-      wordBox: ["sit", "sits", "catch", "caught", "feel", "felt", "see", "saw", "will watch"],
-      answers: ["sits", "caught", "felt", "saw", "will watch"],
-      clueWords: [["cat"], ["mouse"], ["proud"], ["yesterday"], ["tomorrow"]],
-      hints: [
-        "What is the cat doing now?",
-        "What did it do last night?",
-        "How did it feel?",
-        "What did we do yesterday?",
-        "What will we do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "We ___(1)___ a movie every weekend. Last weekend, we ___(2)___ a comedy. It ___(3)___ us laugh. Now, we ___(4)___ a new one. Next week, we ___(5)___ another.",
-      wordBox: ["watch", "watches", "see", "saw", "make", "made", "choose", "chose", "will watch"],
-      answers: ["watch", "saw", "made", "choose", "will watch"],
-      clueWords: [["movie"], ["comedy"], ["laugh"], ["new"], ["next week"]],
-      hints: [
-        "What do we do every weekend?",
-        "What did we do last weekend?",
-        "What did the comedy do?",
-        "What are we doing now?",
-        "What will we do next week?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The boy ___(1)___ soccer every afternoon. Yesterday, he ___(2)___ a goal. His team ___(3)___ the game. Now, he ___(4)___ with his friends. Tomorrow, they ___(5)___ again.",
-      wordBox: ["play", "plays", "score", "scored", "win", "won", "talk", "talks", "will play"],
-      answers: ["plays", "scored", "won", "talks", "will play"],
-      clueWords: [["soccer"], ["goal"], ["game"], ["friends"], ["tomorrow"]],
-      hints: [
-        "What does the boy do every afternoon?",
-        "What did he do yesterday?",
-        "What did his team do?",
-        "What is he doing now?",
-        "What will they do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The rain ___(1)___ every spring. Last year, it ___(2)___ heavily. The flowers ___(3)___ beautifully after that. Now, it ___(4)___ again. Next spring, it ___(5)___ more.",
-      wordBox: ["fall", "falls", "rain", "rained", "grow", "grew", "drops", "will fall"],
-      answers: ["falls", "rained", "grew", "drops", "will fall"],
-      clueWords: [["spring"], ["heavily"], ["flowers"], ["again"], ["next spring"]],
-      hints: [
-        "What does the rain do every spring?",
-        "What did it do last year?",
-        "What did the flowers do?",
-        "What is it doing now?",
-        "What will it do next spring?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "I ___(1)___ breakfast every morning. Yesterday, I ___(2)___ pancakes. They ___(3)___ delicious. Now, I ___(4)___ cereal. Tomorrow, I ___(5)___ eggs.",
-      wordBox: ["eat", "eats", "make", "made", "taste", "tasted", "have", "has", "will cook"],
-      answers: ["eat", "made", "tasted", "have", "will cook"],
-      clueWords: [["breakfast"], ["pancakes"], ["delicious"], ["cereal"], ["eggs"]],
-      hints: [
-        "What do I do every morning?",
-        "What did I do last night?",
-        "How were the pancakes?",
-        "What am I doing now?",
-        "What will I do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    },
-    {
-      text: "The bus ___(1)___ passengers every day. Last night, it ___(2)___ late. The driver ___(3)___ sorry. Now, it ___(4)___ on time. Tomorrow, it ___(5)___ early.",
-      wordBox: ["carry", "carries", "arrive", "arrived", "feel", "felt", "runs", "run", "will start"],
-      answers: ["carries", "arrived", "felt", "runs", "will start"],
-      clueWords: [["passengers"], ["late"], ["sorry"], ["on time"], ["early"]],
-      hints: [
-        "What does the bus do every day?",
-        "What did it do last night?",
-        "How did the driver feel?",
-        "What is it doing now?",
-        "What will it do tomorrow?"
-      ],
-      hint: "Remember to use the objects around you as clues."
-    }
-  ]
+  prepositions: {
+    P1: [
+      {
+        text: "Ahmad placed his bag ___ the table in his HDB flat. He looked ___ the window and saw a bird. The bird was perched ___ the fence. His cat hid ___ a chair. Ahmad walked ___ the door quietly.",
+        wordBox: ["in", "on", "under", "by", "through"],
+        answers: ["on", "through", "by", "under", "towards"],
+        clueWords: [["bag"], ["window"], ["fence"], ["chair"], ["door"]],
+        hints: [
+          "Which preposition shows the bag’s position on the table?",
+          "How is Ahmad looking out of the window?",
+          "Which preposition best describes the bird’s position on the fence?",
+          "Where is the cat hiding?",
+          "Which direction does Ahmad move?"
+        ],
+        hint: "Use the objects around you as clues.",
+        explanation: "Use 'on' for surfaces, 'through' for viewing out of a window, 'by' for nearness, 'under' for below, and 'towards' for direction."
+      },
+      {
+        text: "Emma placed her book ___ the desk. She looked ___ the window as rain fell outside. Her backpack was left ___ the chair. A photo was taped ___ the wall. Her friend sat ___ the table.",
+        wordBox: ["on", "through", "under", "at", "beside"],
+        answers: ["on", "through", "under", "at", "beside"],
+        clueWords: [
+          ["book", "desk"],
+          ["window"],
+          ["backpack"],
+          ["photo", "wall"],
+          ["friend", "table"]
+        ],
+        hints: [
+          "Which preposition shows the book's position on the desk?",
+          "How did she look at the window?",
+          "Where is the backpack located?",
+          "Where was the photo taped?",
+          "Where did her friend sit?"
+        ],
+        hint: "Observe the position of each object.",
+        explanation: "Prepositions indicate where things are placed or how one moves around them."
+      },
+      {
+        text: "Liam put his hat ___ his head as he walked ___ the park. He sat ___ a bench and placed his bag ___ his lap. Then, he strolled ___ the street.",
+        wordBox: ["on", "through", "on", "in", "along"],
+        answers: ["on", "through", "on", "in", "along"],
+        clueWords: [
+          ["hat", "head"],
+          ["park"],
+          ["bench"],
+          ["bag", "lap"],
+          ["street"]
+        ],
+        hints: [
+          "Which preposition fits with a hat on a head?",
+          "How did he move inside the park?",
+          "Where did he sit?",
+          "Where was his bag placed?",
+          "How did he move along the street?"
+        ],
+        hint: "Match the preposition to the object’s position.",
+        explanation: "The passage shows placement and movement using prepositions."
+      },
+      {
+        text: "Mia hung her jacket ___ the hook. She walked ___ the corridor and stopped ___ a door. A poster was displayed ___ the wall. Then, she sat ___ a chair.",
+        wordBox: ["on", "along", "at", "on"],
+        answers: ["on", "along", "at", "on", "on"],
+        clueWords: [
+          ["jacket", "hook"],
+          ["corridor"],
+          ["door"],
+          ["poster", "wall"],
+          ["chair"]
+        ],
+        hints: [
+          "Which preposition shows that the jacket is hung on the hook?",
+          "How did she walk in the corridor?",
+          "Where did she stop?",
+          "Where was the poster displayed?",
+          "Where did she sit?"
+        ],
+        hint: "Match each preposition with its corresponding object.",
+        explanation: "Prepositions like 'on', 'along', and 'at' indicate position and movement."
+      },
+      {
+        text: "Ben put his toy car ___ the rug. He rolled it ___ the floor, and it stopped ___ a chair. Then, he looked ___ the window and smiled ___ his delight.",
+        wordBox: ["on", "across", "by", "at", "with"],
+        answers: ["on", "across", "by", "at", "with"],
+        clueWords: [
+          ["toy car", "rug"],
+          ["floor"],
+          ["chair"],
+          ["window"],
+          ["delight"]
+        ],
+        hints: [
+          "Which preposition shows the car is placed on the rug?",
+          "How did it roll on the floor?",
+          "Where did it stop?",
+          "Where did he look?",
+          "How did he express his emotion?"
+        ],
+        hint: "Consider the spatial relationships described.",
+        explanation: "This passage uses prepositions to show placement and movement."
+      }
+    ],
+    P2: [
+      {
+        text: "Priya sat ___ the sofa in her HDB living room and watched TV. Her mum was cooking ___ the kitchen. The dog slept ___ the rug. Priya’s brother played ___ the void deck. Later, they ate dinner ___ the table.",
+        wordBox: ["on", "in", "on", "at", "at"],
+        answers: ["on", "in", "on", "at", "at"],
+        clueWords: [
+          ["sofa"],
+          ["kitchen"],
+          ["rug"],
+          ["void deck"],
+          ["table"]
+        ],
+        hints: [
+          "Which preposition shows Priya’s position on the sofa?",
+          "Where is her mum cooking?",
+          "Where does the dog sleep?",
+          "Where does her brother play?",
+          "Where do they eat dinner?"
+        ],
+        hint: "Look at the room layout for clues.",
+        explanation: "Different prepositions denote specific positions in a room."
+      },
+      {
+        text: "Ravi pinned his artwork ___ the bulletin board. It was positioned ___ the center of the display. His friends gathered ___ the painting. The teacher smiled ___ the arrangement, and the principal approved it ___ the corridor.",
+        wordBox: ["on", "at", "around", "at", "in"],
+        answers: ["on", "at", "around", "at", "in"],
+        clueWords: [
+          ["artwork", "bulletin board"],
+          ["center"],
+          ["painting"],
+          ["arrangement"],
+          ["corridor"]
+        ],
+        hints: [
+          "Which preposition indicates the artwork is pinned on the board?",
+          "How is it positioned in the display?",
+          "Where did his friends gather?",
+          "How did the teacher react to the arrangement?",
+          "Where was the principal’s approval given?"
+        ],
+        hint: "Match each clue to the right preposition.",
+        explanation: "Prepositions like 'on', 'at', and 'around' clarify spatial positioning."
+      },
+      {
+        text: "During the school assembly, Anya walked ___ the stage, stood ___ the podium to address the audience, the spotlight shone ___ her, the crowd clapped ___ her performance, and she smiled ___ joy.",
+        wordBox: ["onto", "at", "on", "for", "with"],
+        answers: ["onto", "at", "on", "for", "with"],
+        clueWords: [
+          ["stage"],
+          ["podium"],
+          ["spotlight"],
+          ["crowd", "performance"],
+          ["smiled", "joy"]
+        ],
+        hints: [
+          "Which preposition fits when walking onto the stage?",
+          "Where did she stand?",
+          "How did the spotlight shine?",
+          "For what did the crowd clap?",
+          "How did she express her emotion?"
+        ],
+        hint: "Connect the movement and feelings with the proper prepositions.",
+        explanation: "This passage shows a sequence of actions using prepositions."
+      },
+      {
+        text: "During recess, Jayden kicked a ball ___ the field. It bounced ___ the wall and rolled ___ the playground. His friends ran ___ to catch it, and they laughed ___ the fun.",
+        wordBox: ["across", "off", "through", "to", "at"],
+        answers: ["across", "off", "through", "to", "at"],
+        clueWords: [
+          ["ball", "field"],
+          ["wall"],
+          ["playground"],
+          ["friends"],
+          ["fun"]
+        ],
+        hints: [
+          "Which preposition shows the ball's movement across the field?",
+          "How did it bounce off the wall?",
+          "Where did it roll?",
+          "Where did his friends run?",
+          "How did they react to the fun?"
+        ],
+        hint: "Observe the motion in the scene.",
+        explanation: "Prepositions illustrate dynamic actions and movement."
+      },
+      {
+        text: "In the school library, Maya arranged the books neatly ___ the shelves. She placed the novels ___ one section, the encyclopedias ___ another, and the magazines ___ the bottom. Finally, she labeled them ___ care.",
+        wordBox: ["on", "in", "in", "at", "with"],
+        answers: ["on", "in", "in", "at", "with"],
+        clueWords: [
+          ["books", "shelves"],
+          ["novels"],
+          ["encyclopedias"],
+          ["magazines", "bottom"],
+          ["labeled"]
+        ],
+        hints: [
+          "Which preposition shows where the books are arranged?",
+          "Where were the novels placed?",
+          "How about the encyclopedias?",
+          "Where were the magazines set?",
+          "Which preposition indicates the method of labeling?"
+        ],
+        hint: "Examine the library layout for clues.",
+        explanation: "Prepositions here denote organization and spatial arrangement."
+      }
+    ],
+    P3: [
+      {
+        text: "The kite flew ___ the sky above the HDB estate. The boy held the string ___ his hands. The wind blew ___ the trees near the playground. The kite soared ___ the clouds. His sister cheered ___ the ground.",
+        wordBox: ["in", "on", "under", "by", "through", "above", "below"],
+        answers: ["in", "in", "through", "above", "on"],
+        clueWords: [
+          ["kite", "sky"],
+          ["string", "hands"],
+          ["wind", "trees"],
+          ["kite", "clouds"],
+          ["sister", "ground"]
+        ],
+        hints: [
+          "Which preposition describes the kite’s position in the sky?",
+          "How did the boy hold the string?",
+          "How did the wind move through the trees?",
+          "Where did the kite soar relative to the clouds?",
+          "Where was his sister when she cheered?"
+        ],
+        hint: "Match each spatial detail to the right preposition.",
+        explanation: "Prepositions indicate both location and movement."
+      },
+      {
+        text: "At the community center, Raj walked ___ the corridor and admired the artwork displayed ___ the walls. He stopped ___ the window to watch the rain, then continued ___ the staircase and arrived ___ the main hall.",
+        wordBox: ["along", "on", "at", "up", "in"],
+        answers: ["along", "on", "at", "up", "in"],
+        clueWords: [
+          ["community center", "corridor"],
+          ["artwork", "walls"],
+          ["window"],
+          ["staircase"],
+          ["main hall"]
+        ],
+        hints: [
+          "Which preposition fits with walking along a corridor?",
+          "How is the artwork displayed?",
+          "Where did he stop?",
+          "How did he ascend the staircase?",
+          "Where did he arrive?"
+        ],
+        hint: "Follow the path described in the sentence.",
+        explanation: "The passage shows directional movement using prepositions."
+      },
+      {
+        text: "During the school trip, Lina climbed ___ the mountain. She walked ___ a narrow path and reached a clearing ___ the summit. The view stretched ___ the valley, and she could see the river flowing ___ the distance.",
+        wordBox: ["up", "along", "at", "across", "in"],
+        answers: ["up", "along", "at", "across", "in"],
+        clueWords: [
+          ["climbed", "mountain"],
+          ["narrow path"],
+          ["clearing", "summit"],
+          ["view", "valley"],
+          ["river", "distance"]
+        ],
+        hints: [
+          "Which preposition fits with climbing up a mountain?",
+          "How did she walk on the path?",
+          "Where did she reach?",
+          "How did the view stretch?",
+          "Where was the river flowing?"
+        ],
+        hint: "Visualize the landscape to select the correct words.",
+        explanation: "This sentence uses prepositions to indicate vertical and horizontal movement."
+      },
+      {
+        text: "In the science lab, Michael set up his experiment ___ a workbench. He measured the chemicals ___ exact proportions, and the reaction began ___ a flash. He observed the process ___ a microscope and recorded the data ___ his notebook.",
+        wordBox: ["on", "in", "with", "under", "in"],
+        answers: ["on", "in", "with", "under", "in"],
+        clueWords: [
+          ["experiment", "workbench"],
+          ["chemicals", "proportions"],
+          ["reaction", "flash"],
+          ["microscope"],
+          ["data", "notebook"]
+        ],
+        hints: [
+          "Which preposition shows that the experiment is set up on a workbench?",
+          "How were the chemicals measured?",
+          "How did the reaction begin?",
+          "Where did he observe the process?",
+          "How was the data recorded?"
+        ],
+        hint: "Consider the lab setup when choosing prepositions.",
+        explanation: "Prepositions here indicate placement and manner in a scientific setting."
+      },
+      {
+        text: "During the debate, the speaker addressed the audience ___ confidence. He argued his points ___ clarity, and his ideas flowed ___ the discussion. The moderator interjected ___ critical moments, yet the speaker maintained his composure ___ the session.",
+        wordBox: ["with", "with", "throughout", "at", "during"],
+        answers: ["with", "with", "throughout", "at", "during"],
+        clueWords: [
+          ["speaker", "audience"],
+          ["argued", "points"],
+          ["ideas", "discussion"],
+          ["moderator", "moments"],
+          ["composure", "session"]
+        ],
+        hints: [
+          "Which preposition shows the speaker’s manner of addressing?",
+          "How did he argue his points?",
+          "How did his ideas flow?",
+          "When did the moderator interject?",
+          "How did the speaker maintain his composure?"
+        ],
+        hint: "Select the prepositions that best describe the actions and timing.",
+        explanation: "They detail both the manner and timing of the events."
+      }
+    ]
+  },
+  subjectVerbAgreement: {
+    P1: [
+      {
+        text: "The dog ___ loudly every morning. The cats ___ quietly in the garden.",
+        wordBox: ["bark", "barks", "sleep", "sleeps"],
+        answers: ["barks", "sleep"],
+        clueWords: [["dog"], ["cats"]],
+        hints: [
+          "Which verb form matches the singular 'dog'?",
+          "Which form is used with the plural 'cats'?"
+        ],
+        hint: "Match the subject with the correct verb form.",
+        explanation: "Singular subjects take singular verbs; plural subjects take plural verbs."
+      },
+      {
+        text: "Each child ___ a toy. The teams ___ for victory.",
+        wordBox: ["have", "has", "play", "plays"],
+        answers: ["has", "play"],
+        clueWords: [["child"], ["teams"]],
+        hints: [
+          "Which verb form fits 'each child'?",
+          "Which verb form fits 'teams'?"
+        ],
+        hint: "Identify singular versus plural subjects.",
+        explanation: "Each child is singular and takes 'has'; teams is plural and takes 'play'."
+      },
+      {
+        text: "The bird ___ in the sky. The bees ___ around the flowers.",
+        wordBox: ["fly", "flies", "buzz", "buzzes"],
+        answers: ["flies", "buzz"],
+        clueWords: [["bird"], ["bees"]],
+        hints: [
+          "Which form fits with 'the bird'?",
+          "Which form is correct for 'the bees'?"
+        ],
+        hint: "Choose the verb that agrees with each subject.",
+        explanation: "A singular bird 'flies' while plural bees 'buzz'."
+      },
+      {
+        text: "My friend ___ to school every day. The students ___ their homework.",
+        wordBox: ["go", "goes", "do", "does"],
+        answers: ["goes", "do"],
+        clueWords: [["friend"], ["students"]],
+        hints: [
+          "Which verb fits 'my friend'?",
+          "Which verb fits 'the students'?"
+        ],
+        hint: "Determine if the subject is singular or plural.",
+        explanation: "The singular 'friend' takes 'goes' and plural 'students' take 'do'."
+      },
+      {
+        text: "The teacher ___ the lesson clearly. The pupils ___ attentively.",
+        wordBox: ["explain", "explains", "listen", "listens"],
+        answers: ["explains", "listen"],
+        clueWords: [["teacher"], ["pupils"]],
+        hints: [
+          "Which form fits the singular 'teacher'?",
+          "Which form fits the plural 'pupils'?"
+        ],
+        hint: "Use the correct subject–verb agreement.",
+        explanation: "The teacher (singular) 'explains' while the pupils (plural) 'listen'."
+      }
+    ],
+    P2: [
+      {
+        text: "My friend ___ to school every day. The students ___ their homework.",
+        wordBox: ["walk", "walks", "do", "does"],
+        answers: ["walks", "do"],
+        clueWords: [["friend"], ["students"]],
+        hints: [
+          "Which verb form fits 'my friend'?",
+          "Which form fits 'the students'?"
+        ],
+        hint: "Match the subject with its verb.",
+        explanation: "A singular friend 'walks' while plural students 'do'."
+      },
+      {
+        text: "Each teacher ___ a classroom. The principals ___ in the office.",
+        wordBox: ["manage", "manages", "work", "works"],
+        answers: ["manages", "work"],
+        clueWords: [["teacher"], ["principals"]],
+        hints: [
+          "Which form fits 'each teacher'?",
+          "Which fits 'principals'?"
+        ],
+        hint: "Singular versus plural subject rules apply.",
+        explanation: "Each teacher (singular) 'manages' and principals (plural) 'work'."
+      },
+      {
+        text: "The car ___ fast on the road. The drivers ___ carefully.",
+        wordBox: ["drive", "drives", "move", "moves"],
+        answers: ["drives", "drive"],
+        clueWords: [["car"], ["drivers"]],
+        hints: [
+          "Which verb fits 'the car'?",
+          "Which verb fits 'the drivers'?"
+        ],
+        hint: "Check the subject’s number.",
+        explanation: "The singular car 'drives' and plural drivers 'drive'."
+      },
+      {
+        text: "The boy ___ his bicycle every morning. The girls ___ to school together.",
+        wordBox: ["ride", "rides", "go", "goes"],
+        answers: ["rides", "go"],
+        clueWords: [["boy"], ["girls"]],
+        hints: [
+          "Which form fits 'the boy'?",
+          "Which form fits 'the girls'?"
+        ],
+        hint: "Singular and plural subjects require different verb forms.",
+        explanation: "The boy (singular) 'rides'; the girls (plural) 'go'."
+      },
+      {
+        text: "The flowers ___ in the garden beautifully. Each bloom ___ a unique color.",
+        wordBox: ["grow", "grows", "have", "has"],
+        answers: ["grow", "has"],
+        clueWords: [["flowers"], ["bloom"]],
+        hints: [
+          "Which verb form fits 'the flowers'?",
+          "Which verb fits 'each bloom'?"
+        ],
+        hint: "Match plural and singular subjects with their verbs.",
+        explanation: "Flowers (plural) 'grow', while each bloom (singular) 'has' its own color."
+      }
+    ],
+    P3: [
+      {
+        text: "The students ___ their assignments diligently. Every student ___ to complete them on time.",
+        wordBox: ["submit", "submits", "try", "tries"],
+        answers: ["submit", "tries"],
+        clueWords: [["students"], ["every student"]],
+        hints: [
+          "Which form fits the plural 'students'?",
+          "Which form fits the singular 'every student'?"
+        ],
+        hint: "Use the correct verb form for each subject.",
+        explanation: "Plural 'students' take 'submit'; singular 'every student' takes 'tries'."
+      },
+      {
+        text: "In the debate, the speakers ___ persuasively. Each argument ___ a strong point.",
+        wordBox: ["argue", "argues", "contain", "contains"],
+        answers: ["argue", "contains"],
+        clueWords: [["speakers"], ["each argument"]],
+        hints: [
+          "Which verb fits 'the speakers'?",
+          "Which verb fits 'each argument'?"
+        ],
+        hint: "Identify the proper verb forms for plural and singular subjects.",
+        explanation: "Speakers (plural) 'argue' while each argument (singular) 'contains' a point."
+      },
+      {
+        text: "The committee ___ its decision unanimously. All members ___ to the final outcome.",
+        wordBox: ["reach", "reaches", "agree", "agrees"],
+        answers: ["reaches", "agree"],
+        clueWords: [["committee"], ["members"]],
+        hints: [
+          "Which form fits 'the committee'?",
+          "Which form fits 'all members'?"
+        ],
+        hint: "Remember that collective nouns are treated as singular.",
+        explanation: "The committee (treated as singular) 'reaches'; members (plural) 'agree'."
+      },
+      {
+        text: "At the concert, the band ___ energetically. Each musician ___ a unique role.",
+        wordBox: ["perform", "performs", "plays", "play"],
+        answers: ["performs", "plays"],
+        clueWords: [["band"], ["musician"]],
+        hints: [
+          "Which verb fits 'the band'?",
+          "Which verb fits 'each musician'?"
+        ],
+        hint: "Apply subject–verb agreement rules.",
+        explanation: "The band (singular) 'performs' while each musician (singular) 'plays'."
+      },
+      {
+        text: "The books ___ on the shelf and ___ inspiring stories. Every novel ___ its own adventure.",
+        wordBox: ["tell", "tells", "contain", "contains"],
+        answers: ["tell", "contain", "contains"],
+        clueWords: [["books"], ["novel"]],
+        hints: [
+          "Which form fits 'the books'?",
+          "Which verb correctly describes the stories in the books?",
+          "Which form fits 'every novel'?"
+        ],
+        hint: "Match plural subjects with plural verbs and singular with singular.",
+        explanation: "Books (plural) 'tell' and 'contain'; every novel (singular) 'contains' an adventure."
+      }
+    ]
+  },
+  pronouns: {
+    P1: [
+      {
+        text: "Mary lost ___ book yesterday. ___ asked John if he had seen it.",
+        wordBox: ["she", "her", "he"],
+        answers: ["her", "She"],
+        clueWords: [["Mary"], ["John"]],
+        hints: [
+          "Which pronoun shows possession for Mary?",
+          "Who asked John?"
+        ],
+        hint: "Use the correct possessive and subject pronoun.",
+        explanation: "'Her' indicates possession; 'She' is the subject."
+      },
+      {
+        text: "The cat chased ___ tail. ___ was very playful.",
+        wordBox: ["it", "its", "he"],
+        answers: ["its", "It"],
+        clueWords: [["cat"], ["tail"]],
+        hints: [
+          "Which pronoun shows possession for the cat?",
+          "Which pronoun refers to the cat?"
+        ],
+        hint: "Select the proper pronouns.",
+        explanation: "'Its' shows possession; 'It' refers to the cat."
+      },
+      {
+        text: "Tom and Jerry are friends. ___ play together every day. ___ share their toys.",
+        wordBox: ["they", "he", "she"],
+        answers: ["They", "They"],
+        clueWords: [["Tom"], ["Jerry"]],
+        hints: [
+          "Which pronoun refers to both Tom and Jerry?",
+          "Which pronoun shows that they share?"
+        ],
+        hint: "Use plural pronouns.",
+        explanation: "'They' is used for plural subjects."
+      },
+      {
+        text: "The teacher gave ___ a test. ___ was difficult, but ___ all tried their best.",
+        wordBox: ["us", "it", "they", "we"],
+        answers: ["us", "it", "we"],
+        clueWords: [["teacher"], ["test"], ["all"]],
+        hints: [
+          "Which pronoun receives the test?",
+          "How is the test described?",
+          "Who tried their best?"
+        ],
+        hint: "Choose the correct object and subject pronouns.",
+        explanation: "'Us' is the object; 'it' describes the test; 'we' is the subject."
+      },
+      {
+        text: "The bird built ___ nest in the tree. ___ laid eggs, and the chicks hatched while ___ chirped.",
+        wordBox: ["its", "she", "her", "they"],
+        answers: ["its", "she", "they"],
+        clueWords: [["bird"], ["eggs"], ["chicks"]],
+        hints: [
+          "Which pronoun shows possession for the nest?",
+          "Who laid the eggs?",
+          "Which pronoun refers to the chicks?"
+        ],
+        hint: "Use the correct possessive and subject pronouns.",
+        explanation: "'Its' shows possession; 'she' is the subject; 'they' refers to the chicks."
+      }
+    ],
+    P2: [
+      {
+        text: "The teacher called ___ to the front. ___ asked John a question. ___ answered correctly.",
+        wordBox: ["him", "she", "he"],
+        answers: ["him", "She", "he"],
+        clueWords: [["called"], ["John"], ["answered"]],
+        hints: [
+          "Who was called to the front?",
+          "Who asked the question?",
+          "Who answered correctly?"
+        ],
+        hint: "Distinguish between object and subject pronouns.",
+        explanation: "'Him' is the object; 'She' and 'he' are used as subjects."
+      },
+      {
+        text: "The dog wagged ___ tail and chased ___ ball. ___ ran around the yard.",
+        wordBox: ["its", "it", "he"],
+        answers: ["its", "its", "It"],
+        clueWords: [["dog", "tail"], ["ball"], ["ran"]],
+        hints: [
+          "Which pronoun shows possession for the tail?",
+          "Which pronoun refers to the ball?",
+          "Which pronoun represents the dog?"
+        ],
+        hint: "Select the appropriate pronouns.",
+        explanation: "'Its' indicates possession; 'It' is used as the subject."
+      },
+      {
+        text: "My sister and I went shopping. ___ bought new shoes. ___ tried them on, and ___ shared our finds.",
+        wordBox: ["we", "us", "she", "I"],
+        answers: ["We", "I", "we"],
+        clueWords: [["sister", "I"], ["shoes"], ["shared", "finds"]],
+        hints: [
+          "Which pronoun represents both of us?",
+          "Which pronoun shows the one who tried them on?",
+          "Which pronoun indicates shared action?"
+        ],
+        hint: "Use appropriate pronouns for multiple subjects.",
+        explanation: "The pronouns 'We', 'I', and 'we' are used to show collective and individual actions."
+      },
+      {
+        text: "The coach gave ___ instructions before the game. ___ explained the strategy clearly, and ___ motivated the team.",
+        wordBox: ["us", "he", "him", "they"],
+        answers: ["us", "he", "he"],
+        clueWords: [["coach", "instructions"], ["explained"], ["motivated", "team"]],
+        hints: [
+          "Which pronoun receives the instructions?",
+          "Which pronoun refers to the coach?",
+          "Which pronoun describes the coach's motivating action?"
+        ],
+        hint: "Match subject and object pronouns correctly.",
+        explanation: "'Us' is used as an object; 'he' is the subject."
+      },
+      {
+        text: "The artist displayed ___ paintings at the gallery. ___ received many compliments, and ___ was praised for her creativity.",
+        wordBox: ["her", "she", "they"],
+        answers: ["her", "she", "she"],
+        clueWords: [["artist", "paintings"], ["compliments"], ["creativity"]],
+        hints: [
+          "Which pronoun shows possession of the paintings?",
+          "Which pronoun is the subject of the sentence?",
+          "Which pronoun refers to the artist?"
+        ],
+        hint: "Use possessive and subject pronouns appropriately.",
+        explanation: "'Her' indicates possession; 'she' is the subject."
+      }
+    ],
+    P3: [
+      {
+        text: "In the meeting, the manager gave ___ a briefing. ___ summarized the report, and ___ all contributed ideas.",
+        wordBox: ["his", "he", "they", "them"],
+        answers: ["his", "he", "they"],
+        clueWords: [["manager", "briefing"], ["summarized", "report"], ["contributed", "ideas"]],
+        hints: [
+          "Which pronoun shows the manager's possession?",
+          "Which pronoun refers to the manager?",
+          "Which pronoun represents the group?"
+        ],
+        hint: "Use possessive and plural pronouns.",
+        explanation: "'His' shows possession; 'he' is the subject; 'they' refers to the team."
+      },
+      {
+        text: "The scientist observed the specimen and recorded ___ details. ___ then analyzed it under the microscope.",
+        wordBox: ["its", "she", "it"],
+        answers: ["its", "she", "it"],
+        clueWords: [["specimen", "details"], ["analyzed", "microscope"]],
+        hints: [
+          "Which pronoun indicates the specimen's details?",
+          "Which pronoun refers to the scientist?",
+          "Which pronoun replaces 'the specimen'?"
+        ],
+        hint: "Choose correct pronouns.",
+        explanation: "'Its' denotes possession; 'she' is the subject; 'it' stands for the specimen."
+      },
+      {
+        text: "The committee reviewed the proposal, and ___ reached a consensus. ___ agreed that ___ plan was innovative.",
+        wordBox: ["they", "their"],
+        answers: ["they", "they", "their"],
+        clueWords: [["committee"], ["consensus"], ["plan"]],
+        hints: [
+          "Which pronoun refers to the committee?",
+          "Which pronoun shows the group's decision?",
+          "Which pronoun indicates possession of the plan?"
+        ],
+        hint: "Use plural pronouns for groups.",
+        explanation: "'They' and 'their' are used for the committee and its proposal."
+      },
+      {
+        text: "In the classroom, each student submitted ___ assignment. ___ were graded by the teacher, who returned ___ promptly.",
+        wordBox: ["their", "were", "them"],
+        answers: ["their", "were", "them"],
+        clueWords: [["student", "assignment"], ["graded"], ["returned"]],
+        hints: [
+          "Which pronoun shows possession of the assignment?",
+          "Which form is used for multiple assignments?",
+          "Which pronoun refers to the assignments?"
+        ],
+        hint: "Use singular 'their' as modern usage and a plural pronoun for the assignments.",
+        explanation: "Each student’s assignment is marked with 'their' and the assignments are returned as 'them'."
+      },
+      {
+        text: "The actor delivered ___ monologue with passion. ___ captivated the audience, and ___ performance was applauded.",
+        wordBox: ["his", "he", "him"],
+        answers: ["his", "he", "his"],
+        clueWords: [["actor", "monologue"], ["captivated", "audience"], ["performance"]],
+        hints: [
+          "Which pronoun indicates possession for the monologue?",
+          "Which pronoun refers to the actor?",
+          "Which pronoun shows possession for the performance?"
+        ],
+        hint: "Use the correct possessive and subject pronouns.",
+        explanation: "'His' indicates possession; 'he' is the subject."
+      }
+    ]
+  },
+  adjectivesAdverbs: {
+    P1: [
+      {
+        text: "The ___ cat ran ___ across the yard.",
+        wordBox: ["quick", "quickly", "slow", "slowly"],
+        answers: ["quick", "quickly"],
+        clueWords: [["cat"], ["ran"]],
+        hints: [
+          "Which adjective describes the cat?",
+          "Which adverb describes how it ran?"
+        ],
+        hint: "Match the adjective with the noun and the adverb with the verb.",
+        explanation: "'Quick' describes the cat; 'quickly' describes the manner of running."
+      },
+      {
+        text: "The ___ dog barked ___ at strangers.",
+        wordBox: ["big", "bigly", "loud", "loudly"],
+        answers: ["big", "loudly"],
+        clueWords: [["dog"], ["barked"]],
+        hints: [
+          "Which adjective describes the dog?",
+          "Which adverb describes how it barked?"
+        ],
+        hint: "Select appropriate descriptive words.",
+        explanation: "'Big' describes the dog’s size; 'loudly' describes its bark."
+      },
+      {
+        text: "The ___ flower bloomed ___ in the garden.",
+        wordBox: ["small", "smallly", "beautiful", "beautifully"],
+        answers: ["small", "beautifully"],
+        clueWords: [["flower"], ["bloomed"]],
+        hints: [
+          "Which adjective describes the flower?",
+          "Which adverb describes how it bloomed?"
+        ],
+        hint: "Choose adjectives and adverbs that suit nature.",
+        explanation: "'Small' describes the flower; 'beautifully' describes its blooming."
+      },
+      {
+        text: "The ___ bird sang ___ in the morning.",
+        wordBox: ["happy", "happily", "loud", "loudly"],
+        answers: ["happy", "loudly"],
+        clueWords: [["bird"], ["sang"]],
+        hints: [
+          "Which adjective describes the bird?",
+          "Which adverb describes how it sang?"
+        ],
+        hint: "Use descriptive words for mood and action.",
+        explanation: "'Happy' describes the bird’s mood; 'loudly' describes its song."
+      },
+      {
+        text: "The ___ kite flew ___ in the sky.",
+        wordBox: ["colorful", "colorfully", "high", "highly"],
+        answers: ["colorful", "high"],
+        clueWords: [["kite"], ["flew"]],
+        hints: [
+          "Which adjective describes the kite?",
+          "Which word best describes its position in the sky?"
+        ],
+        hint: "Select words that depict appearance and altitude.",
+        explanation: "'Colorful' describes the kite’s look; 'high' indicates its altitude."
+      }
+    ],
+    P2: [
+      {
+        text: "The ___ sun shone ___ in the sky.",
+        wordBox: ["bright", "brightly", "soft", "softly"],
+        answers: ["bright", "brightly"],
+        clueWords: [["sun"], ["shone"]],
+        hints: [
+          "Which adjective describes the sun?",
+          "Which adverb describes how it shone?"
+        ],
+        hint: "Match brightness with the proper descriptors.",
+        explanation: "'Bright' describes the sun; 'brightly' describes its shining."
+      },
+      {
+        text: "The children played ___ in the park and laughed ___.",
+        wordBox: ["joyful", "joyfully", "happily", "merrily"],
+        answers: ["joyfully", "happily"],
+        clueWords: [["children"], ["played"], ["laughed"]],
+        hints: [
+          "Which adverb describes how the children played?",
+          "Which adverb describes how they laughed?"
+        ],
+        hint: "Select adverbs that show their mood.",
+        explanation: "Both 'joyfully' and 'happily' indicate a cheerful mood."
+      },
+      {
+        text: "The ___ wind blew ___ through the trees.",
+        wordBox: ["strong", "strongly", "soft", "softly"],
+        answers: ["strong", "strongly"],
+        clueWords: [["wind"], ["blew"]],
+        hints: [
+          "Which adjective describes the wind?",
+          "Which adverb describes how it blew?"
+        ],
+        hint: "Use words that capture the force of the wind.",
+        explanation: "'Strong' describes the wind; 'strongly' describes its blowing."
+      },
+      {
+        text: "The ___ cake smelled ___ in the oven.",
+        wordBox: ["delicious", "deliciously", "sweet", "sweetly"],
+        answers: ["delicious", "sweetly"],
+        clueWords: [["cake"], ["smelled"]],
+        hints: [
+          "Which adjective describes the cake?",
+          "Which adverb describes how it smelled?"
+        ],
+        hint: "Choose words that evoke taste and aroma.",
+        explanation: "'Delicious' describes the cake; 'sweetly' describes its aroma."
+      },
+      {
+        text: "The ___ runner dashed ___ to the finish line.",
+        wordBox: ["fast", "fastly", "quick", "quickly"],
+        answers: ["fast", "quickly"],
+        clueWords: [["runner"], ["dashed"]],
+        hints: [
+          "Which adjective describes the runner?",
+          "Which adverb describes how he dashed?"
+        ],
+        hint: "Select words that indicate speed.",
+        explanation: "'Fast' describes the runner; 'quickly' describes his movement."
+      }
+    ],
+    P3: [
+      {
+        text: "The ___ ocean waves crashed ___ against the rocks.",
+        wordBox: ["turbulent", "turbulently", "rough", "roughly", "wild", "wildly"],
+        answers: ["turbulent", "turbulently"],
+        clueWords: [["ocean waves"], ["crashed"]],
+        hints: [
+          "Which adjective best describes the ocean waves?",
+          "Which adverb describes how they crashed?"
+        ],
+        hint: "Use advanced descriptors for natural forces.",
+        explanation: "'Turbulent' describes the waves; 'turbulently' conveys their force."
+      },
+      {
+        text: "The ___ artist skillfully painted a ___ portrait.",
+        wordBox: ["talented", "talentedly", "vivid", "vividly", "creative", "creatively"],
+        answers: ["talented", "vivid"],
+        clueWords: [["artist"], ["painted", "portrait"]],
+        hints: [
+          "Which adjective describes the artist?",
+          "Which adjective best describes the portrait?"
+        ],
+        hint: "Focus on artistry and visual impact.",
+        explanation: "'Talented' describes the artist; 'vivid' captures the portrait’s appearance."
+      },
+      {
+        text: "The ___ wind whispered ___ through the ancient trees.",
+        wordBox: ["mysterious", "mysteriously", "soft", "softly", "gentle", "gently"],
+        answers: ["mysterious", "mysteriously"],
+        clueWords: [["wind"], ["whispered"]],
+        hints: [
+          "Which adjective best describes the wind?",
+          "Which adverb describes how it whispered?"
+        ],
+        hint: "Use descriptive language to set a mood.",
+        explanation: "'Mysterious' creates an intriguing atmosphere; 'mysteriously' sets the tone."
+      },
+      {
+        text: "The ___ professor explained the theory ___ to the eager students.",
+        wordBox: ["erudite", "eruditely", "clearly", "thoroughly"],
+        answers: ["erudite", "clearly"],
+        clueWords: [["professor"], ["explained", "theory"], ["students"]],
+        hints: [
+          "Which adjective describes the professor?",
+          "Which adverb describes how the theory was explained?"
+        ],
+        hint: "Match advanced descriptors appropriately.",
+        explanation: "'Erudite' means learned; 'clearly' indicates an understandable explanation."
+      },
+      {
+        text: "The ___ musician played the instrument ___ during the concert.",
+        wordBox: ["virtuoso", "virtuosically", "beautiful", "beautifully", "passionately"],
+        answers: ["virtuoso", "virtuosically"],
+        clueWords: [["musician"], ["played", "instrument"], ["concert"]],
+        hints: [
+          "Which adjective describes the musician?",
+          "Which adverb describes how the instrument was played?"
+        ],
+        hint: "Choose words that highlight exceptional skill.",
+        explanation: "'Virtuoso' indicates outstanding talent; 'virtuosically' describes the performance."
+      }
+    ]
+  },
+  tenses: {
+    P1: [
+      {
+        text: "I ___ to the park yesterday. My friends ___ there with me.",
+        wordBox: ["go", "went", "was", "were"],
+        answers: ["went", "were"],
+        clueWords: [["yesterday"], ["friends"]],
+        hints: [
+          "What did I do yesterday?",
+          "Where were my friends?"
+        ],
+        hint: "Use past tense verbs.",
+        explanation: "'Went' is the past tense of 'go'; 'were' is used for plural subjects."
+      },
+      {
+        text: "She ___ her homework now. She ___ it last night.",
+        wordBox: ["do", "does", "did"],
+        answers: ["does", "did"],
+        clueWords: [["now"], ["last night"]],
+        hints: [
+          "What is she doing now?",
+          "What did she do last night?"
+        ],
+        hint: "Distinguish between present and past tense.",
+        explanation: "'Does' is present; 'did' is past."
+      },
+      {
+        text: "The dog ___ in the yard every morning. Yesterday, it ___ a bone.",
+        wordBox: ["run", "runs", "find", "found"],
+        answers: ["runs", "found"],
+        clueWords: [["morning"], ["bone"]],
+        hints: [
+          "What does the dog do every morning?",
+          "What did it do yesterday?"
+        ],
+        hint: "Use present and past tense correctly.",
+        explanation: "'Runs' is present; 'found' is past."
+      },
+      {
+        text: "We ___ to school every day. Last week, we ___ on a field trip.",
+        wordBox: ["go", "went", "are", "were"],
+        answers: ["go", "went"],
+        clueWords: [["every day"], ["last week"]],
+        hints: [
+          "What do we do every day?",
+          "What did we do last week?"
+        ],
+        hint: "Select the proper tense for each time frame.",
+        explanation: "'Go' is present; 'went' is past."
+      },
+      {
+        text: "He ___ his bike now. Yesterday, he ___ to the park.",
+        wordBox: ["ride", "rides", "go", "went"],
+        answers: ["rides", "went"],
+        clueWords: [["bike"], ["park"]],
+        hints: [
+          "What is he doing now?",
+          "What did he do yesterday?"
+        ],
+        hint: "Apply present and past tense rules.",
+        explanation: "'Rides' is present; 'went' is past."
+      }
+    ],
+    P2: [
+      {
+        text: "She ___ her lunch now. She ___ it earlier.",
+        wordBox: ["eat", "eats", "ate"],
+        answers: ["eats", "ate"],
+        clueWords: [["lunch"], ["earlier"]],
+        hints: [
+          "What does she do now?",
+          "What did she do earlier?"
+        ],
+        hint: "Differentiate between present and past.",
+        explanation: "'Eats' is present; 'ate' is past."
+      },
+      {
+        text: "They ___ a movie tonight. Last night, they ___ a documentary.",
+        wordBox: ["watch", "watches", "watched", "are watching"],
+        answers: ["are watching", "watched"],
+        clueWords: [["movie"], ["documentary"]],
+        hints: [
+          "What are they doing tonight?",
+          "What did they do last night?"
+        ],
+        hint: "Use present continuous and past tense.",
+        explanation: "'Are watching' indicates a current plan; 'watched' is past."
+      },
+      {
+        text: "He ___ his project now. He ___ it last week.",
+        wordBox: ["finish", "finishes", "finished"],
+        answers: ["finishes", "finished"],
+        clueWords: [["project"], ["last week"]],
+        hints: [
+          "What does he do now?",
+          "What did he do last week?"
+        ],
+        hint: "Use present and past tense appropriately.",
+        explanation: "'Finishes' is present; 'finished' is past."
+      },
+      {
+        text: "They ___ a test tomorrow. Yesterday, they ___ one.",
+        wordBox: ["have", "had", "will have"],
+        answers: ["will have", "had"],
+        clueWords: [["test"], ["yesterday"]],
+        hints: [
+          "What will they do tomorrow?",
+          "What did they do yesterday?"
+        ],
+        hint: "Distinguish between future and past tense.",
+        explanation: "'Will have' is future; 'had' is past."
+      },
+      {
+        text: "The teacher ___ the lesson now. Earlier, she ___ a story.",
+        wordBox: ["teach", "teaches", "taught"],
+        answers: ["teaches", "taught"],
+        clueWords: [["teacher"], ["lesson"], ["story"]],
+        hints: [
+          "What is the teacher doing now?",
+          "What did she do earlier?"
+        ],
+        hint: "Match present and past tenses correctly.",
+        explanation: "'Teaches' is present; 'taught' is past."
+      }
+    ],
+    P3: [
+      {
+        text: "The dog ___ in the yard every morning. Yesterday, it ___ a bone, and tomorrow, it ___ again.",
+        wordBox: ["run", "runs", "found", "will run"],
+        answers: ["runs", "found", "will run"],
+        clueWords: [["morning"], ["bone"], ["tomorrow"]],
+        hints: [
+          "What does the dog do every morning?",
+          "What did it do yesterday?",
+          "What will it do tomorrow?"
+        ],
+        hint: "Use present, past, and future tenses.",
+        explanation: "'Runs' is present; 'found' is past; 'will run' is future."
+      },
+      {
+        text: "She ___ to school every day. Last week, she ___ on a school trip, and next week, she ___ a quiz.",
+        wordBox: ["go", "goes", "went", "will have"],
+        answers: ["goes", "went", "will have"],
+        clueWords: [["school"], ["school trip"], ["quiz"]],
+        hints: [
+          "What does she do every day?",
+          "What did she do last week?",
+          "What will she do next week?"
+        ],
+        hint: "Match the appropriate tenses.",
+        explanation: "'Goes' is present; 'went' is past; 'will have' is future."
+      },
+      {
+        text: "He ___ his bike every afternoon. Yesterday, he ___ to the park, and tomorrow, he ___ to join his friends.",
+        wordBox: ["ride", "rides", "went", "will ride"],
+        answers: ["rides", "went", "will ride"],
+        clueWords: [["bike"], ["park"], ["friends"]],
+        hints: [
+          "What does he do every afternoon?",
+          "What did he do yesterday?",
+          "What will he do tomorrow?"
+        ],
+        hint: "Use present, past, and future tenses.",
+        explanation: "'Rides' is present; 'went' is past; 'will ride' is future."
+      },
+      {
+        text: "The children ___ in the playground every day. Last weekend, they ___ a fun game, and next weekend, they ___ a picnic.",
+        wordBox: ["play", "plays", "played", "will play"],
+        answers: ["play", "played", "will play"],
+        clueWords: [["children"], ["playground"], ["game"], ["picnic"]],
+        hints: [
+          "What do the children do daily?",
+          "What did they do last weekend?",
+          "What will they do next weekend?"
+        ],
+        hint: "Select the proper tenses.",
+        explanation: "'Play' is present; 'played' is past; 'will play' is future."
+      },
+      {
+        text: "I ___ my room every weekend. Last weekend, I ___ it thoroughly, and next weekend, I ___ it again.",
+        wordBox: ["clean", "cleans", "cleaned", "will clean"],
+        answers: ["clean", "cleaned", "will clean"],
+        clueWords: [["room"], ["thoroughly"], ["next weekend"]],
+        hints: [
+          "What do I do every weekend?",
+          "What did I do last weekend?",
+          "What will I do next weekend?"
+        ],
+        hint: "Apply present, past, and future tenses correctly.",
+        explanation: "'Clean' is present; 'cleaned' is past; 'will clean' is future."
+      }
+    ]
+  }
 };
 
-// =======================
-// Global Game State
-// =======================
+/* =====================================================
+   GLOBAL GAME STATE
+   ===================================================== */
 let currentGrammarType = "prepositions";
+let currentDifficulty = "P1"; // Using P1, P2, P3 for adjusted passages
 let currentPassageIndex = 0;
 let score = 0;
 let stars = 0;
@@ -1025,11 +1107,14 @@ let timeLeft = 60;
 let timerInterval = null;
 let challengeMode = true;
 let level = "Apprentice";
+let performanceHistory = JSON.parse(localStorage.getItem("performanceHistory")) || [];
+let accuracy = 0;
 
-// =======================
-// DOM Elements
-// =======================
+/* =====================================================
+   DOM ELEMENT REFERENCES
+   ===================================================== */
 const grammarSelect = document.getElementById("grammar-type");
+const difficultySelect = document.getElementById("difficulty-level");
 let passageText = document.getElementById("passage-text");
 let wordBox = document.getElementById("word-box");
 const feedbackDisplay = document.getElementById("feedback");
@@ -1050,28 +1135,26 @@ const levelDisplay = document.getElementById("level");
 const toggleThemeButton = document.getElementById("toggle-theme");
 const timerSettingSelect = document.getElementById("timer-setting");
 
-// Additional DOM Elements for narrative enhancements
+// Additional narrative elements
 const storylineModal = document.getElementById("storyline-modal");
 const storylineText = document.getElementById("storyline-text");
 const startQuestButton = document.getElementById("start-quest");
 
-// Dyslexia-friendly font toggle
+// Dyslexia-friendly toggle and text size slider
 const toggleDyslexiaButton = document.getElementById("toggle-dyslexia");
 toggleDyslexiaButton.addEventListener("click", () => {
   document.body.classList.toggle("dyslexia");
 });
-
-// Additional Accessibility: Text Size Slider
 const textSizeSlider = document.getElementById("text-size-slider");
 textSizeSlider.addEventListener("input", () => {
-  const newSize = textSizeSlider.value; // Example value "1.4"
+  const newSize = textSizeSlider.value;
   document.getElementById("passage-text").style.fontSize = newSize + "em";
   document.getElementById("word-box").style.fontSize = newSize + "em";
 });
 
-// ----------------------
-// Speech Synthesis Setup – UK Female Fallback
-// ----------------------
+/* =====================================================
+   SPEECH SYNTHESIS SETUP (UK Female Voice Fallback)
+   ===================================================== */
 const synth = window.speechSynthesis;
 let voices = [];
 let ukFemaleVoice = null;
@@ -1079,10 +1162,8 @@ function loadVoices() {
   voices = synth.getVoices();
   ukFemaleVoice = voices.find(voice =>
     voice.lang === "en-GB" &&
-    (voice.name.toLowerCase().includes("female") ||
-     voice.name === "Samantha" || voice.name === "Kate")
+    (voice.name.toLowerCase().includes("female") || voice.name === "Samantha" || voice.name === "Kate")
   ) || voices.find(voice => voice.lang === "en-GB");
-  console.log("Voices loaded:", voices.length);
 }
 loadVoices();
 synth.onvoiceschanged = loadVoices;
@@ -1105,18 +1186,18 @@ function speak(text) {
   synth.speak(utterance);
 }
 
-// ----------------------
-// Onboarding
-// ----------------------
+/* =====================================================
+   ONBOARDING
+   ===================================================== */
 if (!localStorage.getItem("hasSeenTutorial")) {
   alert("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank. Use the sidebar for hints and controls!");
   localStorage.setItem("hasSeenTutorial", "true");
   speak("Welcome to Grammar Cloze Adventure! Drag or tap a word to fill in each blank.");
 }
 
-// ----------------------
-// Utility Functions
-// ----------------------
+/* =====================================================
+   UTILITY FUNCTIONS
+   ===================================================== */
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
@@ -1135,9 +1216,9 @@ function updateLevel() {
 function updateStatus() {
   scoreDisplay.textContent = `Score: ${score}`;
   starsDisplay.textContent = `Stars: ${stars}`;
-  progressDisplay.textContent = `Progress: ${currentPassageIndex + 1} / ${window.passages[currentGrammarType].length}`;
+  progressDisplay.textContent = `Progress: ${currentPassageIndex + 1} / ${window.passages[currentGrammarType][currentDifficulty].length}`;
   timerDisplay.textContent = `Time: ${timeLeft}s`;
-  progressBar.style.width = `${((currentPassageIndex + 1) / window.passages[currentGrammarType].length) * 100}%`;
+  progressBar.style.width = `${((currentPassageIndex + 1) / window.passages[currentGrammarType][currentDifficulty].length) * 100}%`;
   if (challengeMode) {
     timerBar.style.width = `${(timeLeft / parseInt(timerSettingSelect.value)) * 100}%`;
     timerBar.style.backgroundColor =
@@ -1168,7 +1249,6 @@ function startTimer() {
   }, 1000);
 }
 
-// Animation helper: fade out then in a DOM element
 function fadeOutIn(element, callback) {
   element.style.transition = "opacity 0.5s ease";
   element.style.opacity = 0;
@@ -1178,58 +1258,52 @@ function fadeOutIn(element, callback) {
   }, 500);
 }
 
-// ----------------------
-// Narrative Functions
-// ----------------------
-
-// Show the storyline modal based on the selected grammar type
+/* =====================================================
+   NARRATIVE FUNCTIONS
+   ===================================================== */
 function showStorylineModal(grammarType) {
   const questMessages = {
-    prepositions: "Welcome, young wizard! Collect the Gem of Prepositions by navigating the Enchanted Forest.",
-    conjunctions: "Next, find the Gem of Conjunctions by solving the Wise Owl’s riddles.",
-    subjectVerbAgreement: "Brilliant! Unleash your power by mastering Subject-Verb Agreement.",
-    pronouns: "Awesome! Gather the Gem of Pronouns by following the clues.",
-    adjectivesAdverbs: "Fantastic! Capture the Gem of Adjectives & Adverbs by exploring the enchanted realm.",
-    tenses: "Great work! Secure the Gem of Tenses as you journey through time."
+    prepositions: "Welcome, young wizard! Collect the Gem of Prepositions by navigating the Enchanted HDB Estate.",
+    conjunctions: "Next, find the Gem of Conjunctions by solving the Wise Owl’s riddles in the void deck.",
+    subjectVerbAgreement: "Brilliant! Unleash your power by mastering Subject-Verb Agreement in the community centre.",
+    pronouns: "Awesome! Gather the Gem of Pronouns by following clues in the hawker centre.",
+    adjectivesAdverbs: "Fantastic! Capture the Gem of Adjectives & Adverbs by exploring the enchanted playground.",
+    tenses: "Great work! Secure the Gem of Tenses as you journey through time in the HDB garden."
   };
   storylineText.textContent = questMessages[grammarType] || "Continue your quest to master grammar!";
   storylineModal.style.display = "flex";
 }
 
-// When the start quest button is clicked, hide the modal and display the passage
 startQuestButton.addEventListener("click", () => {
   storylineModal.style.display = "none";
   displayPassage();
 });
 
-// ----------------------
-// Narrative Introductions & Reward Messages
-// ----------------------
 function getNarrativeIntro(grammarType, passageIndex) {
   const narratives = {
     prepositions: [
-      "The wizard reaches a river. Help him cross by completing the sentence.",
-      "A hidden cave appears. Unlock its secrets using prepositions."
+      "The wizard reaches a river near an HDB block. Help him cross by completing the sentence.",
+      "A hidden void deck appears. Unlock its secrets using prepositions."
     ],
     conjunctions: [
-      "The Wise Owl asks a riddle. Solve it with the right conjunction.",
-      "A magical door blocks your path. Connect the ideas to open it."
+      "The Wise Owl asks a riddle at the community centre. Solve it with the right conjunction.",
+      "A magical door blocks your path in the HDB corridor. Connect the ideas to open it."
     ],
     subjectVerbAgreement: [
-      "The enchanted creatures gather. Help the wizard form the right verbs.",
-      "A spell of correct agreement is needed. Fill in the blanks accurately."
+      "Enchanted creatures gather at the hawker centre. Help the wizard form the right verbs.",
+      "A spell of correct agreement is needed in the HDB garden. Fill in the blanks accurately."
     ],
     pronouns: [
-      "Lost in the maze, a precious book awaits. Find the correct pronoun to locate it.",
-      "The wizard’s scroll is missing. Use the clues to uncover the right pronouns."
+      "Lost in the HDB maze, a precious book awaits. Find the correct pronoun to locate it.",
+      "The wizard’s scroll is missing at the wet market. Use the clues to uncover the right pronouns."
     ],
     adjectivesAdverbs: [
-      "A mysterious creature roams the lands. Describe it with the right adjectives and adverbs.",
-      "A burst of colors appears. Choose the correct words to capture its beauty."
+      "A mysterious creature roams the HDB playground. Describe it with the right adjectives and adverbs.",
+      "A burst of colors appears at the pasar malam. Choose the correct words to capture its beauty."
     ],
     tenses: [
-      "Time shifts in the enchanted forest. Use the correct tenses to reveal its secrets.",
-      "A tale of past, present, and future unfolds. Complete the sentences to unlock the mystery."
+      "Time shifts in the HDB garden. Use the correct tenses to reveal its secrets.",
+      "A tale of past, present, and future unfolds at the community centre. Complete the sentences to unlock the mystery."
     ]
   };
   return narratives[grammarType] && narratives[grammarType][passageIndex]
@@ -1249,24 +1323,18 @@ function getRewardMessage(grammarType) {
   return rewards[grammarType] || "You’ve completed this part of the quest!";
 }
 
-// ----------------------
-// Display Passage (with Narrative Intro)
-// ----------------------
+/* =====================================================
+   DISPLAY PASSAGE
+   ===================================================== */
 function displayPassage() {
   clearInterval(timerInterval);
   hintUsage = {};
   selectedWord = null;
   
-  const passage = window.passages[currentGrammarType]?.[currentPassageIndex];
+  const passage = window.passages[currentGrammarType][currentDifficulty][currentPassageIndex];
   if (!passage) {
-    passageText.innerHTML = "<p>Error: Passage not found.</p>";
+    passageText.innerHTML = "<p>Error: Passage not found. Try a different difficulty or grammar type.</p>";
     feedbackDisplay.textContent = "Error: Passage not found.";
-    return;
-  }
-  if (!passage.text || !Array.isArray(passage.wordBox) || !Array.isArray(passage.answers) ||
-      !Array.isArray(passage.clueWords) || !Array.isArray(passage.hints)) {
-    passageText.innerHTML = "<p>Error: Invalid passage data.</p>";
-    feedbackDisplay.textContent = "Error: Missing required passage data.";
     return;
   }
   
@@ -1277,11 +1345,9 @@ function displayPassage() {
     feedbackDisplay.textContent = "Warning: Mismatch in blanks, answers, clues, or hints.";
   }
   
-  // Build passage HTML with a narrative introduction
   let passageHTML = `<p class="narrative-intro">${getNarrativeIntro(currentGrammarType, currentPassageIndex)}</p>`;
   passageHTML += passage.text;
   
-  // Highlight keywords based on clues
   if (passage.clueWords) {
     passage.clueWords.forEach((clues, index) => {
       const blankNum = index + 1;
@@ -1293,7 +1359,6 @@ function displayPassage() {
     });
   }
   
-  // Replace blank markers with HTML blank containers
   passageHTML = passageHTML.replace(/___\((\d+)\)___/g, (_, num) => {
     return `<span class="blank-container">
               <span class="blank" data-blank="${num}" tabindex="0">_</span>
@@ -1304,14 +1369,12 @@ function displayPassage() {
   fadeOutIn(passageText, () => {
     passageText.innerHTML = passageHTML;
     
-    // Attach drag-and-drop events to blank containers
     document.querySelectorAll(".blank-container").forEach(container => {
       container.addEventListener("dragover", handleContainerDragOver);
       container.addEventListener("dragleave", handleContainerDragLeave);
       container.addEventListener("drop", handleContainerDrop);
     });
     
-    // Attach click and keydown events to blanks
     document.querySelectorAll(".blank").forEach(blank => {
       blank.addEventListener("click", () => {
         if (selectedWord && !blank.classList.contains("filled")) {
@@ -1331,7 +1394,6 @@ function displayPassage() {
       });
     });
     
-    // Attach event listeners for hint buttons
     document.querySelectorAll(".hint-for-blank").forEach(button => {
       button.addEventListener("click", function () {
         const blankNum = this.getAttribute("data-blank");
@@ -1355,12 +1417,10 @@ function displayPassage() {
     });
   });
   
-  // Populate word box with draggable words
   wordBox.innerHTML = shuffle([...passage.wordBox])
     .map(word => `<div class="word" draggable="true" tabindex="0">${word}</div>`)
     .join("");
   
-  // Attach events to word elements
   document.querySelectorAll(".word").forEach(word => {
     word.addEventListener("dragstart", handleDragStart);
     word.addEventListener("dragend", handleDragEnd);
@@ -1382,9 +1442,9 @@ function displayPassage() {
   updateStatus();
 }
 
-// ----------------------
-// Drag-and-Drop Handlers for Blank Containers
-// ----------------------
+/* =====================================================
+   DRAG-AND-DROP HANDLERS
+   ===================================================== */
 function handleContainerDragOver(e) {
   e.preventDefault();
   e.currentTarget.classList.add("drag-over");
@@ -1402,10 +1462,6 @@ function handleContainerDrop(e) {
     updateStatus();
   }
 }
-
-// ----------------------
-// Standard Drag Handlers for Words
-// ----------------------
 let draggedItem = null;
 function handleDragStart(e) {
   draggedItem = e.target;
@@ -1417,13 +1473,12 @@ function handleDragEnd(e) {
   draggedItem = null;
 }
 
-// ----------------------
-// Word Placement and Feedback
-// ----------------------
+/* =====================================================
+   WORD PLACEMENT & FEEDBACK
+   ===================================================== */
 function placeWord(blank, word) {
   blank.textContent = word;
   blank.classList.add("filled");
-  // Animate word placement with a scaling effect
   blank.style.transition = "transform 0.3s ease";
   blank.style.transform = "scale(1.2)";
   setTimeout(() => {
@@ -1431,39 +1486,45 @@ function placeWord(blank, word) {
   }, 300);
   checkAnswer(blank);
 }
-
 function checkAnswer(blank) {
   const blankId = parseInt(blank.getAttribute("data-blank"));
   const userAnswer = blank.textContent.trim().toLowerCase();
-  const correctAnswer = window.passages[currentGrammarType][currentPassageIndex].answers[blankId - 1].toLowerCase();
+  const correctAnswer = window.passages[currentGrammarType][currentDifficulty][currentPassageIndex].answers[blankId - 1].toLowerCase();
   if (userAnswer === correctAnswer) {
     blank.classList.add("correct", "animate-correct");
     score += 10;
     stars += 1;
-    feedbackDisplay.textContent = "Correct! Great job!";
+    feedbackDisplay.textContent = `Correct! ${window.passages[currentGrammarType][currentDifficulty][currentPassageIndex].explanation || ""}`;
     feedbackDisplay.style.color = "green";
     speak("Correct! Great job!");
   } else {
     blank.classList.add("incorrect", "animate-incorrect");
-    feedbackDisplay.textContent = "Incorrect! Hint: 'On' is used for surfaces.";
+    feedbackDisplay.textContent = `Incorrect! The correct answer is '${correctAnswer}'. ${window.passages[currentGrammarType][currentDifficulty][currentPassageIndex].explanation || ""} Try again?`;
     feedbackDisplay.style.color = "red";
     speak("Incorrect! Try again.");
+    blank.classList.remove("filled");
+    blank.textContent = "_";
   }
   updateStatus();
 }
 
-// ----------------------
-// Navigation and Other Controls
-// ----------------------
+/* =====================================================
+   NAVIGATION & CONTROLS
+   ===================================================== */
 grammarSelect.addEventListener("change", () => {
   currentGrammarType = grammarSelect.value;
   currentPassageIndex = 0;
   timeLeft = (timerSettingSelect.value === "off") ? 0 : parseInt(timerSettingSelect.value);
-  // Show the storyline modal instead of immediately displaying a passage
   showStorylineModal(currentGrammarType);
   updateStatus();
 });
-
+difficultySelect.addEventListener("change", () => {
+  currentDifficulty = difficultySelect.value;
+  currentPassageIndex = 0;
+  timeLeft = (timerSettingSelect.value === "off") ? 0 : parseInt(timerSettingSelect.value);
+  displayPassage();
+  updateStatus();
+});
 nextPassageButton.addEventListener("click", () => {
   const blanks = document.querySelectorAll(".blank");
   let allFilled = true;
@@ -1471,12 +1532,10 @@ nextPassageButton.addEventListener("click", () => {
     if (!blank.classList.contains("filled")) allFilled = false;
   });
   if (allFilled) {
-    // Use narrative reward message based on grammar type
     const rewardMessage = getRewardMessage(currentGrammarType);
     feedbackDisplay.textContent = rewardMessage;
     feedbackDisplay.style.color = "green";
     speak(rewardMessage);
-    // Bonus scoring logic if applicable
     if (challengeMode) {
       if (Object.keys(hintUsage).length === 0) {
         score += 20;
@@ -1492,7 +1551,7 @@ nextPassageButton.addEventListener("click", () => {
   }
   clearInterval(timerInterval);
   currentPassageIndex++;
-  if (currentPassageIndex >= window.passages[currentGrammarType].length) {
+  if (currentPassageIndex >= window.passages[currentGrammarType][currentDifficulty].length) {
     feedbackDisplay.textContent = "Game Over! Final Score: " + score;
     speak("Game Over! Your final score is " + score);
     return;
@@ -1501,7 +1560,6 @@ nextPassageButton.addEventListener("click", () => {
   fadeOutIn(passageText, () => displayPassage());
   updateStatus();
 });
-
 prevPassageButton.addEventListener("click", () => {
   if (currentPassageIndex > 0) {
     currentPassageIndex--;
@@ -1511,7 +1569,6 @@ prevPassageButton.addEventListener("click", () => {
     updateStatus();
   }
 });
-
 clearButton.addEventListener("click", () => {
   hintUsage = {};
   selectedWord = null;
@@ -1519,16 +1576,14 @@ clearButton.addEventListener("click", () => {
   clearInterval(timerInterval);
   displayPassage();
 });
-
 hintButton.addEventListener("click", () => {
-  const passage = window.passages[currentGrammarType][currentPassageIndex];
+  const passage = window.passages[currentGrammarType][currentDifficulty][currentPassageIndex];
   if (passage.hint) {
     feedbackDisplay.textContent = passage.hint;
     feedbackDisplay.style.color = "blue";
     speak(passage.hint);
   }
 });
-
 shareButton.addEventListener("click", () => {
   const shareData = {
     title: "Grammar Cloze Adventure",
@@ -1541,9 +1596,8 @@ shareButton.addEventListener("click", () => {
     alert("Sharing not supported on this browser.");
   }
 });
-
 readPassageButton.addEventListener("click", () => {
-  const passage = window.passages[currentGrammarType][currentPassageIndex];
+  const passage = window.passages[currentGrammarType][currentDifficulty][currentPassageIndex];
   if (passage && passage.text) {
     const textToSpeak = passage.text.replace(/\d+/g, "blank");
     speak(textToSpeak);
@@ -1551,7 +1605,6 @@ readPassageButton.addEventListener("click", () => {
     feedbackDisplay.textContent = "Error: No passage to read.";
   }
 });
-
 toggleChallengeButton.addEventListener("click", () => {
   challengeMode = !challengeMode;
   if (challengeMode) {
@@ -1564,18 +1617,10 @@ toggleChallengeButton.addEventListener("click", () => {
   }
   speak(`Challenge Mode ${challengeMode ? "ON" : "OFF"}`);
 });
-
-// Light/Dark Theme Toggle
 toggleThemeButton.addEventListener("click", () => {
   document.body.classList.toggle("light-mode");
-  if (document.body.classList.contains("light-mode")) {
-    toggleThemeButton.textContent = "Dark Mode";
-  } else {
-    toggleThemeButton.textContent = "Light Mode";
-  }
+  toggleThemeButton.textContent = document.body.classList.contains("light-mode") ? "Dark Mode" : "Light Mode";
 });
-
-// Keyboard Shortcuts: 'H' for hint, 'N' for next passage
 document.addEventListener("keydown", (e) => {
   if (e.key.toLowerCase() === "h") {
     hintButton.click();
@@ -1584,8 +1629,8 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ----------------------
-// Initialize Game
-// ----------------------
+/* =====================================================
+   INITIALIZE GAME
+   ===================================================== */
 displayPassage();
 updateStatus();
