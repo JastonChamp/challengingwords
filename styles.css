@@ -5,10 +5,9 @@
   box-sizing: border-box;
 }
 
-/* Default dark mode styling using vibrant pastel hues */
 body {
-  background-color: #4a6fa5; /* Pastel dark blue */
-  color: #f0f8ff; /* Light, soft text */
+  background-color: #4a6fa5;
+  color: #f0f8ff;
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
   padding: 20px;
@@ -17,20 +16,18 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Light mode overrides */
 body.light-mode {
-  background-color: #f5e1a4; /* Parchment light */
+  background-color: #f5e1a4;
   color: #2c3e50;
 }
 
-/* Dyslexia-friendly font toggle */
 body.dyslexia {
   font-family: "OpenDyslexic", sans-serif;
 }
 
-/* Guided Tour Modal */
+/* Modal Styles */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -41,6 +38,7 @@ body.dyslexia {
   align-items: center;
   z-index: 1000;
 }
+
 .modal-content {
   background: #fff;
   color: #2c3e50;
@@ -50,6 +48,7 @@ body.dyslexia {
   max-width: 500px;
   text-align: center;
 }
+
 .modal-btn {
   margin-top: 10px;
   padding: 10px 20px;
@@ -60,6 +59,7 @@ body.dyslexia {
   cursor: pointer;
   font-size: 16px;
 }
+
 .modal-btn:hover {
   background: #45a049;
 }
@@ -74,36 +74,43 @@ header {
   position: relative;
   transition: background 0.3s;
 }
+
 body:not(.light-mode) header {
   background: linear-gradient(135deg, #5a7db1, #4a6fa5);
 }
+
 body.light-mode header {
   background: linear-gradient(135deg, #fbc02d, #f1c40f);
 }
+
 h1 {
   font-size: 2.8em;
   font-family: "Lora", serif;
   transition: color 0.3s;
 }
+
 body:not(.light-mode) h1 {
   color: #f0f8ff;
 }
+
 body.light-mode h1 {
   color: #2c3e50;
 }
+
 .instructions {
   font-size: 1.2em;
   margin-top: 10px;
   transition: color 0.3s;
 }
+
 body:not(.light-mode) .instructions {
   color: #e0e0e0;
 }
+
 body.light-mode .instructions {
   color: #2c3e50;
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
   position: absolute;
   top: 10px;
@@ -116,11 +123,11 @@ body.light-mode .instructions {
   font-size: 0.9em;
   transition: background-color 0.2s;
 }
+
 .theme-toggle:hover {
   background-color: #fdd835;
 }
 
-/* Wizard Advice Styles with Expanded Mascots */
 #wizard-advice {
   padding: 15px;
   border-radius: 5px;
@@ -131,24 +138,27 @@ body.light-mode .instructions {
   transition: background 0.3s, color 0.3s;
   box-shadow: 0 0 10px rgba(251,192,45,0.6);
 }
+
 body:not(.light-mode) #wizard-advice {
   background-color: #4a6fa5;
   color: #f0f8ff;
 }
+
 body.light-mode #wizard-advice {
   background-color: #fff3e0;
   color: #2c3e50;
 }
+
 .wizard-mascot {
   width: 40px;
   margin-right: 10px;
 }
+
 .sidekick-mascot {
   width: 30px;
   vertical-align: middle;
 }
 
-/* Sidebar Styles */
 .sidebar {
   position: fixed;
   left: 0;
@@ -159,23 +169,29 @@ body.light-mode #wizard-advice {
   overflow-y: auto;
   transition: background 0.3s, color 0.3s;
 }
+
 body:not(.light-mode) .sidebar {
   background-color: #3a5276;
   color: #f0f8ff;
 }
+
 body.light-mode .sidebar {
   background-color: #dcedc8;
   color: #2c3e50;
 }
+
 .sidebar nav ul {
   list-style: none;
 }
+
 .sidebar nav ul li {
   margin-bottom: 15px;
 }
+
 .sidebar label {
   font-size: 1.1em;
 }
+
 .sidebar select {
   width: 100%;
   padding: 8px;
@@ -184,6 +200,7 @@ body.light-mode .sidebar {
   margin-top: 5px;
   font-size: 1em;
 }
+
 .sidebar .sidebar-btn {
   width: 100%;
   padding: 10px;
@@ -195,42 +212,50 @@ body.light-mode .sidebar {
   margin-top: 10px;
   transition: background-color 0.2s;
 }
+
 .sidebar .sidebar-btn:hover {
   background-color: #fdd835;
 }
+
 .sidebar .level-info {
   margin-top: 20px;
   font-size: 1.2em;
   text-align: center;
 }
 
-/* Mobile Adjustments for Sidebar */
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
     height: auto;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .sidebar nav ul li {
+    flex: 1 1 45%;
   }
   main {
     margin-left: 0;
   }
 }
 
-/* Main Content Styles */
 main {
   margin-left: 270px;
   padding: 20px;
   border-radius: 10px;
   transition: background 0.3s;
 }
+
 body:not(.light-mode) main {
   background: linear-gradient(135deg, #4a6fa5, #3a5276);
 }
+
 body.light-mode main {
   background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
 }
 
-/* Game Container */
 .game-container {
   display: flex;
   flex-wrap: wrap;
@@ -238,6 +263,7 @@ body.light-mode main {
   justify-content: center;
   margin-bottom: 20px;
 }
+
 #passage-text,
 #word-box {
   background: #fff;
@@ -246,9 +272,10 @@ body.light-mode main {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 2px solid #2ecc71;
   min-width: 300px;
-  background-image: url('scroll-texture.png');
+  background-image: url('hdb-texture.png'); /* Cultural relevance: HDB-themed background */
   background-size: cover;
 }
+
 #passage-text {
   flex: 2;
   font-size: 1.4em;
@@ -256,9 +283,11 @@ body.light-mode main {
   transition: color 0.3s;
   color: #2c3e50;
 }
+
 body:not(.light-mode) #passage-text {
   color: #f0f8ff;
 }
+
 #word-box {
   flex: 1;
   display: grid;
@@ -267,13 +296,11 @@ body:not(.light-mode) #passage-text {
   justify-items: center;
 }
 
-/* Blank Container */
 .blank-container {
   position: relative;
   display: inline-block;
 }
 
-/* Word Styles */
 .word {
   background: #e57373;
   color: #fff;
@@ -285,22 +312,25 @@ body:not(.light-mode) #passage-text {
   transition: transform 0.2s, background-color 0.2s;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
+
 .word:hover {
   transform: scale(1.1);
   background-color: #ef5350;
 }
+
 .word.dragging {
   opacity: 0.6;
 }
+
 .word.selected {
   outline: 2px solid #fff;
 }
+
 .word:focus {
   outline: 2px solid #2980b9;
   background-color: #2980b9;
 }
 
-/* Blank Styles */
 .blank {
   display: inline-block;
   width: 80px;
@@ -313,30 +343,35 @@ body:not(.light-mode) #passage-text {
   transition: color 0.3s;
   color: #2c3e50;
 }
+
 body:not(.light-mode) .blank {
   color: #f0f8ff;
 }
+
 .blank.drag-over {
   border-color: #ef5350;
   background-color: #fff9c4;
 }
+
 .blank.filled {
   border-bottom: none;
   font-weight: bold;
 }
+
 .blank.correct {
   color: #2ecc71;
   background-color: #e8f5e9;
 }
+
 .blank.incorrect {
   color: #c0392b;
   background-color: #ffe0b2;
 }
+
 .blank:focus {
   outline: 2px solid #2980b9;
 }
 
-/* Hint Button (hover reveal, positioned closer to blank) */
 .hint-for-blank {
   position: absolute;
   top: -20px;
@@ -356,27 +391,30 @@ body:not(.light-mode) .blank {
   transition: opacity 0.3s ease, transform 0.2s, background-color 0.2s;
   z-index: 10;
 }
+
 .blank-container:hover .hint-for-blank,
 .blank:focus + .hint-for-blank {
   opacity: 1;
 }
+
 .hint-for-blank:hover {
   transform: scale(1.2);
   background-color: #fdd835;
   animation: pulse 1s infinite;
 }
+
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(251,192,45,0.6); }
   70% { box-shadow: 0 0 0 10px rgba(251,192,45,0); }
   100% { box-shadow: 0 0 0 0 rgba(251,192,45,0); }
 }
 
-/* Keyword Highlight */
 .keyword {
   font-weight: bold;
   color: #8e44ad;
   transition: background-color 0.3s;
 }
+
 .keyword.highlighted {
   background-color: #fbc02d;
   color: #fff;
@@ -384,7 +422,6 @@ body:not(.light-mode) .blank {
   border-radius: 5px;
 }
 
-/* Status Bar */
 .status-bar {
   background: #fff;
   padding: 15px;
@@ -399,13 +436,16 @@ body:not(.light-mode) .blank {
   margin-top: 20px;
   transition: background 0.3s, color 0.3s;
 }
+
 body:not(.light-mode) .status-bar {
   background: #2c3e50;
   color: #f0f8ff;
 }
+
 .status-bar span {
   font-size: 1.1em;
 }
+
 #progress-bar-container,
 #timer-container {
   flex: 1;
@@ -415,39 +455,43 @@ body:not(.light-mode) .status-bar {
   border-radius: 10px;
   overflow: hidden;
 }
+
 #progress-bar,
 #timer-bar {
   height: 100%;
   transition: width 0.3s ease, background-color 0.3s ease;
 }
+
 #progress-bar {
   background: #2ecc71;
 }
+
 #timer-bar {
   background: #2ecc71;
 }
 
-/* Progress Stepper */
 .progress-stepper {
   display: flex;
   gap: 4px;
   margin-top: 10px;
 }
+
 .step-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background-color: #bdc3c7;
 }
+
 .step-dot.active {
   background-color: #fbc02d;
 }
 
-/* Navigation Buttons */
 .navigation-buttons {
   display: flex;
   gap: 10px;
 }
+
 .navigation-buttons button {
   padding: 10px 20px;
   border: none;
@@ -458,11 +502,11 @@ body:not(.light-mode) .status-bar {
   cursor: pointer;
   transition: background-color 0.2s;
 }
+
 .navigation-buttons button:hover {
   background-color: #1c5980;
 }
 
-/* Feedback */
 #feedback {
   text-align: center;
   font-size: 1.2em;
@@ -474,19 +518,21 @@ body:not(.light-mode) .status-bar {
   transition: color 0.3s;
   color: #2c3e50;
 }
+
 body:not(.light-mode) #feedback {
   color: #f0f8ff;
 }
 
-/* Animations for Correct/Incorrect Feedback */
 @keyframes correctAnimation {
   0% { transform: scale(1); }
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
+
 .animate-correct {
   animation: correctAnimation 0.5s ease;
 }
+
 @keyframes incorrectAnimation {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -494,11 +540,11 @@ body:not(.light-mode) #feedback {
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
 .animate-incorrect {
   animation: incorrectAnimation 0.5s ease;
 }
 
-/* Reduce motion for users who prefer less animation */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
@@ -506,17 +552,7 @@ body:not(.light-mode) #feedback {
   }
 }
 
-/* Responsive Design Adjustments */
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateY(0);
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  main {
-    margin-left: 0;
-  }
   .game-container {
     flex-direction: column;
     align-items: center;
