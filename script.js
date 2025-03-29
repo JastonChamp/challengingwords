@@ -1259,6 +1259,41 @@ function fadeOutIn(element, callback) {
 }
 
 /* =====================================================
+   PERFORMANCE TRACKING FUNCTIONS
+   ===================================================== */
+function saveProgress(correct, total) {
+  const accuracy = (correct / total) * 100;
+  performanceHistory.push({
+    grammarType: currentGrammarType,
+    difficulty: currentDifficulty,
+    passageIndex: currentPassageIndex,
+    score: score,
+    stars: stars,
+    accuracy: accuracy,
+    timestamp: new Date().toISOString()
+  });
+  localStorage.setItem("performanceHistory", JSON.stringify(performanceHistory));
+}
+
+function adjustDifficulty() {
+  if (performanceHistory.length >= 5) {
+    const recent = performanceHistory.slice(-5);
+    const avg = recent.reduce((sum, entry) => sum + entry.accuracy, 0) / recent.length;
+    if (avg > 80 && currentDifficulty !== "P3") {
+      currentDifficulty = currentDifficulty === "P1" ? "P2" : "P3";
+      difficultySelect.value = currentDifficulty;
+      feedbackDisplay.textContent = `Great job! Moving to ${currentDifficulty} difficulty.`;
+      speak(`Great job! Moving to ${currentDifficulty} difficulty.`);
+    } else if (avg < 50 && currentDifficulty !== "P1") {
+      currentDifficulty = currentDifficulty === "P3" ? "P2" : "P1";
+      difficultySelect.value = currentDifficulty;
+      feedbackDisplay.textContent = `Let's try ${currentDifficulty} difficulty to build your skills.`;
+      speak(`Let's try ${currentDifficulty} difficulty to build your skills.`);
+    }
+  }
+}
+
+/* =====================================================
    NARRATIVE FUNCTIONS
    ===================================================== */
 function showStorylineModal(grammarType) {
@@ -1548,6 +1583,13 @@ nextPassageButton.addEventListener("click", () => {
         speak("Plus 10 extra points for quick completion.");
       }
     }
+    // Save progress and adjust difficulty
+    let correctCount = 0;
+    blanks.forEach(blank => {
+      if (blank.classList.contains("correct")) correctCount++;
+    });
+    saveProgress(correctCount, blanks.length);
+    adjustDifficulty();
   }
   clearInterval(timerInterval);
   currentPassageIndex++;
