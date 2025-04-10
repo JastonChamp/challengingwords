@@ -1,13 +1,34 @@
-/* Reset and Base Styles */
+/*--------------------------------------------------
+  Unified CSS: Combined Developer Friends’ CSS &
+  Improved Dark Mode Readability using CSS Variables
+---------------------------------------------------*/
+
+/* CSS Variables for easy theming */
+:root {
+  --dark-bg: #2c3e50;
+  --dark-secondary: #34495e;
+  --dark-text: #ecf0f1;
+  --light-bg: #f0e6ff;
+  --light-secondary: #e0f7fa;
+  --light-text: #2c3e50;
+  --accent-color: #fbc02d;
+  --correct-bg: #e8f5e9;
+  --incorrect-bg: #ffe6e6;
+  --modal-bg: #ffffff;
+  --modal-text: #2c3e50;
+}
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body Styles */
 body {
   background: linear-gradient(135deg, #6b48ff, #87ceeb);
-  color: #f0f8ff;
+  color: var(--dark-text);
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
   padding: 20px;
@@ -17,10 +38,11 @@ body {
 }
 
 body.light-mode {
-  background: linear-gradient(135deg, #f0e6ff, #e0f7fa);
-  color: #2c3e50;
+  background: linear-gradient(135deg, var(--light-bg), var(--light-secondary));
+  color: var(--light-text);
 }
 
+/* Dyslexia Mode */
 body.dyslexia #passage-text,
 body.dyslexia #word-box {
   font-family: "OpenDyslexic", sans-serif;
@@ -34,38 +56,35 @@ body.dyslexia #word-box {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
-
 .modal-content {
-  background: #fff;
-  color: #2c3e50;
+  background: var(--modal-bg);
+  color: var(--modal-text);
   padding: 20px;
   border-radius: 10px;
   width: 80%;
   max-width: 500px;
   text-align: center;
 }
-
 .modal-btn {
   margin-top: 10px;
   padding: 10px 20px;
   background: #4CAF50;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
 }
-
 .modal-btn:hover {
   background: #45a049;
 }
 
-/* Header Styles */
+/* Header */
 header {
   text-align: center;
   margin-bottom: 20px;
@@ -75,60 +94,53 @@ header {
   position: relative;
   transition: background 0.3s;
 }
-
 body:not(.light-mode) header {
   background: linear-gradient(135deg, #5a7db1, #4a6fa5);
 }
-
 body.light-mode header {
   background: linear-gradient(135deg, #fbc02d, #f1c40f);
 }
-
 h1 {
   font-size: 2.8em;
   font-family: "Lora", serif;
   transition: color 0.3s;
 }
-
 body:not(.light-mode) h1 {
-  color: #f0f8ff;
+  color: var(--dark-text);
 }
-
 body.light-mode h1 {
-  color: #2c3e50;
+  color: var(--light-text);
 }
-
 .instructions {
   font-size: 1.2em;
   margin-top: 10px;
   transition: color 0.3s;
 }
-
 body:not(.light-mode) .instructions {
   color: #e0e0e0;
 }
-
 body.light-mode .instructions {
-  color: #2c3e50;
+  color: var(--light-text);
 }
 
+/* Theme Toggle Button */
 .theme-toggle {
   position: absolute;
   top: 10px;
   right: 10px;
   padding: 5px 10px;
-  background-color: #fbc02d;
+  background-color: var(--accent-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.2s;
 }
-
 .theme-toggle:hover {
   background-color: #fdd835;
 }
 
+/* Sidebar Toggle (for Mobile) */
 .sidebar-toggle {
   display: none;
   position: absolute;
@@ -141,44 +153,40 @@ body.light-mode .instructions {
   font-size: 1.2em;
   cursor: pointer;
 }
-
 @media (max-width: 768px) {
   .sidebar-toggle {
     display: block;
   }
 }
 
+/* Wizard Advice */
 #wizard-advice {
   padding: 15px;
   border-radius: 5px;
   text-align: center;
   font-size: 1.2em;
   margin-bottom: 20px;
-  position: relative;
   transition: background 0.3s, color 0.3s;
   box-shadow: 0 0 10px rgba(251,192,45,0.6);
 }
-
 body:not(.light-mode) #wizard-advice {
   background-color: #4a6fa5;
-  color: #f0f8ff;
+  color: var(--dark-text);
 }
-
 body.light-mode #wizard-advice {
   background-color: #fff3e0;
-  color: #2c3e50;
+  color: var(--light-text);
 }
-
 .wizard-mascot {
   width: 40px;
   margin-right: 10px;
 }
-
 .sidekick-mascot {
   width: 30px;
   vertical-align: middle;
 }
 
+/* Sidebar */
 .sidebar {
   position: fixed;
   left: -250px;
@@ -189,33 +197,26 @@ body.light-mode #wizard-advice {
   overflow-y: auto;
   transition: left 0.3s ease;
 }
-
 body:not(.light-mode) .sidebar {
   background-color: #3a5276;
-  color: #f0f8ff;
+  color: var(--dark-text);
 }
-
 body.light-mode .sidebar {
   background-color: #dcedc8;
-  color: #2c3e50;
+  color: var(--light-text);
 }
-
 .sidebar.open {
   left: 0;
 }
-
 .sidebar nav ul {
   list-style: none;
 }
-
 .sidebar nav ul li {
   margin-bottom: 15px;
 }
-
 .sidebar label {
   font-size: 1.1em;
 }
-
 .sidebar select {
   width: 100%;
   padding: 8px;
@@ -224,11 +225,10 @@ body.light-mode .sidebar {
   margin-top: 5px;
   font-size: 1em;
 }
-
 .sidebar .sidebar-btn {
   width: 100%;
   padding: 10px;
-  background-color: #fbc02d;
+  background-color: var(--accent-color);
   border: none;
   border-radius: 5px;
   font-size: 1em;
@@ -236,17 +236,14 @@ body.light-mode .sidebar {
   margin-top: 10px;
   transition: background-color 0.2s;
 }
-
 .sidebar .sidebar-btn:hover {
   background-color: #fdd835;
 }
-
 .sidebar .level-info {
   margin-top: 20px;
   font-size: 1.2em;
   text-align: center;
 }
-
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
@@ -265,21 +262,21 @@ body.light-mode .sidebar {
   }
 }
 
+/* Main Content */
 main {
   margin-left: 0;
   padding: 20px;
   border-radius: 10px;
   transition: background 0.3s;
 }
-
 body:not(.light-mode) main {
   background: linear-gradient(135deg, #4a6fa5, #3a5276);
 }
-
 body.light-mode main {
-  background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
+  background: linear-gradient(135deg, var(--light-bg), var(--light-secondary));
 }
 
+/* Game Container */
 .game-container {
   display: flex;
   flex-wrap: wrap;
@@ -287,31 +284,27 @@ body.light-mode main {
   justify-content: center;
   margin-bottom: 20px;
 }
-
 #passage-text,
 #word-box {
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('hdb-texture.png');
+  background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('hdb-texture.png');
   background-size: cover;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 2px solid #2ecc71;
   min-width: 300px;
-  color: #2c3e50;
+  color: var(--light-text);
 }
-
 body:not(.light-mode) #passage-text,
 body:not(.light-mode) #word-box {
-  background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('hdb-texture.png');
-  color: #f0f8ff;
+  background: linear-gradient(rgba(44,62,80,0.9), rgba(44,62,80,0.9)), url('hdb-texture.png');
+  color: var(--dark-text);
 }
-
 #passage-text {
   flex: 2;
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   line-height: 1.8;
 }
-
 #word-box {
   flex: 1;
   display: grid;
@@ -320,14 +313,14 @@ body:not(.light-mode) #word-box {
   justify-items: center;
 }
 
+/* Blank Container & Word */
 .blank-container {
   position: relative;
   display: inline-block;
 }
-
 .word {
   background: #ffd700;
-  color: #2c3e50;
+  color: var(--light-text);
   padding: 10px 15px;
   border-radius: 5px;
   cursor: move;
@@ -336,25 +329,20 @@ body:not(.light-mode) #word-box {
   transition: transform 0.2s, background-color 0.2s;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
 .word:hover {
   transform: scale(1.1);
   background-color: #ffca28;
 }
-
 .word.dragging {
   opacity: 0.6;
 }
-
 .word.selected {
   background: #ffca28;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 10px rgba(255,215,0,0.6);
 }
-
 .word:focus {
   outline: 2px solid #2980b9;
 }
-
 .blank {
   display: inline-block;
   width: 80px;
@@ -365,13 +353,11 @@ body:not(.light-mode) #word-box {
   cursor: pointer;
   font-size: 1.2em;
   transition: color 0.3s;
-  color: #2c3e50;
+  color: var(--light-text);
 }
-
 body:not(.light-mode) .blank {
-  color: #f0f8ff;
+  color: var(--dark-text);
 }
-
 .blank.drag-over::after {
   content: "";
   position: absolute;
@@ -379,30 +365,27 @@ body:not(.light-mode) .blank {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 215, 0, 0.3);
+  background: rgba(255,215,0,0.3);
   border: 2px dashed #ffd700;
 }
-
 .blank.filled {
   border-bottom: none;
   font-weight: bold;
 }
-
 .blank.correct {
   color: #2ecc71;
-  background-color: #e8f5e9;
+  background-color: var(--correct-bg);
 }
-
 .blank.incorrect {
   color: #e74c3c;
-  background-color: #ffe6e6;
+  background-color: var(--incorrect-bg);
 }
-
 .blank:focus {
   border-bottom: 3px dashed #ffd700;
   background: #fff9c4;
 }
 
+/* Hint Button */
 .hint-for-blank {
   position: absolute;
   top: -20px;
@@ -411,7 +394,7 @@ body:not(.light-mode) .blank {
   height: 20px;
   font-size: 0.8em;
   background: #ffeb3b;
-  color: #2c3e50;
+  color: var(--light-text);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -422,37 +405,35 @@ body:not(.light-mode) .blank {
   transition: opacity 0.3s ease, transform 0.2s, background-color 0.2s;
   z-index: 10;
 }
-
 .blank-container:hover .hint-for-blank,
 .blank:focus + .hint-for-blank {
   opacity: 1;
 }
-
 .hint-for-blank:hover {
   transform: scale(1.2);
   background-color: #fdd835;
   animation: pulse 1s infinite;
 }
-
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(251,192,45,0.6); }
   70% { box-shadow: 0 0 0 10px rgba(251,192,45,0); }
   100% { box-shadow: 0 0 0 0 rgba(251,192,45,0); }
 }
 
+/* Keyword Highlight */
 .keyword {
   font-weight: bold;
   color: #8e44ad;
   transition: background-color 0.3s;
 }
-
 .keyword.highlighted {
-  background-color: #fbc02d;
+  background-color: var(--accent-color);
   color: #fff;
   padding: 2px 6px;
   border-radius: 5px;
 }
 
+/* Status Bar */
 .status-bar {
   background: #fff;
   padding: 15px;
@@ -467,16 +448,13 @@ body:not(.light-mode) .blank {
   margin-top: 20px;
   transition: background 0.3s, color 0.3s;
 }
-
 body:not(.light-mode) .status-bar {
   background: #2c3e50;
-  color: #f0f8ff;
+  color: var(--dark-text);
 }
-
 .status-bar span {
   font-size: 1.1em;
 }
-
 #progress-bar-container,
 #timer-container {
   flex: 1;
@@ -486,43 +464,37 @@ body:not(.light-mode) .status-bar {
   border-radius: 10px;
   overflow: hidden;
 }
-
 #progress-bar,
 #timer-bar {
   height: 100%;
   transition: width 0.3s ease, background-color 0.3s ease;
 }
-
 #progress-bar {
   background: #2ecc71;
 }
-
 #timer-bar {
   background: #2ecc71;
 }
-
 .progress-stepper {
   display: flex;
-  gap  gap: 4px;
+  gap: 4px;
   margin-top: 10px;
 }
-
 .step-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background-color: #bdc3c7;
 }
-
 .step-dot.active {
-  background-color: #fbc02d;
+  background-color: var(--accent-color);
 }
 
+/* Navigation Buttons */
 .navigation-buttons {
   display: flex;
   gap: 10px;
 }
-
 .navigation-buttons button {
   padding: 10px 20px;
   border: none;
@@ -533,11 +505,11 @@ body:not(.light-mode) .status-bar {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .navigation-buttons button:hover {
   background-color: #1c5980;
 }
 
+/* Feedback Display */
 #feedback {
   display: flex;
   align-items: center;
@@ -547,35 +519,31 @@ body:not(.light-mode) .status-bar {
   padding: 10px;
   border-radius: 5px;
   background: #e0f7fa;
-  color: #2c3e50;
+  color: var(--light-text);
   border: 2px solid #2ecc71;
   margin-top: 10px;
   transition: color 0.3s;
 }
-
 #feedback::before {
   content: "ℹ️";
   font-size: 1.5em;
 }
-
 #feedback.correct::before {
   content: "✅";
 }
-
 #feedback.incorrect::before {
   content: "❌";
 }
 
+/* Animations */
 @keyframes correctAnimation {
   0% { transform: scale(1); }
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
-
 .animate-correct {
   animation: correctAnimation 0.5s ease;
 }
-
 @keyframes incorrectAnimation {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -583,11 +551,9 @@ body:not(.light-mode) .status-bar {
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
-
 .animate-incorrect {
   animation: incorrectAnimation 0.5s ease;
 }
-
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
@@ -600,7 +566,6 @@ body:not(.light-mode) .status-bar {
     border: 3px solid #e74c3c;
   }
 }
-
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
