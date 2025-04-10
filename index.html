@@ -29,10 +29,12 @@
       <p id="progress-summary"></p>
       <button id="close-dashboard" class="modal-btn">Close</button>
       <button id="notify-parents" class="modal-btn">Notify Parents</button>
+      <button id="reset-progress" class="modal-btn">Reset Progress</button>
     </div>
   </div>
 
   <header>
+    <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
     <h1>Grammar Cloze Adventure</h1>
     <p class="instructions">
       Drag or tap a word to fill in the blanks. Use the sidebar for hints and controls!
@@ -83,7 +85,7 @@
         </li>
         <li>
           <label for="text-size-slider">Text Size:</label>
-          <input type="range" id="text-size-slider" min="1" max="2" step="0.1" value="1.4">
+          <input type="range" id="text-size-slider" min="1.2" max="1.8" step="0.1" value="1.4">
         </li>
         <li>
           <button id="toggle-challenge" class="sidebar-btn" aria-label="Toggle challenge mode">
@@ -148,6 +150,8 @@
   <audio id="incorrect-sound" src="incorrect.mp3"></audio>
   <audio id="background-music" src="mystical-forest.mp3" loop></audio>
 
-  <script src="script.js"></script>
+  <script src="game.js" type="module"></script>
+  <script src="ui.js" type="module"></script>
+  <script src="script.js" type="module"></script>
 </body>
 </html>
