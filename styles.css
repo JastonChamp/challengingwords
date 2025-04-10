@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #4a6fa5;
+  background: linear-gradient(135deg, #6b48ff, #87ceeb);
   color: #f0f8ff;
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
@@ -17,11 +17,12 @@ body {
 }
 
 body.light-mode {
-  background-color: #f5e1a4;
+  background: linear-gradient(135deg, #f0e6ff, #e0f7fa);
   color: #2c3e50;
 }
 
-body.dyslexia {
+body.dyslexia #passage-text,
+body.dyslexia #word-box {
   font-family: "OpenDyslexic", sans-serif;
 }
 
@@ -128,6 +129,25 @@ body.light-mode .instructions {
   background-color: #fdd835;
 }
 
+.sidebar-toggle {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ffd700;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
 #wizard-advice {
   padding: 15px;
   border-radius: 5px;
@@ -161,13 +181,13 @@ body.light-mode #wizard-advice {
 
 .sidebar {
   position: fixed;
-  left: 0;
+  left: -250px;
   top: 0;
   width: 250px;
   height: 100%;
   padding: 20px;
   overflow-y: auto;
-  transition: background 0.3s, color 0.3s;
+  transition: left 0.3s ease;
 }
 
 body:not(.light-mode) .sidebar {
@@ -178,6 +198,10 @@ body:not(.light-mode) .sidebar {
 body.light-mode .sidebar {
   background-color: #dcedc8;
   color: #2c3e50;
+}
+
+.sidebar.open {
+  left: 0;
 }
 
 .sidebar nav ul {
@@ -242,7 +266,7 @@ body.light-mode .sidebar {
 }
 
 main {
-  margin-left: 270px;
+  margin-left: 0;
   padding: 20px;
   border-radius: 10px;
   transition: background 0.3s;
@@ -266,32 +290,32 @@ body.light-mode main {
 
 #passage-text,
 #word-box {
-  background: #fff;
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('hdb-texture.png');
+  background-size: cover;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   border: 2px solid #2ecc71;
   min-width: 300px;
-  background-image: url('hdb-texture.png'); /* Cultural relevance: HDB-themed background */
-  background-size: cover;
+  color: #2c3e50;
+}
+
+body:not(.light-mode) #passage-text,
+body:not(.light-mode) #word-box {
+  background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('hdb-texture.png');
+  color: #f0f8ff;
 }
 
 #passage-text {
   flex: 2;
-  font-size: 1.4em;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   line-height: 1.8;
-  transition: color 0.3s;
-  color: #2c3e50;
-}
-
-body:not(.light-mode) #passage-text {
-  color: #f0f8ff;
 }
 
 #word-box {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
   justify-items: center;
 }
@@ -302,8 +326,8 @@ body:not(.light-mode) #passage-text {
 }
 
 .word {
-  background: #e57373;
-  color: #fff;
+  background: #ffd700;
+  color: #2c3e50;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: move;
@@ -315,7 +339,7 @@ body:not(.light-mode) #passage-text {
 
 .word:hover {
   transform: scale(1.1);
-  background-color: #ef5350;
+  background-color: #ffca28;
 }
 
 .word.dragging {
@@ -323,12 +347,12 @@ body:not(.light-mode) #passage-text {
 }
 
 .word.selected {
-  outline: 2px solid #fff;
+  background: #ffca28;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
 }
 
 .word:focus {
   outline: 2px solid #2980b9;
-  background-color: #2980b9;
 }
 
 .blank {
@@ -348,9 +372,15 @@ body:not(.light-mode) .blank {
   color: #f0f8ff;
 }
 
-.blank.drag-over {
-  border-color: #ef5350;
-  background-color: #fff9c4;
+.blank.drag-over::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 215, 0, 0.3);
+  border: 2px dashed #ffd700;
 }
 
 .blank.filled {
@@ -364,12 +394,13 @@ body:not(.light-mode) .blank {
 }
 
 .blank.incorrect {
-  color: #c0392b;
-  background-color: #ffe0b2;
+  color: #e74c3c;
+  background-color: #ffe6e6;
 }
 
 .blank:focus {
-  outline: 2px solid #2980b9;
+  border-bottom: 3px dashed #ffd700;
+  background: #fff9c4;
 }
 
 .hint-for-blank {
@@ -379,11 +410,11 @@ body:not(.light-mode) .blank {
   width: 20px;
   height: 20px;
   font-size: 0.8em;
-  background: #fbc02d;
+  background: #ffeb3b;
+  color: #2c3e50;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -472,7 +503,7 @@ body:not(.light-mode) .status-bar {
 
 .progress-stepper {
   display: flex;
-  gap: 4px;
+  gap  gap: 4px;
   margin-top: 10px;
 }
 
@@ -508,19 +539,31 @@ body:not(.light-mode) .status-bar {
 }
 
 #feedback {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   text-align: center;
   font-size: 1.2em;
   padding: 10px;
   border-radius: 5px;
-  background: #fff;
+  background: #e0f7fa;
+  color: #2c3e50;
   border: 2px solid #2ecc71;
   margin-top: 10px;
   transition: color 0.3s;
-  color: #2c3e50;
 }
 
-body:not(.light-mode) #feedback {
-  color: #f0f8ff;
+#feedback::before {
+  content: "ℹ️";
+  font-size: 1.5em;
+}
+
+#feedback.correct::before {
+  content: "✅";
+}
+
+#feedback.incorrect::before {
+  content: "❌";
 }
 
 @keyframes correctAnimation {
@@ -550,11 +593,28 @@ body:not(.light-mode) #feedback {
     transition: none !important;
     animation: none !important;
   }
+  .blank.correct {
+    border: 3px solid #2ecc71;
+  }
+  .blank.incorrect {
+    border: 3px solid #e74c3c;
+  }
 }
 
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
     align-items: center;
+  }
+  .sidebar {
+    width: 250px;
+    height: 100%;
+    left: -250px;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  main {
+    margin-left: 0;
   }
 }
